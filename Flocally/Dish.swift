@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Dish {
+class Dish {
     
     var id:String
     var name:String
@@ -19,5 +19,24 @@ struct Dish {
     var postedByName:String
     var postedByImageURL:String
     var postedByID:String
-    var chefImage:UIImage!
+    var dishImageURL:String
+    var postedByImage:UIImage!
+    var dishImage:UIImage!
+    
+    init(id:String,name:String,type:String,category:String,description:String,price:Double,postedByName:String,postedByImageURL:String,postedByID:String,dishImageURL:String){
+        
+        self.id = id
+        self.name = name
+        self.type = type
+        self.category = category
+        self.description = description
+        self.price = price
+        self.postedByName = postedByName
+        self.postedByImageURL = postedByImageURL
+        self.postedByID = postedByID
+        self.dishImageURL = dishImageURL
+    
+    }
+    
+    
 }

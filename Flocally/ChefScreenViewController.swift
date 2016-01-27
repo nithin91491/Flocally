@@ -12,12 +12,67 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     let searchBar = UISearchBar()
     
+    @IBOutlet weak var imgProfilePic: UIImageView!
+    
+    @IBOutlet weak var lblName: UILabel!
+    
+    @IBOutlet weak var txvChefsDescription: UITextView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var chef:Chef!
+    
+    var chefsDishes:[Dish] = [Dish]()
+    
+    //var chefs = [Chef]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        //self.navigationItem.setHidesBackButton(true, animated: false)
+        
         setupNavigationController()
+       
+        //Parse Chef's Dishes
+        let dishes = chef.dishes
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+            
+            dishes.forEach { (dishJSON) -> () in
+                let id:String = dishJSON["_id"].stringValue
+                let name:String = dishJSON["name"].stringValue
+                let dishImageURL:String = dishJSON["image_url"].stringValue
+                let description:String = dishJSON["desc"].stringValue
+                let category:String = dishJSON["category"].stringValue
+                let price:Double = dishJSON["price"].doubleValue
+                let type:String = dishJSON["type"].stringValue
+                
+                let dish = Dish(id: id, name: name, type: type, category: category, description: description, price: price, postedByName: "", postedByImageURL: "", postedByID: "", dishImageURL: dishImageURL)
+                self.chefsDishes.append(dish)
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue()){
+                self.tableView.reloadData()
+            }
+        }
+        
+       
+        
+        //Load Chef details
+        self.lblName.text = chef.name
+        self.txvChefsDescription.text = chef.aboutme
+        let chefImageURL = chef.profilePictureURL
+        
+        downloader.download(chefImageURL) { url in
+            guard url != nil else {return}
+            
+            let data = NSData(contentsOfURL: url)!
+            let image = UIImage(data: data)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.imgProfilePic.image = image
+            })
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +95,7 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         //        label.sizeToFit()
         //        navigationItem.titleView = label
         
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         
         //SearchBar
         searchBar.delegate = self
@@ -74,12 +130,41 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     //MARK : - Table View
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCellWithIdentifier("ChefScreenCell", forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCellWithIdentifier("ChefScreenCell", forIndexPath: indexPath) as! CustomTableViewCell
+        
+        let dish = chefsDishes[indexPath.row] as Dish
+        
+        cell.lblFoodName.text = dish.name
+        cell.lblDescription.text = dish.description
+        cell.lblPrice.text = "₹" + String(dish.price)
+        
+        if let dishImage = dish.dishImage{
+            cell.imgFoodImage.image = dishImage
+        }
+        else{
+            cell.imgFoodImage.image = nil
+            downloader.download(dish.dishImageURL, completionHandler: { url in
+               
+                guard url != nil else {return}
+                
+                let data = NSData(contentsOfURL: url)!
+                let image = UIImage(data: data)
+                dish.dishImage = image
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                })
+                
+            })
+        }
+        
+        
+        cell.selectionStyle = .None
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return chefsDishes.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

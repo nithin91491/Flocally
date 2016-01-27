@@ -10,6 +10,8 @@ import UIKit
 import Fabric
 import Crashlytics
 
+
+let downloader = Downloader(configuration: NSURLSession.sharedSession().configuration)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
