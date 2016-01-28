@@ -11,6 +11,9 @@ import UIKit
 class HelpTableViewController: UITableViewController {
 
     var selectedRow:Int?
+    var expanded = false
+    var previousSelectedRow:Int?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,21 +42,33 @@ class HelpTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return 5
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("HelpCell", forIndexPath: indexPath)
 
        let label = cell.viewWithTag(1) as! UILabel
+        let label1 = cell.viewWithTag(2) as! UILabel
         
-        if let selRow = selectedRow{
-            
-            if selRow == indexPath.row{
-            label.hidden = false
-            label.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat"
+        if !(label.hidden){
+           
+            if let selRow = selectedRow{
+                if selRow != indexPath.row{
+                    label.hidden = true
+                    label.text = ""
+                    cell.backgroundColor = UIColor.redColor()
+                    label1.textColor = UIColor.whiteColor()
+                }
+                else{
+                    label.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat"
+                    label.textColor = UIColor.blackColor()
+                    label1.textColor = UIColor.redColor()
+                }
             }
+            
         }
         
         cell.selectionStyle = .None
@@ -62,34 +77,28 @@ class HelpTableViewController: UITableViewController {
     }
    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("HelpCell", forIndexPath: indexPath)
-       
+        
+       let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        selectedCell?.backgroundColor = UIColor.whiteColor()
+        
+       let label = selectedCell!.viewWithTag(1) as! UILabel
         selectedRow = indexPath.row
-        
-        
+        label.hidden = false
+       
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         
-    }
-    
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let selRow = selectedRow{
-            let label = cell.viewWithTag(1) as! UILabel
-            
-            if indexPath.row == selRow{
-                label.hidden = false
-                label.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat"
-            }
-            else{
-                label.text = ""
-                label.hidden = true
-                //self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-            }
-            
+        if let prev = previousSelectedRow{
+            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: prev, inSection: indexPath.section)], withRowAnimation: .Automatic)
         }
         
+        previousSelectedRow = selectedRow
+        
     }
+  
+    
+   
+    
+    
     
 //    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //         return 60

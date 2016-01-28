@@ -8,154 +8,98 @@
 
 import UIKit
 
+
+
 class BreakFastTableViewController: UITableViewController {
     
+    //MARK :- Properties and Outlets
+     var breakfast=[Dish]()
+     var chefs=[Chef]()
     
-    var dishes = [Dish]()
-    var chefs = [Chef]()
     
-    func profileTapped(sender:UITapGestureRecognizer){
+    
+    
+    //MARK :- IBActions
+    
+       
+
+    //MARK :- View life cycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        DataManager.sharedInstance.downloadDishes{
+            self.breakfast = DataManager.sharedInstance.dishes.filter{$0.type == "Breakfast"}
+            self.tableView.reloadData()
+        }
+        
+        DataManager.sharedInstance.downloadChefs{
+            self.chefs = DataManager.sharedInstance.chefs
+        }
+    
+    }
+
+    
+    
+    
+
+    
+    //Mark :- Functions
+    func profileTapped(sender:UITapGestureRecognizer){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.performSegueWithIdentifier("ChefSegue", sender: sender)
         }
         
-        print("image tapped")
-        
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //GET DISH
-        RequestManager.request(.GET, baseURL: .getDish, parameterString: nil) { (jsonData) -> () in
-           
-            jsonData.forEach({ (dish: (String, JSON)) -> () in
-              
-                let dishJSON = dish.1
-                
-                let dishes = dishJSON["dishes"].arrayValue
-                
-                dishes.forEach({ (JSON) -> () in
-                    
-                    let id:String = JSON["_id"].stringValue
-                    let name:String = JSON["name"].stringValue
-                    let type:String = JSON["type"].stringValue
-                    let category:String = JSON["category"].stringValue
-                    let description:String = JSON["desc"].stringValue
-                    let price:Double = JSON["price"].doubleValue
-                    let imageURL:String = JSON["image_url"].stringValue
-                    let postedByName:String = dishJSON["name"].stringValue
-                    let postedByImageURL:String = dishJSON["profilepicture"].stringValue
-                    let postedByID:String = dishJSON["_id"].stringValue
-                    
-                    let dish = Dish(id:id,name: name,type: type,category: category,description: description,price: price,postedByName: postedByName,postedByImageURL: postedByImageURL,postedByID: postedByID,dishImageURL:imageURL)
-                    
-                    self.dishes.append(dish)
-                })
-//
-//                let id:String = dishJSON["_id"].stringValue
-//                let name:String = dishJSON["name"].stringValue
-//                let type:String = dishJSON["type"].stringValue
-//                let category:String = dishJSON["category"].stringValue
-//                let description:String = dishJSON["desc"].stringValue
-//                let price:Double = dishJSON["price"].doubleValue
-//                let postedByName:String = dishJSON["posted_by_name"].stringValue
-//                let postedByImageURL:String = dishJSON["posted_by_image"].stringValue
-//                let postedByID:String = dishJSON["posted_by_id"].stringValue
-//
-//                let dish = Dish(id:id,name: name,type: type,category: category,description: description,price: price,postedByName: postedByName,postedByImageURL: postedByImageURL,postedByID: postedByID,chefImage: nil)
-//                
-//                self.dishes.append(dish)
-                
-            })
-            self.tableView.reloadData()
-        }
-        
-        //GET CHEF
-        RequestManager.request(.GET, baseURL: .getChef, parameterString: nil) { (jsonData) -> () in
-            
-            jsonData.forEach({ (chef:(String, JSON)) -> () in
-                
-                let chefJSON = chef.1
-                
-                 let _v:String = chefJSON["_v"].stringValue
-                 let _id:String = chefJSON["_id"].stringValue
-                 let dob:String = chefJSON["dob"].stringValue
-                 let emailAddress:String = chefJSON["emailaddress"].stringValue
-                 let name:String = chefJSON["name"].stringValue
-                let password:String = chefJSON["password"].stringValue
-                let longitude:Double = chefJSON["longitude"].doubleValue
-                 let latitude:Double = chefJSON["latitude"].doubleValue
-                 let profileCreateTimestamp:String = chefJSON["profileCreateTimestamp"].stringValue
-                 let dishes:[JSON] = chefJSON["dishes"].arrayValue
-                 let tags:[JSON] = chefJSON["tags"].arrayValue
-                 let ratings:[JSON] = chefJSON["ratings"].arrayValue
-                 let phones:[JSON] = chefJSON["phones"].arrayValue
-                 let followers:[JSON] = chefJSON["followers"].arrayValue
-                 let addresses:[JSON] = chefJSON["addresses"].arrayValue
-                 let aboutme:String = chefJSON["aboutme"].stringValue
-                 let googleplusid:String = chefJSON["aboutme"].stringValue
-                 let fbid:String = chefJSON["googleplusid"].stringValue
-                 let profilePictureURL:String = chefJSON["profilepicture"].stringValue
-                 let gender:String = chefJSON["gender"].stringValue
-                 let deviceId:String = chefJSON["deviceid"].stringValue
-                 let deviceType:String = chefJSON["devicetype"].stringValue
-                
-                let chef = Chef(_v:_v,_id: _id,dob: dob,emailAddress: emailAddress,name: name,password: password,longitude: longitude,latitude: latitude,profileCreateTimestamp: profileCreateTimestamp,dishes: dishes,tags: tags,ratings: ratings,phones: phones,followers: followers,addresses: addresses,aboutme: aboutme,googleplusid: googleplusid,fbid: fbid,profilePictureURL: profilePictureURL,gender: gender,deviceId: deviceId,deviceType: deviceType)
-                
-                self.chefs.append(chef)
-                
-                
-            })
-            
-        }
-        
-        
-        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: - Table view
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return dishes.count
-        return dishes.count
+        return breakfast.count
     }
 
    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BreakFastCell", forIndexPath: indexPath) as! CustomTableViewCell
 
-        let dish = dishes[indexPath.row] as Dish
+        let breakfast = self.breakfast[indexPath.row] as Dish
         
-        cell.lblPrice.text = "₹"+String(dish.price)
-        cell.lblFoodName.text = dish.name
-        cell.lblDescription.text = dish.description
-        cell.lblChefName.text = dish.postedByName
+        cell.lblPrice.text = "₹"+String(breakfast.price)
+        cell.lblFoodName.text = breakfast.name
+        cell.lblDescription.text = breakfast.description
+        cell.lblChefName.text = breakfast.postedByName
         
         let tap = UITapGestureRecognizer(target: self, action: "profileTapped:")
         cell.imgProfileImage.userInteractionEnabled = true
         cell.imgProfileImage.addGestureRecognizer(tap)
         cell.imgProfileImage.tag = indexPath.row
         
+        
+        if breakfast.category == "non-veg"{
+            cell.imgVegIndicator.image = UIImage(named: "nonveg")
+        }else{
+            cell.imgVegIndicator.image = UIImage(named: "veg")
+        }
+        
     
-        if let chefImage = dish.postedByImage {
+        if let chefImage = breakfast.postedByImage {
             cell.imgProfileImage.image = chefImage
             cell.imgProfileImage.contentMode = .ScaleAspectFill
         }
         else{
             cell.imgProfileImage.image = nil
-            downloader.download(dish.postedByImageURL, completionHandler: { url in
+            downloader.download(breakfast.postedByImageURL, completionHandler: { url in
                 
                 guard url != nil else {return}
                 
@@ -163,7 +107,7 @@ class BreakFastTableViewController: UITableViewController {
                 let image = UIImage(data:data)
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    dish.postedByImage = image
+                    breakfast.postedByImage = image
                     self.tableView.reloadRowsAtIndexPaths(
                             [indexPath], withRowAnimation: .None)
                 }
@@ -171,14 +115,14 @@ class BreakFastTableViewController: UITableViewController {
             })
         }
         
-        if let foodImage = dish.dishImage{
+        if let foodImage = breakfast.dishImage{
             cell.imgFoodImage.image = foodImage
             cell.imgFoodImage.contentMode = .ScaleAspectFill
         }
         else{
             
             cell.imgFoodImage.image = nil
-            downloader.download(dish.dishImageURL, completionHandler: { url in
+            downloader.download(breakfast.dishImageURL, completionHandler: { url in
             
             guard url != nil else {return}
             
@@ -186,7 +130,7 @@ class BreakFastTableViewController: UITableViewController {
             let image = UIImage(data:data)
             
             dispatch_async(dispatch_get_main_queue()) {
-                dish.dishImage = image
+                breakfast.dishImage = image
                 self.tableView.reloadRowsAtIndexPaths(
                 [indexPath], withRowAnimation: .None)
             }
@@ -257,20 +201,20 @@ class BreakFastTableViewController: UITableViewController {
         let destinationVC = segue.destinationViewController as! ChefScreenViewController
             let sender = sender as! UITapGestureRecognizer
             let selectedRow = sender.view!.tag
-            let chefID = self.dishes[selectedRow].postedByID
+            let chefID = self.breakfast[selectedRow].postedByID
             let chef = self.chefs.filter({ $0._id == chefID  })
             
     
             destinationVC.chef = chef.first
     
-            print("segue finished")
         }
         else if segue.identifier == "DishSegue"{
     
             let selectedRow = self.tableView.indexPathForSelectedRow!
-            let selectedDish = dishes[selectedRow.row]
+            let selectedDish = breakfast[selectedRow.row]
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
+            destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
         }
         
     }

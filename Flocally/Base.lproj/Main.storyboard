@@ -276,7 +276,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="J2n-Eh-BPm">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="J2n-Eh-BPm">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="u6A-dj-mvE"/>
@@ -375,13 +375,16 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oby-hN-VjU" userLabel="PlusButton">
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oby-hN-VjU" userLabel="PlusButton">
                                             <rect key="frame" x="504" y="158" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="SvV-rv-BUK"/>
                                                 <constraint firstAttribute="width" constant="24" id="lck-nJ-7Rf"/>
                                             </constraints>
                                             <state key="normal" image="btn-additem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="xwP-oQ-F1I" eventType="touchUpInside" id="ZV1-LS-j8d"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7d-Ib-DnF" userLabel="MinusButton">
                                             <rect key="frame" x="568" y="158" width="24" height="24"/>
@@ -390,8 +393,11 @@
                                                 <constraint firstAttribute="height" constant="24" id="fHT-gY-J3K"/>
                                             </constraints>
                                             <state key="normal" image="btn-minusitem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="xwP-oQ-F1I" eventType="touchUpInside" id="Jen-CL-176"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxs-de-yAb">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxs-de-yAb">
                                             <rect key="frame" x="536" y="159" width="25" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="KRQ-iB-bda"/>
@@ -485,7 +491,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDV-di-b2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3971" y="499"/>
+            <point key="canvasLocation" x="3931" y="275"/>
         </scene>
         <!--Chef Screen View Controller-->
         <scene sceneID="BSX-pc-klM">
@@ -854,7 +860,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fS-0S-jXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4814" y="-123"/>
+            <point key="canvasLocation" x="5621" y="98"/>
         </scene>
         <!--Dish Screen View Controller-->
         <scene sceneID="sU8-TF-Po1">
@@ -930,13 +936,16 @@
                                 <rect key="frame" x="516" y="204" width="10" height="22"/>
                                 <state key="normal" image="ic-location1"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YML-3l-Rsa" userLabel="PlusButton">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YML-3l-Rsa" userLabel="PlusButton">
                                 <rect key="frame" x="504" y="230" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="dIC-v4-omk"/>
                                     <constraint firstAttribute="width" constant="24" id="tdf-eL-FEL"/>
                                 </constraints>
                                 <state key="normal" image="btn-additem"/>
+                                <connections>
+                                    <action selector="changeQuantity:" destination="a9e-VL-h2X" eventType="touchUpInside" id="Qpj-D6-USQ"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="veg" translatesAutoresizingMaskIntoConstraints="NO" id="d5e-rK-OI3">
                                 <rect key="frame" x="20" y="233" width="20" height="20"/>
@@ -952,16 +961,10 @@
                                     <constraint firstAttribute="width" constant="24" id="Pi5-ca-t1o"/>
                                 </constraints>
                                 <state key="normal" image="btn-minusitem"/>
+                                <connections>
+                                    <action selector="changeQuantity:" destination="a9e-VL-h2X" eventType="touchUpInside" id="NQZ-c5-VWn"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODm-5h-481">
-                                <rect key="frame" x="536" y="231" width="25" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="103-KU-bpY"/>
-                                    <constraint firstAttribute="height" constant="21" id="Dcm-8u-Z6w"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hyderabadi Biryani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COR-qj-z8z">
                                 <rect key="frame" x="44" y="394" width="108" height="15"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
@@ -1002,6 +1005,15 @@
                                 <rect key="frame" x="476" y="208" width="35" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODm-5h-481">
+                                <rect key="frame" x="536" y="231" width="25" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="103-KU-bpY"/>
+                                    <constraint firstAttribute="height" constant="21" id="Dcm-8u-Z6w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1062,12 +1074,13 @@
                         <outlet property="imgVegIndicator" destination="d5e-rK-OI3" id="CpB-Pc-F4T"/>
                         <outlet property="lblDishName" destination="Pgi-3N-3dC" id="pWq-33-62n"/>
                         <outlet property="lblPrice" destination="M5Z-QB-P2f" id="2Xt-OJ-FZD"/>
+                        <outlet property="lblQuantity" destination="ODm-5h-481" id="c8L-IH-Tex"/>
                         <outlet property="txvDescription" destination="KGc-jg-jfu" id="bg9-ij-1Zw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESB-we-WMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4869" y="560"/>
+            <point key="canvasLocation" x="5621" y="808"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="PoA-yU-Xbo">
@@ -1122,7 +1135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lnm-TJ-NHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4664" y="1326"/>
+            <point key="canvasLocation" x="2244" y="-836"/>
         </scene>
         <!--Help Table View Controller-->
         <scene sceneID="nN8-N2-004">
@@ -1140,7 +1153,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Q. How to use the app?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OL3-Fa-b5q">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Q. How to use the app?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OL3-Fa-b5q">
                                             <rect key="frame" x="24" y="19" width="480" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="480" id="CUE-wY-xfl"/>
@@ -1180,7 +1193,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyB-Un-Ixg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4664" y="2032"/>
+            <point key="canvasLocation" x="1068" y="-856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Umd-UO-3KW">
@@ -1217,7 +1230,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="Fhx-8U-ISW">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="Fhx-8U-ISW">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="rUY-fI-e1J"/>
@@ -1316,13 +1329,16 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBj-hL-npH" userLabel="PlusButton">
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBj-hL-npH" userLabel="PlusButton">
                                             <rect key="frame" x="504" y="158" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="u68-iS-y24"/>
                                                 <constraint firstAttribute="width" constant="24" id="yl3-RG-14j"/>
                                             </constraints>
                                             <state key="normal" image="btn-additem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="2Ug-WX-yf7" eventType="touchUpInside" id="XuD-AU-tjr"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5X-Vd-cBV" userLabel="MinusButton">
                                             <rect key="frame" x="568" y="158" width="24" height="24"/>
@@ -1331,8 +1347,11 @@
                                                 <constraint firstAttribute="width" constant="24" id="I2c-EC-Z53"/>
                                             </constraints>
                                             <state key="normal" image="btn-minusitem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="2Ug-WX-yf7" eventType="touchUpInside" id="UqV-r7-E83"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHE-t4-1hG">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHE-t4-1hG">
                                             <rect key="frame" x="536" y="159" width="25" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="kBa-2H-zWF"/>
@@ -1411,6 +1430,7 @@
                                     <outlet property="lblNumberOfServingsLeft" destination="bFT-no-vqG" id="Gll-wZ-Cbh"/>
                                     <outlet property="lblPrice" destination="9Gx-dH-QCJ" id="UBf-WT-EhN"/>
                                     <outlet property="lblQuantity" destination="ZHE-t4-1hG" id="PKN-Wf-geY"/>
+                                    <segue destination="a9e-VL-h2X" kind="show" identifier="DishSegue" id="mCp-yN-gSC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1419,10 +1439,13 @@
                             <outlet property="delegate" destination="ppx-Um-GHK" id="7tc-Gs-VHV"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="1H8-hh-Fnr" kind="show" identifier="ChefSegue" id="iTG-Nf-xD0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aI-3t-U5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3960" y="1192"/>
+            <point key="canvasLocation" x="3971" y="1189"/>
         </scene>
         <!--Dinner-->
         <scene sceneID="uAT-Sa-DnL">
@@ -1440,7 +1463,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="ZaW-cv-6fo">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="ZaW-cv-6fo">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="TUc-Z0-5Z9"/>
@@ -1539,13 +1562,16 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPq-dt-izQ" userLabel="PlusButton">
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPq-dt-izQ" userLabel="PlusButton">
                                             <rect key="frame" x="504" y="158" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="C7b-5m-Cq4"/>
                                                 <constraint firstAttribute="width" constant="24" id="XBG-cD-aDS"/>
                                             </constraints>
                                             <state key="normal" image="btn-additem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="421-Nk-j46" eventType="touchUpInside" id="kPx-m6-00r"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F1b-cg-bE5" userLabel="MinusButton">
                                             <rect key="frame" x="568" y="158" width="24" height="24"/>
@@ -1554,8 +1580,11 @@
                                                 <constraint firstAttribute="height" constant="24" id="6af-vh-bni"/>
                                             </constraints>
                                             <state key="normal" image="btn-minusitem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="421-Nk-j46" eventType="touchUpInside" id="TjT-7w-ZtE"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-LH-PGC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-LH-PGC">
                                             <rect key="frame" x="536" y="159" width="25" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="eYB-9C-8Bq"/>
@@ -1634,6 +1663,7 @@
                                     <outlet property="lblNumberOfServingsLeft" destination="Dva-Oi-JD0" id="9uM-3N-o2i"/>
                                     <outlet property="lblPrice" destination="Tw7-ww-7j9" id="MlI-3p-x81"/>
                                     <outlet property="lblQuantity" destination="cEL-LH-PGC" id="hOf-7V-Tqc"/>
+                                    <segue destination="a9e-VL-h2X" kind="show" identifier="DishSegue" id="29b-nf-rQT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1642,6 +1672,9 @@
                             <outlet property="delegate" destination="ObG-1a-bbv" id="NYn-nM-2wr"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="1H8-hh-Fnr" kind="show" identifier="ChefSegue" id="cDR-pv-YNv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y7q-1i-GHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1663,7 +1696,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="WYk-Xd-9zL">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BG-img" translatesAutoresizingMaskIntoConstraints="NO" id="WYk-Xd-9zL">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="bzo-7n-ffu"/>
@@ -1762,13 +1795,16 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAq-O2-y3Q" userLabel="PlusButton">
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAq-O2-y3Q" userLabel="PlusButton">
                                             <rect key="frame" x="504" y="158" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="aaA-wk-8so"/>
                                                 <constraint firstAttribute="width" constant="24" id="amt-sc-5xt"/>
                                             </constraints>
                                             <state key="normal" image="btn-additem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="kcu-F9-TSU" eventType="touchUpInside" id="wM7-26-28x"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJd-cN-qFi" userLabel="MinusButton">
                                             <rect key="frame" x="568" y="158" width="24" height="24"/>
@@ -1777,8 +1813,11 @@
                                                 <constraint firstAttribute="width" constant="24" id="fll-QK-blH"/>
                                             </constraints>
                                             <state key="normal" image="btn-minusitem"/>
+                                            <connections>
+                                                <action selector="changeQuantity:" destination="kcu-F9-TSU" eventType="touchUpInside" id="9hE-ax-Wd0"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-9O-Tux">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-9O-Tux">
                                             <rect key="frame" x="536" y="159" width="25" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Mul-dx-0cI"/>
@@ -1857,6 +1896,7 @@
                                     <outlet property="lblNumberOfServingsLeft" destination="HF7-Bu-syd" id="JCL-L2-5hz"/>
                                     <outlet property="lblPrice" destination="jny-0p-PSb" id="9Ja-kD-kTG"/>
                                     <outlet property="lblQuantity" destination="vkF-9O-Tux" id="TMG-ZS-HxA"/>
+                                    <segue destination="a9e-VL-h2X" kind="show" identifier="DishSegue" id="43P-dP-7Vu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1865,6 +1905,9 @@
                             <outlet property="delegate" destination="4UK-4R-lpi" id="6PZ-3e-vqd"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="1H8-hh-Fnr" kind="show" identifier="ChefSegue" id="heD-Ue-ito"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RcU-aq-zh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1891,4 +1934,8 @@
         <image name="starryStars_on" width="35" height="35"/>
         <image name="veg" width="38" height="38"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="iTG-Nf-xD0"/>
+        <segue reference="mCp-yN-gSC"/>
+    </inferredMetricsTieBreakers>
 </document>

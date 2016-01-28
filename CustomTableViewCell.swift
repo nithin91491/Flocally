@@ -30,6 +30,22 @@ class CustomTableViewCell: UITableViewCell {
  
     @IBOutlet weak var lblChefName: UILabel!
     
+    var initialQuantity = 0
+    var userSelectedQuantity:Int?
+    
+    @IBAction func changeQuantity(sender: UIButton) {
+        if sender.tag == 1{ //Increment
+            self.lblQuantity.text = String(++initialQuantity)
+        }
+        else{ //Decrement
+            guard initialQuantity > 0 else {return}
+            self.lblQuantity.text = String(--initialQuantity)
+        }
+        
+        
+    }
+    
+    
     
     
     override func awakeFromNib() {

@@ -138,6 +138,12 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         cell.lblDescription.text = dish.description
         cell.lblPrice.text = "₹" + String(dish.price)
         
+        if dish.category == "non-veg"{
+            cell.imgVegIndicator.image = UIImage(named: "nonveg")
+        }else{
+            cell.imgVegIndicator.image = UIImage(named: "veg")
+        }
+        
         if let dishImage = dish.dishImage{
             cell.imgFoodImage.image = dishImage
         }

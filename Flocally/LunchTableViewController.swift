@@ -10,47 +10,120 @@ import UIKit
 
 class LunchTableViewController: UITableViewController {
 
+    //MARK :- Properties and Outlets
+    var lunch = [Dish]()
+    
+    
+    
+    
+    //MARK :- View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        DataManager.sharedInstance.ifDishAvailable{
+        self.lunch = DataManager.sharedInstance.dishes.filter{$0.type == "Lunch"}
+        self.tableView.reloadData()
+        }
+    
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        
     }
-
-    // MARK: - Table view data source
-
+    
+    
+    //Mark :- Functions
+    func profileTapped(sender:UITapGestureRecognizer){
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.performSegueWithIdentifier("ChefSegue", sender: sender)
+        }
+        
+    }
+    
+    // MARK: - Table view
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 10
+        return lunch.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("LunchCell", forIndexPath: indexPath) as! CustomTableViewCell
+        let lunch = self.lunch[indexPath.row] as Dish
         
-        cell.lblPrice.text = "Rs.10000"
+        cell.lblPrice.text = "₹"+String(lunch.price)
+        cell.lblFoodName.text = lunch.name
+        cell.lblDescription.text = lunch.description
+        cell.lblChefName.text = lunch.postedByName
+        
+        let tap = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        cell.imgProfileImage.userInteractionEnabled = true
+        cell.imgProfileImage.addGestureRecognizer(tap)
+        cell.imgProfileImage.tag = indexPath.row
+        
+        if lunch.category == "non-veg"{
+            cell.imgVegIndicator.image = UIImage(named: "nonveg")
+        }else{
+            cell.imgVegIndicator.image = UIImage(named: "veg")
+        }
+        
+        if let chefImage = lunch.postedByImage {
+            cell.imgProfileImage.image = chefImage
+            cell.imgProfileImage.contentMode = .ScaleAspectFill
+        }
+        else{
+            cell.imgProfileImage.image = nil
+            downloader.download(lunch.postedByImageURL, completionHandler: { url in
+                
+                guard url != nil else {return}
+                
+                let data = NSData(contentsOfURL: url)!
+                let image = UIImage(data:data)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    lunch.postedByImage = image
+                    self.tableView.reloadRowsAtIndexPaths(
+                        [indexPath], withRowAnimation: .None)
+                }
+                
+            })
+        }
+        
+        if let foodImage = lunch.dishImage{
+            cell.imgFoodImage.image = foodImage
+            cell.imgFoodImage.contentMode = .ScaleAspectFill
+        }
+        else{
+            
+            cell.imgFoodImage.image = nil
+            downloader.download(lunch.dishImageURL, completionHandler: { url in
+                
+                guard url != nil else {return}
+                
+                let data = NSData(contentsOfURL: url)!
+                let image = UIImage(data:data)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    lunch.dishImage = image
+                    self.tableView.reloadRowsAtIndexPaths(
+                        [indexPath], withRowAnimation: .None)
+                }
+                
+            })
+        }
 
-        // Configure the cell...
-
+        cell.selectionStyle = .None
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 300.0
+        return 250
     }
+    
+   
 
     /*
     // Override to support conditional editing of the table view.
@@ -87,14 +160,32 @@ class LunchTableViewController: UITableViewController {
     }
     */
 
-    /*
+   
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+        if segue.identifier == "ChefSegue"{
+            
+            let destinationVC = segue.destinationViewController as! ChefScreenViewController
+            let sender = sender as! UITapGestureRecognizer
+            let selectedRow = sender.view!.tag
+            let chefID = self.lunch[selectedRow].postedByID
+            let chef = DataManager.sharedInstance.chefs.filter({ $0._id == chefID  })
+            
+            
+            destinationVC.chef = chef.first
+            
+        }
+        else if segue.identifier == "DishSegue"{
+            
+            let selectedRow = self.tableView.indexPathForSelectedRow!
+            let selectedDish = lunch[selectedRow.row]
+            let destinationVC = segue.destinationViewController as! DishScreenViewController
+            destinationVC.dish = selectedDish
+        }
+
+        
     }
-    */
+   
 
 }

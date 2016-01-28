@@ -21,7 +21,26 @@ class DishScreenViewController: UIViewController {
     
     @IBOutlet weak var imgVegIndicator: UIImageView!
     
+    @IBOutlet weak var lblQuantity: UILabel!
+    
     var dish:Dish!
+    var initialQuantity:Int = 0
+    
+    
+    
+    @IBAction func changeQuantity(sender: UIButton) {
+        if sender.tag == 1{ //Increment
+            self.lblQuantity.text = String(++initialQuantity)
+        }
+        else{ //Decrement
+            guard initialQuantity > 0 else {return}
+            self.lblQuantity.text = String(--initialQuantity)
+        }
+        
+        
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +49,14 @@ class DishScreenViewController: UIViewController {
         self.lblDishName.text = dish.name
         self.lblPrice.text =  "₹"+String(dish.price)
         self.txvDescription.text = dish.description
+        self.lblQuantity.text = String(initialQuantity)
+        
+        if dish.category == "non-veg"{
+            imgVegIndicator.image = UIImage(named: "nonveg")
+        }else{
+            imgVegIndicator.image = UIImage(named: "veg")
+        }
+        
         
     }
 
@@ -39,14 +66,13 @@ class DishScreenViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//    }
+    
 
 }

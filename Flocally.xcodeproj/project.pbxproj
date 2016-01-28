@@ -35,6 +35,8 @@
 		5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E71B1C3AA4F4008B5877 /* BreakFastTableViewController.swift */; };
 		5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */; };
 		5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */; };
+		5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */; };
+		5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62781C59FF2F002918B9 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		5FC9E71B1C3AA4F4008B5877 /* BreakFastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakFastTableViewController.swift; sourceTree = "<group>"; };
 		5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewCell.swift; sourceTree = "<group>"; };
+		5FDF62781C59FF2F002918B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 			children = (
 				5FAE04C81C520B0C00F8E6A3 /* Chef.swift */,
 				5F0A76621C52312F00C8B46C /* Dish.swift */,
+				5FDF62781C59FF2F002918B9 /* DataManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */,
 				5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */,
 				5F0A76641C523F6800C8B46C /* Downloader.swift */,
+				5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */,
 			);
 			name = Classes;
 			path = ..;
@@ -292,7 +298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 68a3e1bf44388d0fc6e645ea3eed7fa252d42719 b45dca69a7e826bbc57466c74783561b678d25855fb84af8d10a50447b97236a";
+			shellScript = "./Fabric.framework/run 701deba335050d0d9e2859b4ca3b29cefeb496ff 9cb61239c7b1de7936977d7d88d82a71943f9a0f6c6a7344920b5b999426480d";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -307,6 +313,7 @@
 				5FC9E7031C3A8847008B5877 /* ViewController.swift in Sources */,
 				5F3781631C3BFA64002CC562 /* CustomSearchBar.swift in Sources */,
 				5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */,
+				5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */,
 				5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */,
 				5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
@@ -321,6 +328,7 @@
 				5FC9E7161C3A89C0008B5877 /* MenuItemView.swift in Sources */,
 				5F3781611C3BF893002CC562 /* SWRevealViewController.m in Sources */,
 				5FC9E7011C3A8847008B5877 /* AppDelegate.swift in Sources */,
+				5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */,
 				5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */,
 				5FAE04C91C520B0C00F8E6A3 /* Chef.swift in Sources */,
 				5F37815B1C3BA8C9002CC562 /* DinnerTableViewController.swift in Sources */,

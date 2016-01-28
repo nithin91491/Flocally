@@ -23,7 +23,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>68a3e1bf44388d0fc6e645ea3eed7fa252d42719</string>
+		<string>701deba335050d0d9e2859b4ca3b29cefeb496ff</string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -36,6 +36,11 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -55,10 +60,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
 </dict>
 </plist>
