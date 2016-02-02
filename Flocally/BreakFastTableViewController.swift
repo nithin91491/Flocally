@@ -12,18 +12,19 @@ import UIKit
 
 class BreakFastTableViewController: UITableViewController {
     
-    //MARK :- Properties and Outlets
+    //MARK:- Properties and Outlets
      var breakfast=[Dish]()
      var chefs=[Chef]()
     
     
+    var rateChefVC:RateChefViewController!
     
     
-    //MARK :- IBActions
+    //MARK:- IBActions
     
        
 
-    //MARK :- View life cycle methods
+    //MARK:- View life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +36,10 @@ class BreakFastTableViewController: UITableViewController {
         DataManager.sharedInstance.downloadChefs{
             self.chefs = DataManager.sharedInstance.chefs
         }
+        
+         rateChefVC = self.storyboard?.instantiateViewControllerWithIdentifier("RateChef") as! RateChefViewController
+        
+        
     
     }
 
@@ -43,11 +48,12 @@ class BreakFastTableViewController: UITableViewController {
     
 
     
-    //Mark :- Functions
+    //MARK:- Functions
     func profileTapped(sender:UITapGestureRecognizer){
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.performSegueWithIdentifier("ChefSegue", sender: sender)
-        }
+//        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+//            self.performSegueWithIdentifier("ChefSegue", sender: sender)
+//        }
+    self.presentViewController(rateChefVC, animated: true, completion: nil)
         
     }
 
@@ -59,7 +65,7 @@ class BreakFastTableViewController: UITableViewController {
     
     
     
-    // MARK: - Table view
+    // MARK:- Table view
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -80,11 +86,14 @@ class BreakFastTableViewController: UITableViewController {
         cell.lblDescription.text = breakfast.description
         cell.lblChefName.text = breakfast.postedByName
         
-        let tap = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         cell.imgProfileImage.userInteractionEnabled = true
-        cell.imgProfileImage.addGestureRecognizer(tap)
+        cell.imgProfileImage.addGestureRecognizer(tap1)
         cell.imgProfileImage.tag = indexPath.row
-        
+        cell.lblChefName.userInteractionEnabled = true
+        cell.lblChefName.addGestureRecognizer(tap2)
+        cell.lblChefName.tag = indexPath.row
         
         if breakfast.category == "non-veg"{
             cell.imgVegIndicator.image = UIImage(named: "nonveg")
@@ -116,8 +125,11 @@ class BreakFastTableViewController: UITableViewController {
         }
         
         if let foodImage = breakfast.dishImage{
+          
             cell.imgFoodImage.image = foodImage
             cell.imgFoodImage.contentMode = .ScaleAspectFill
+            let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+            gradientlayer!.hidden = false
         }
         else{
             

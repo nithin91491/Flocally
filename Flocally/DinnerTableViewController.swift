@@ -50,10 +50,14 @@ class DinnerTableViewController: UITableViewController {
         cell.lblDescription.text = dinner.description
         cell.lblChefName.text = dinner.postedByName
         
-        let tap = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         cell.imgProfileImage.userInteractionEnabled = true
-        cell.imgProfileImage.addGestureRecognizer(tap)
+        cell.imgProfileImage.addGestureRecognizer(tap1)
         cell.imgProfileImage.tag = indexPath.row
+        cell.lblChefName.userInteractionEnabled = true
+        cell.lblChefName.addGestureRecognizer(tap2)
+        cell.lblChefName.tag = indexPath.row
         
         if dinner.category == "non-veg"{
             cell.imgVegIndicator.image = UIImage(named: "nonveg")
@@ -86,6 +90,8 @@ class DinnerTableViewController: UITableViewController {
         if let foodImage = dinner.dishImage{
             cell.imgFoodImage.image = foodImage
             cell.imgFoodImage.contentMode = .ScaleAspectFill
+            let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+            gradientlayer!.hidden = false
         }
         else{
             
@@ -173,6 +179,7 @@ class DinnerTableViewController: UITableViewController {
             let selectedDish = dinner[selectedRow.row]
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
+            destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
         }
 
     }

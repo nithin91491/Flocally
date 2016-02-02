@@ -10,13 +10,13 @@ import UIKit
 
 class LunchTableViewController: UITableViewController {
 
-    //MARK :- Properties and Outlets
+    //MARK:- Properties and Outlets
     var lunch = [Dish]()
     
     
     
     
-    //MARK :- View Life cycle
+    //MARK: - View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +32,7 @@ class LunchTableViewController: UITableViewController {
     }
     
     
-    //Mark :- Functions
+    // MARK: - Functions
     func profileTapped(sender:UITapGestureRecognizer){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.performSegueWithIdentifier("ChefSegue", sender: sender)
@@ -59,10 +59,14 @@ class LunchTableViewController: UITableViewController {
         cell.lblDescription.text = lunch.description
         cell.lblChefName.text = lunch.postedByName
         
-        let tap = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
+        let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         cell.imgProfileImage.userInteractionEnabled = true
-        cell.imgProfileImage.addGestureRecognizer(tap)
+        cell.imgProfileImage.addGestureRecognizer(tap1)
         cell.imgProfileImage.tag = indexPath.row
+        cell.lblChefName.userInteractionEnabled = true
+        cell.lblChefName.addGestureRecognizer(tap2)
+        cell.lblChefName.tag = indexPath.row
         
         if lunch.category == "non-veg"{
             cell.imgVegIndicator.image = UIImage(named: "nonveg")
@@ -95,6 +99,8 @@ class LunchTableViewController: UITableViewController {
         if let foodImage = lunch.dishImage{
             cell.imgFoodImage.image = foodImage
             cell.imgFoodImage.contentMode = .ScaleAspectFill
+            let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+            gradientlayer!.hidden = false
         }
         else{
             
@@ -182,6 +188,7 @@ class LunchTableViewController: UITableViewController {
             let selectedDish = lunch[selectedRow.row]
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
+            destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
         }
 
         

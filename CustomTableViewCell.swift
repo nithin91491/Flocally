@@ -32,17 +32,23 @@ class CustomTableViewCell: UITableViewCell {
     
     var initialQuantity = 0
     var userSelectedQuantity:Int?
-    
+    var shouldAdd = true
     @IBAction func changeQuantity(sender: UIButton) {
+        
         if sender.tag == 1{ //Increment
             self.lblQuantity.text = String(++initialQuantity)
+            shouldAdd = true
         }
         else{ //Decrement
             guard initialQuantity > 0 else {return}
             self.lblQuantity.text = String(--initialQuantity)
+            shouldAdd = false
         }
         
         
+        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("QuantityChanged", object: self, userInfo: ["totalAmount":price,"shouldAdd":shouldAdd])
     }
     
     
@@ -50,8 +56,10 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
+        self.imgFoodImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
+        let gradientlayer = self.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+        gradientlayer!.hidden = true
         
     }
 

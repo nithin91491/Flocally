@@ -10,9 +10,13 @@ import UIKit
 
 class HelpTableViewController: UITableViewController {
 
-    var selectedRow:Int?
+    var selectedIndexPath:NSIndexPath?
+    var shouldExpand = true
+    var previousSelectedIndexPath:NSIndexPath?
+    
     var expanded = false
-    var previousSelectedRow:Int?
+    var previousExpanded = false
+    
     
     
     override func viewDidLoad() {
@@ -23,7 +27,7 @@ class HelpTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.tableView.estimatedRowHeight = 60
+        self.tableView.estimatedRowHeight = 80
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
     }
@@ -48,28 +52,32 @@ class HelpTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("HelpCell", forIndexPath: indexPath)
-
-       let label = cell.viewWithTag(1) as! UILabel
-        let label1 = cell.viewWithTag(2) as! UILabel
+        let cell = tableView.dequeueReusableCellWithIdentifier("HelpCell", forIndexPath: indexPath) as! HelpTableViewCell
         
-        if !(label.hidden){
-           
-            if let selRow = selectedRow{
-                if selRow != indexPath.row{
-                    label.hidden = true
-                    label.text = ""
-                    cell.backgroundColor = UIColor.redColor()
-                    label1.textColor = UIColor.whiteColor()
-                }
-                else{
-                    label.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat"
-                    label.textColor = UIColor.blackColor()
-                    label1.textColor = UIColor.redColor()
-                }
+        let question = cell.lblQuestion
+        let answer = cell.lblAnswer
+
+        if let selInd = selectedIndexPath{
+            if selInd == indexPath && shouldExpand {
+              
+                answer.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat"
+                cell.backgroundColor = UIColor.whiteColor()
+                question.textColor = UIColor.redColor()
+                
+            }
+        }
+        
+        if let prevInd = previousSelectedIndexPath{
+            
+            if !shouldExpand { //tap on expanded row--unexpand it
+                answer.text = ""
+                cell.backgroundColor = UIColor.redColor()
+                question.textColor = UIColor.whiteColor()
+                
             }
             
         }
+        
         
         cell.selectionStyle = .None
         
@@ -78,31 +86,67 @@ class HelpTableViewController: UITableViewController {
    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-       let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-        selectedCell?.backgroundColor = UIColor.whiteColor()
-        
-       let label = selectedCell!.viewWithTag(1) as! UILabel
-        selectedRow = indexPath.row
-        label.hidden = false
+       selectedIndexPath = indexPath
        
-        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        
-        if let prev = previousSelectedRow{
-            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: prev, inSection: indexPath.section)], withRowAnimation: .Automatic)
+        if let prev = previousSelectedIndexPath{
+            
+            if prev == indexPath{ //tap on same cell
+                if previousExpanded{
+                shouldExpand = false
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                expanded = false
+                }
+                else{
+                    shouldExpand = true
+                    self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    expanded = true
+                }
+            }
+            else{// tap on other cell
+                
+                //expand the current cell
+                shouldExpand = true
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                expanded = true
+                
+                if previousExpanded {
+                //Unexpand previous selected cell if expanded previously
+                shouldExpand = false
+                self.tableView.reloadRowsAtIndexPaths([prev], withRowAnimation: .Automatic)
+                }
+            }
+            
+        }
+        else{ //tap for the first time
+            
+            if !expanded{
+            shouldExpand = true
+            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+            
+            expanded = true
         }
         
-        previousSelectedRow = selectedRow
+        previousExpanded = expanded
+        previousSelectedIndexPath = selectedIndexPath
         
     }
   
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell1 = cell as! HelpTableViewCell
+        print("displayed")
+        if cell1.lblAnswer.text != ""{
+            UIView.animateWithDuration(0.35, delay: 0.35, options: UIViewAnimationOptions.CurveLinear, animations: {cell1.imgArrow.transform = CGAffineTransformIdentity}, completion: nil)
+            
+        }
+        else{
+            UIView.animateWithDuration(0.35, delay: 0.35, options: UIViewAnimationOptions.CurveLinear, animations: {let transform = CGAffineTransformMakeRotation(-1.5708) // 90 degrees anti-clockwise
+                cell1.imgArrow.transform = transform}, completion: nil)
+        }
+    }
     
-   
     
-    
-    
-//    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//         return 60
-//    }
 
     /*
     // Override to support conditional editing of the table view.

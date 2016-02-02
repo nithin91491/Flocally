@@ -46,6 +46,7 @@ class DishScreenViewController: UIViewController {
         super.viewDidLoad()
 
         self.imgDishImage.image = dish.dishImage
+        self.imgDishImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
         self.lblDishName.text = dish.name
         self.lblPrice.text =  "₹"+String(dish.price)
         self.txvDescription.text = dish.description

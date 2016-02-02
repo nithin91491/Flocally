@@ -10,6 +10,8 @@
 		5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */; };
 		5F0A76631C52312F00C8B46C /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76621C52312F00C8B46C /* Dish.swift */; };
 		5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76641C523F6800C8B46C /* Downloader.swift */; };
+		5F27C0231C608CD5000ABA7E /* RateChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */; };
+		5F27C0251C60AE0B000ABA7E /* RateCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */; };
 		5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3781581C3BA8B6002CC562 /* LunchTableViewController.swift */; };
 		5F37815B1C3BA8C9002CC562 /* DinnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37815A1C3BA8C9002CC562 /* DinnerTableViewController.swift */; };
 		5F37815D1C3BA8D7002CC562 /* SnacksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37815C1C3BA8D7002CC562 /* SnacksTableViewController.swift */; };
@@ -22,6 +24,8 @@
 		5FAE04C91C520B0C00F8E6A3 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04C81C520B0C00F8E6A3 /* Chef.swift */; };
 		5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */; };
 		5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */; };
+		5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB624891C5F386D0016F1DB /* Extensions.swift */; };
+		5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB6248B1C5F588E0016F1DB /* FooterViewController.swift */; };
 		5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBCD2561C58E1D0001AAB85 /* DishScreenViewController.swift */; };
 		5FC9E7011C3A8847008B5877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7001C3A8847008B5877 /* AppDelegate.swift */; };
 		5FC9E7031C3A8847008B5877 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7021C3A8847008B5877 /* ViewController.swift */; };
@@ -43,6 +47,8 @@
 		5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		5F0A76621C52312F00C8B46C /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		5F0A76641C523F6800C8B46C /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateChefViewController.swift; sourceTree = "<group>"; };
+		5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateCustomerViewController.swift; sourceTree = "<group>"; };
 		5F3781581C3BA8B6002CC562 /* LunchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunchTableViewController.swift; sourceTree = "<group>"; };
 		5F37815A1C3BA8C9002CC562 /* DinnerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinnerTableViewController.swift; sourceTree = "<group>"; };
 		5F37815C1C3BA8D7002CC562 /* SnacksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnacksTableViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,8 @@
 		5FAE04C81C520B0C00F8E6A3 /* Chef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chef.swift; sourceTree = "<group>"; };
 		5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceURLs.swift; sourceTree = "<group>"; };
+		5FB624891C5F386D0016F1DB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5FB6248B1C5F588E0016F1DB /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		5FBCD2561C58E1D0001AAB85 /* DishScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishScreenViewController.swift; sourceTree = "<group>"; };
 		5FC9E6FD1C3A8847008B5877 /* Flocally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flocally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC9E7001C3A8847008B5877 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +134,7 @@
 				5FCD06EA1C3D332C0038A4C0 /* Views */,
 				5FCD06E91C3D32DF0038A4C0 /* Controllers */,
 				5FCD06E81C3D32C20038A4C0 /* Frameworks */,
-				5FCD06EB1C3D336E0038A4C0 /* Classes */,
+				5FCD06EB1C3D336E0038A4C0 /* Classes and Extensions */,
 			);
 			path = Flocally;
 			sourceTree = "<group>";
@@ -191,6 +199,9 @@
 				5FA4D3721C560DE200F5FB1C /* ChefScreenViewController.swift */,
 				5FA4D3741C56219D00F5FB1C /* HelpTableViewController.swift */,
 				5FBCD2561C58E1D0001AAB85 /* DishScreenViewController.swift */,
+				5FB6248B1C5F588E0016F1DB /* FooterViewController.swift */,
+				5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */,
+				5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -204,7 +215,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		5FCD06EB1C3D336E0038A4C0 /* Classes */ = {
+		5FCD06EB1C3D336E0038A4C0 /* Classes and Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				5F3781621C3BFA64002CC562 /* CustomSearchBar.swift */,
@@ -213,8 +224,9 @@
 				5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */,
 				5F0A76641C523F6800C8B46C /* Downloader.swift */,
 				5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */,
+				5FB624891C5F386D0016F1DB /* Extensions.swift */,
 			);
-			name = Classes;
+			name = "Classes and Extensions";
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -307,19 +319,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F27C0231C608CD5000ABA7E /* RateChefViewController.swift in Sources */,
 				5FA4D3751C56219D00F5FB1C /* HelpTableViewController.swift in Sources */,
 				5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */,
+				5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */,
 				5F37815D1C3BA8D7002CC562 /* SnacksTableViewController.swift in Sources */,
 				5FC9E7031C3A8847008B5877 /* ViewController.swift in Sources */,
 				5F3781631C3BFA64002CC562 /* CustomSearchBar.swift in Sources */,
 				5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */,
 				5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */,
+				5F27C0251C60AE0B000ABA7E /* RateCustomerViewController.swift in Sources */,
 				5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */,
 				5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
 				5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */,
 				5FC9E7181C3A89C0008B5877 /* PagingMenuController.swift in Sources */,
+				5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */,
 				5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */,
 				5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */,
 				5F0A76631C52312F00C8B46C /* Dish.swift in Sources */,

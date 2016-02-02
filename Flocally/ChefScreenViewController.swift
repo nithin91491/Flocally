@@ -24,7 +24,7 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     var chefsDishes:[Dish] = [Dish]()
     
-    //var chefs = [Chef]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,6 +146,8 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         
         if let dishImage = dish.dishImage{
             cell.imgFoodImage.image = dishImage
+            let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+            gradientlayer!.hidden = false
         }
         else{
             cell.imgFoodImage.image = nil
