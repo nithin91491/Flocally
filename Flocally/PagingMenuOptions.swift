@@ -18,7 +18,7 @@ public class PagingMenuOptions {
     public var font = UIFont.systemFontOfSize(12)
     public var selectedFont = UIFont.systemFontOfSize(12)
     public var menuPosition: MenuPosition = .Top
-    public var menuHeight: CGFloat = 50
+    public var menuHeight: CGFloat = 60
     public var menuItemMargin: CGFloat = 20
     public var animationDuration: NSTimeInterval = 0.3
     public var deceleratingRate: CGFloat = UIScrollViewDecelerationRateNormal

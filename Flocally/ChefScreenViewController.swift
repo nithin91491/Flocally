@@ -178,7 +178,10 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 282
+    }
+    
     /*
     // MARK: - Navigation
 

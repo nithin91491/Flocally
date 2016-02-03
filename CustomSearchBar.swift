@@ -23,7 +23,7 @@ class CustomSearchBar: UISearchBar,UITextFieldDelegate {
     
     var preferredTextColor: UIColor!
     
-   // var customDelegate:CustomSearchController!
+    var customDelegate:CustomSearchController!
     
     
 
@@ -41,16 +41,18 @@ class CustomSearchBar: UISearchBar,UITextFieldDelegate {
             // Set the font and text color of the search field.
             searchField.font = preferredFont
             searchField.textColor = preferredTextColor
+            searchField.attributedPlaceholder = NSAttributedString(string:" Search your meal..", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             
             // Set the background color of the search field.
-            searchField.backgroundColor = UIColor.clearColor()
-            searchField.layer.cornerRadius = 14
+            //searchField.backgroundColor = UIColor.clearColor()
+//            searchField.layer.cornerRadius = 14
+            
         }
         
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.whiteColor().CGColor
-        self.layer.cornerRadius = 13
-        self.clipsToBounds = true
+//        self.layer.borderWidth = 1
+//        self.layer.borderColor = UIColor.whiteColor().CGColor
+//        self.layer.cornerRadius = 13
+//        self.clipsToBounds = true
         
         super.drawRect(rect)
     }
@@ -66,7 +68,7 @@ class CustomSearchBar: UISearchBar,UITextFieldDelegate {
         
         searchBarStyle = UISearchBarStyle.Minimal
         translucent = true
-        //self.delegate = self.customDelegate
+        self.delegate = self.customDelegate
         
     }
     
@@ -93,8 +95,8 @@ class CustomSearchBar: UISearchBar,UITextFieldDelegate {
     }
     
     //MARK: - Text field delegate function
-//    func textFieldShouldClear(textField: UITextField) -> Bool {
-//       return self.customDelegate.textDidClear(textField)
-//    }
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+       return self.customDelegate.textDidClear(textField)
+    }
     
 }

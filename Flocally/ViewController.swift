@@ -9,9 +9,8 @@
 import UIKit
 //import PagingMenuController
 
-class ViewController: UIViewController,PagingMenuControllerDelegate,UISearchBarDelegate{
+class ViewController: UIViewController,PagingMenuControllerDelegate{
 
-    var searchBar = UISearchBar()
     var leftSearchBarButtonItem: UIBarButtonItem?
     var rightSearchBarButtonItem: UIBarButtonItem?
     let label = UILabel()
@@ -36,7 +35,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate,UISearchBarD
         
         let breakFast = self.storyboard?.instantiateViewControllerWithIdentifier("BreakFast") as! BreakFastTableViewController
         breakFast.title = "BREAKFAST"
-        //breakFast.container = containerView
+    
         
         let lunch = self.storyboard?.instantiateViewControllerWithIdentifier("Lunch") as! LunchTableViewController
         lunch.title = "LUNCH"
@@ -49,48 +48,26 @@ class ViewController: UIViewController,PagingMenuControllerDelegate,UISearchBarD
         let viewControllers = [breakFast,lunch,snacks,dinner]
         
         let options = PagingMenuOptions()
-        options.menuHeight = 30
+        options.menuHeight = 35
         options.selectedTextColor = UIColor.whiteColor()
         options.backgroundColor = UIColor.redColor()
         options.selectedBackgroundColor = UIColor.redColor()
         
-//        let pagingMenuControllerNav = self.childViewControllers.first as! UINavigationController
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
-        
-//        let pagingMenuController = self.storyboard?.instantiateViewControllerWithIdentifier("PagingMenuController") as! PagingMenuController
         pagingMenuController.delegate = self
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
     }
     
     func setupNavigationController(){
-       
-        //Title view
-//        let attribute1 = [NSFontAttributeName:UIFont.systemFontOfSize(16),NSForegroundColorAttributeName : UIColor.whiteColor()]
-//        let title1:NSMutableAttributedString = NSMutableAttributedString(string: "Today's Special",attributes: attribute1)
-//        
-//        let attribute2 = [NSFontAttributeName:UIFont.systemFontOfSize(12),NSForegroundColorAttributeName : UIColor.whiteColor()]
-//        let title2:NSAttributedString = NSAttributedString(string: " Mayur vihar phase II",attributes: attribute2)
-//        
-//        title1.appendAttributedString(title2)
-//        
-//        label.attributedText = title1
-//        label.sizeToFit()
-//        navigationItem.titleView = label
         
+        let searchResultsController = SearchResultsController()
         
-        //SearchBar
-        searchBar.delegate = self
-        searchBar.barTintColor = UIColor.redColor()
-        searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.width)!, 35.0)
         
-        let txfSearchField:UITextField = searchBar.valueForKey("_searchField") as! UITextField
-        
-        txfSearchField.attributedPlaceholder = NSAttributedString(string:" Search your meal..", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        txfSearchField.textColor = UIColor.whiteColor()
-        self.navigationItem.titleView = self.searchBar
-        
-        
-        
+        let titleViewCustom = UIView(frame:frame)
+        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+        titleViewCustom.backgroundColor = UIColor.clearColor()
+        self.navigationItem.titleView = titleViewCustom
         
         
         //Hamburger-Left Item
@@ -105,15 +82,6 @@ class ViewController: UIViewController,PagingMenuControllerDelegate,UISearchBarD
 
     }
     
-   
-
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == ""{
-            self.searchBar.resignFirstResponder()
-
-        }
-    }
     
     
     override func didReceiveMemoryWarning() {

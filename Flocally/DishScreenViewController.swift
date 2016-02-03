@@ -25,7 +25,7 @@ class DishScreenViewController: UIViewController {
     
     var dish:Dish!
     var initialQuantity:Int = 0
-    
+    var gradientAdded = false
     
     
     @IBAction func changeQuantity(sender: UIButton) {
@@ -46,7 +46,9 @@ class DishScreenViewController: UIViewController {
         super.viewDidLoad()
 
         self.imgDishImage.image = dish.dishImage
+        if self.imgDishImage.image != nil{
         self.imgDishImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
+        }
         self.lblDishName.text = dish.name
         self.lblPrice.text =  "₹"+String(dish.price)
         self.txvDescription.text = dish.description
@@ -60,6 +62,8 @@ class DishScreenViewController: UIViewController {
         
         
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

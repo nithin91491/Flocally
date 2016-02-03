@@ -16,11 +16,14 @@
 		5F37815B1C3BA8C9002CC562 /* DinnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37815A1C3BA8C9002CC562 /* DinnerTableViewController.swift */; };
 		5F37815D1C3BA8D7002CC562 /* SnacksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37815C1C3BA8D7002CC562 /* SnacksTableViewController.swift */; };
 		5F3781611C3BF893002CC562 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3781601C3BF893002CC562 /* SWRevealViewController.m */; };
-		5F3781631C3BFA64002CC562 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3781621C3BFA64002CC562 /* CustomSearchBar.swift */; };
 		5F3781671C3C00ED002CC562 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3781651C3C00ED002CC562 /* Fabric.framework */; };
 		5F3781681C3C00ED002CC562 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3781661C3C00ED002CC562 /* Crashlytics.framework */; };
+		5F8602121C62193A001A8769 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602101C62193A001A8769 /* CustomSearchBar.swift */; };
+		5F8602131C62193A001A8769 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602111C62193A001A8769 /* CustomSearchController.swift */; };
+		5F8602151C621973001A8769 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602141C621973001A8769 /* SearchResultsController.swift */; };
 		5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4D3721C560DE200F5FB1C /* ChefScreenViewController.swift */; };
 		5FA4D3751C56219D00F5FB1C /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4D3741C56219D00F5FB1C /* HelpTableViewController.swift */; };
+		5FA5196C1C61E4F100501FCF /* UINavigationBarTaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */; };
 		5FAE04C91C520B0C00F8E6A3 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04C81C520B0C00F8E6A3 /* Chef.swift */; };
 		5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */; };
 		5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */; };
@@ -55,11 +58,14 @@
 		5F37815E1C3BF891002CC562 /* Flocally-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flocally-Bridging-Header.h"; sourceTree = "<group>"; };
 		5F37815F1C3BF893002CC562 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5F3781601C3BF893002CC562 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		5F3781621C3BFA64002CC562 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomSearchBar.swift; path = Flocally/CustomSearchBar.swift; sourceTree = "<group>"; };
 		5F3781651C3C00ED002CC562 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5F3781661C3C00ED002CC562 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5F8602101C62193A001A8769 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		5F8602111C62193A001A8769 /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
+		5F8602141C621973001A8769 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		5FA4D3721C560DE200F5FB1C /* ChefScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefScreenViewController.swift; sourceTree = "<group>"; };
 		5FA4D3741C56219D00F5FB1C /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
+		5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarTaller.swift; sourceTree = "<group>"; };
 		5FAE04C81C520B0C00F8E6A3 /* Chef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chef.swift; sourceTree = "<group>"; };
 		5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceURLs.swift; sourceTree = "<group>"; };
@@ -133,8 +139,8 @@
 				5FCD06E31C3CF0C50038A4C0 /* Libraries */,
 				5FCD06EA1C3D332C0038A4C0 /* Views */,
 				5FCD06E91C3D32DF0038A4C0 /* Controllers */,
-				5FCD06E81C3D32C20038A4C0 /* Frameworks */,
 				5FCD06EB1C3D336E0038A4C0 /* Classes and Extensions */,
+				5FCD06E81C3D32C20038A4C0 /* Frameworks */,
 			);
 			path = Flocally;
 			sourceTree = "<group>";
@@ -218,13 +224,16 @@
 		5FCD06EB1C3D336E0038A4C0 /* Classes and Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5F3781621C3BFA64002CC562 /* CustomSearchBar.swift */,
+				5F8602101C62193A001A8769 /* CustomSearchBar.swift */,
+				5F8602141C621973001A8769 /* SearchResultsController.swift */,
+				5F8602111C62193A001A8769 /* CustomSearchController.swift */,
 				5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */,
 				5FAE04CA1C52108700F8E6A3 /* RequestManager.swift */,
 				5FAE04CC1C5210C500F8E6A3 /* WebServiceURLs.swift */,
 				5F0A76641C523F6800C8B46C /* Downloader.swift */,
 				5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */,
 				5FB624891C5F386D0016F1DB /* Extensions.swift */,
+				5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */,
 			);
 			name = "Classes and Extensions";
 			path = ..;
@@ -323,13 +332,15 @@
 				5FA4D3751C56219D00F5FB1C /* HelpTableViewController.swift in Sources */,
 				5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */,
 				5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */,
+				5F8602151C621973001A8769 /* SearchResultsController.swift in Sources */,
 				5F37815D1C3BA8D7002CC562 /* SnacksTableViewController.swift in Sources */,
 				5FC9E7031C3A8847008B5877 /* ViewController.swift in Sources */,
-				5F3781631C3BFA64002CC562 /* CustomSearchBar.swift in Sources */,
 				5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */,
 				5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */,
 				5F27C0251C60AE0B000ABA7E /* RateCustomerViewController.swift in Sources */,
 				5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */,
+				5F8602121C62193A001A8769 /* CustomSearchBar.swift in Sources */,
+				5F8602131C62193A001A8769 /* CustomSearchController.swift in Sources */,
 				5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
@@ -338,6 +349,7 @@
 				5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */,
 				5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */,
 				5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */,
+				5FA5196C1C61E4F100501FCF /* UINavigationBarTaller.swift in Sources */,
 				5F0A76631C52312F00C8B46C /* Dish.swift in Sources */,
 				5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */,
 				5FC9E7171C3A89C0008B5877 /* MenuView.swift in Sources */,

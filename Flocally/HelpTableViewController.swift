@@ -46,7 +46,7 @@ class HelpTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 25
     }
 
     
@@ -67,7 +67,7 @@ class HelpTableViewController: UITableViewController {
             }
         }
         
-        if let prevInd = previousSelectedIndexPath{
+        if let _ = previousSelectedIndexPath{
             
             if !shouldExpand { //tap on expanded row--unexpand it
                 answer.text = ""
@@ -135,13 +135,13 @@ class HelpTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell1 = cell as! HelpTableViewCell
-        print("displayed")
-        if cell1.lblAnswer.text != ""{
-            UIView.animateWithDuration(0.35, delay: 0.35, options: UIViewAnimationOptions.CurveLinear, animations: {cell1.imgArrow.transform = CGAffineTransformIdentity}, completion: nil)
+
+        if cell1.lblAnswer.text == ""{
+            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {cell1.imgArrow.transform = CGAffineTransformIdentity}, completion: nil)
             
         }
         else{
-            UIView.animateWithDuration(0.35, delay: 0.35, options: UIViewAnimationOptions.CurveLinear, animations: {let transform = CGAffineTransformMakeRotation(-1.5708) // 90 degrees anti-clockwise
+            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: {let transform = CGAffineTransformMakeRotation(-1.5708) // 90 degrees anti-clockwise
                 cell1.imgArrow.transform = transform}, completion: nil)
         }
     }

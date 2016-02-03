@@ -25,16 +25,48 @@ class RateCustomerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardWillAppear:", name: UIKeyboardDidShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardWillDisappear:", name: UIKeyboardWillHideNotification, object: nil)
     }
 
+
     deinit{
         print("Deinit")
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
+    
+    func keyBoardWillAppear(notification:NSNotification){
+        
+        let userInfo = notification.userInfo as! NSDictionary
+        
+        let keyboardSize = userInfo.objectForKey("UIKeyboardFrameBeginUserInfoKey")!.CGRectValue.size
+        
+        let buttonOrigin = self.btnSubmit.frame.origin
+        
+        let buttonHeight = self.btnSubmit.frame.height
+        
+        var visiblerect = self.contentView.frame
+        
+        visiblerect.size.height -= keyboardSize.height+35
+        
+        if !CGRectContainsPoint(visiblerect, buttonOrigin) {
+            let scrollpoint = CGPointMake(0.0, buttonOrigin.y - visiblerect.size.height + buttonHeight)
+            
+            self.scrollView.setContentOffset(scrollpoint, animated: true)
+        }
+    }
+    
+    func keyBoardWillDisappear(notification:NSNotification){
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
+    }
 
     /*
     // MARK: - Navigation

@@ -50,11 +50,9 @@ class BreakFastTableViewController: UITableViewController {
     
     //MARK:- Functions
     func profileTapped(sender:UITapGestureRecognizer){
-//        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//            self.performSegueWithIdentifier("ChefSegue", sender: sender)
-//        }
-    self.presentViewController(rateChefVC, animated: true, completion: nil)
-        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.performSegueWithIdentifier("ChefSegue", sender: sender)
+        }
     }
 
     
@@ -163,7 +161,7 @@ class BreakFastTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250.0
+        return 282.0
     }
 
     /*
