@@ -16,7 +16,26 @@ class RateCustomerViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var txfComments: UITextView!
+    
+    var starRating:CGFloat = 1
+    
     @IBAction func submit(sender:UIButton){
+        
+        
+        guard self.txfComments.text != "" && self.txfComments.text != "Leave Comments"  else {return}
+        
+        self.txfComments.layer.borderColor = UIColor.redColor().CGColor
+        self.txfComments.layer.borderWidth = 0.5
+//        let param = "chefid=\(dish.postedByID)&userid=1234567&username=testuser2&userprofilepic=sample&dishid=\(dish.id)&point=\(starRating)&comment=\(txfComments.text)"
+        
+        
+//        RequestManager.request(.POST, baseURL: .addChefDishReview, parameterString: param) { (data) -> () in
+//            
+//            print(data)
+//        }
+
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
@@ -66,6 +85,11 @@ class RateCustomerViewController: UIViewController {
     
     func keyBoardWillDisappear(notification:NSNotification){
         self.scrollView.setContentOffset(CGPointZero, animated: true)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        
     }
 
     /*

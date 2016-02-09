@@ -20,6 +20,7 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var starRating: RatingView!
     var chef:Chef!
     
     var chefsDishes:[Dish] = [Dish]()
@@ -28,6 +29,9 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: "showChefRatings:")
+        self.starRating.addGestureRecognizer(tap)
         
         setupNavigationController()
        
@@ -126,6 +130,10 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
 
     
     
+    func showChefRatings(sender:UITapGestureRecognizer){
+       self.performSegueWithIdentifier("ChefReviews", sender: sender)
+    }
+    
     
     //MARK : - Table View
     
@@ -182,14 +190,19 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         return 282
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+        if segue.identifier == "ChefReviews"{
+        
+        let destinationVC = segue.destinationViewController as! ChefSectionReviewsViewController
+        destinationVC.chef = chef
+        
+        }
     }
-    */
+   
 
 }

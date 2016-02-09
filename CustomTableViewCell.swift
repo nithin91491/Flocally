@@ -30,6 +30,9 @@ class CustomTableViewCell: UITableViewCell {
  
     @IBOutlet weak var lblChefName: UILabel!
     
+    @IBOutlet weak var ratingView: RatingView!
+    
+    
     var initialQuantity = 0
     var userSelectedQuantity:Int?
     var shouldAdd = true

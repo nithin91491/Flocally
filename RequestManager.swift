@@ -18,10 +18,10 @@ class RequestManager{
     
     static func request(type:RequestType,baseURL:BaseURL,parameterString:String?,block:(data:JSON)->()){
         
-        let url:NSURL = NSURL(string: baseURL.rawValue)!
+        var url:NSURL = NSURL(string: baseURL.rawValue)!
         let session = NSURLSession.sharedSession()
         
-        let request = NSMutableURLRequest(URL: url)
+        var request = NSMutableURLRequest(URL: url)
         
         switch type{
         case .GET : request.HTTPMethod = "GET"
@@ -31,8 +31,16 @@ class RequestManager{
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
         if let paramString = parameterString{
+            if type == .POST{
         request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+            }
+            else{
+             let  urlWithParameters = baseURL.rawValue + parameterString!
+                url = NSURL(string: urlWithParameters)!
+                request = NSMutableURLRequest(URL: url)
+            }
         }
+        
         
         let task = session.dataTaskWithRequest(request) {
             (

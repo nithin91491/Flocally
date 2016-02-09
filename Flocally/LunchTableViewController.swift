@@ -40,6 +40,10 @@ class LunchTableViewController: UITableViewController {
         
     }
     
+    func rateChef(sender:UITapGestureRecognizer){
+        self.performSegueWithIdentifier("RateChef", sender: sender)
+    }
+    
     // MARK: - Table view
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -67,6 +71,12 @@ class LunchTableViewController: UITableViewController {
         cell.lblChefName.userInteractionEnabled = true
         cell.lblChefName.addGestureRecognizer(tap2)
         cell.lblChefName.tag = indexPath.row
+        
+        
+        let tap4 = UITapGestureRecognizer(target: self, action: "rateChef:")
+        cell.ratingView.addGestureRecognizer(tap4)
+        cell.ratingView.tag = indexPath.row
+        
         
         if lunch.category == "non-veg"{
             cell.imgVegIndicator.image = UIImage(named: "nonveg")
@@ -189,6 +199,15 @@ class LunchTableViewController: UITableViewController {
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
             destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
+        }
+        
+        if segue.identifier == "RateChef" {
+            
+            let sender = sender as! UITapGestureRecognizer
+            let selectedRow = sender.view!.tag
+            let selectedDish = lunch[selectedRow]
+            let destinationVC = segue.destinationViewController as! RateChefViewController
+            destinationVC.dish = selectedDish
         }
 
         

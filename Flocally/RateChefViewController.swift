@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RateChefViewController: UIViewController {
+class RateChefViewController: UIViewController,RatingViewDelegate,UITextViewDelegate {
 
     //MARK :- Properties and outlets
     @IBOutlet weak var btnSubmit: UIButton!
@@ -17,13 +17,48 @@ class RateChefViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var imgDish: UIImageView!
+    
+    @IBOutlet weak var lblChefName: UILabel!
+
+    @IBOutlet weak var ratingView: RatingView!
+    
+    @IBOutlet weak var txfComments: UITextView!
+    
+    
+    var dish:Dish!
+    
+    var starRating:CGFloat = 1
+    
+    
+    
+    
+    
     @IBAction func submit(sender:UIButton){
+        
+        
+        guard self.txfComments.text != "" && self.txfComments.text != "Leave Comments"  else {
+            
+            self.txfComments.layer.borderColor = UIColor.redColor().CGColor
+            self.txfComments.layer.borderWidth = 0.5
+            return}
+        
+        let param = "chefid=\(dish.postedByID)&userid=1234567&username=testuser2&userprofilepic=sample&dishid=\(dish.id)&point=\(starRating)&comment=\(txfComments.text)"
+        
+        
+       RequestManager.request(.POST, baseURL: .addChefDishReview, parameterString: param) { (data) -> () in
+        
+        print(data)
+        }
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
-
+    
+    
+    
     //MARK :- View life cycle
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -38,15 +73,39 @@ class RateChefViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(dish.postedByID)
+        
+            if self.dish.dishImage != nil{
+            self.imgDish.image = self.dish.dishImage
+            self.imgDish.contentMode = .ScaleToFill
+            }
+            else{
+                downloader.download(self.dish.dishImageURL) { url in
+                    
+                    guard url != nil else {return}
+                    
+                    let data = NSData(contentsOfURL: url)!
+                    let image = UIImage(data:data)
+                    
+                    dispatch_async(dispatch_get_main_queue()){
+                    self.imgDish.image = image
+                    self.imgDish.contentMode = .ScaleToFill
+                    }
+                }
+            }
+        
+        self.lblChefName.text = dish.postedByName
+        
+        self.ratingView.delegate = self
+        
+        self.txfComments.delegate = self
         
     }
-
-    
-    
+        
+       
     func keyBoardWillAppear(notification:NSNotification){
         
-        let userInfo = notification.userInfo as! NSDictionary
+        let userInfo = notification.userInfo! as NSDictionary
         
         let keyboardSize = userInfo.objectForKey("UIKeyboardFrameBeginUserInfoKey")!.CGRectValue.size
         
@@ -68,7 +127,27 @@ class RateChefViewController: UIViewController {
     func keyBoardWillDisappear(notification:NSNotification){
         self.scrollView.setContentOffset(CGPointZero, animated: true)
     }
+    
+    
+    //MARK:- Rating view Delegate
+    func ratingView(ratingView: RatingView, didChangeRating newRating: Float){
+        starRating = CGFloat(newRating)
+    }
 
+    
+    //MARK:- Textview delegate
+    func textViewDidBeginEditing(textView: UITextView) {
+        textView.text = ""
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == ""{
+            textView.attributedText = NSAttributedString(string: "Leave Comments", attributes: [NSForegroundColorAttributeName:UIColor.lightGrayColor()])
+        }
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
