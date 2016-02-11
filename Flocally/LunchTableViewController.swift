@@ -114,7 +114,7 @@ class LunchTableViewController: UITableViewController {
         }
         else{
             
-            cell.imgFoodImage.image = nil
+            cell.imgFoodImage.image = UIImage(named: "dummy-image")
             downloader.download(lunch.dishImageURL, completionHandler: { url in
                 
                 guard url != nil else {return}
@@ -139,7 +139,17 @@ class LunchTableViewController: UITableViewController {
         return 282
     }
     
-   
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = cell as! CustomTableViewCell
+        let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+        
+        if cell.imgFoodImage.image == nil {
+            gradientlayer!.hidden = true
+        }
+        else{
+            gradientlayer!.hidden = false
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

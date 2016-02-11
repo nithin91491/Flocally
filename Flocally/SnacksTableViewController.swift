@@ -17,7 +17,7 @@ class SnacksTableViewController: UITableViewController {
     //MARK :- View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snacks"}
+        self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snaks"}
     }
 
     
@@ -96,7 +96,7 @@ class SnacksTableViewController: UITableViewController {
         }
         else{
             
-            cell.imgFoodImage.image = nil
+            cell.imgFoodImage.image = UIImage(named: "dummy-image")
             downloader.download(snacks.dishImageURL, completionHandler: { url in
                 
                 guard url != nil else {return}
@@ -120,6 +120,18 @@ class SnacksTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 282
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = cell as! CustomTableViewCell
+        let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+        
+        if cell.imgFoodImage.image == nil {
+            gradientlayer!.hidden = true
+        }
+        else{
+            gradientlayer!.hidden = false
+        }
     }
     
     /*

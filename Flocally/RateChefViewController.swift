@@ -40,10 +40,10 @@ class RateChefViewController: UIViewController,RatingViewDelegate,UITextViewDele
         guard self.txfComments.text != "" && self.txfComments.text != "Leave Comments"  else {
             
             self.txfComments.layer.borderColor = UIColor.redColor().CGColor
-            self.txfComments.layer.borderWidth = 0.5
+            self.txfComments.layer.borderWidth = 1
             return}
         
-        let param = "chefid=\(dish.postedByID)&userid=1234567&username=testuser2&userprofilepic=sample&dishid=\(dish.id)&point=\(starRating)&comment=\(txfComments.text)"
+        let param = "chefid=\(dish.postedByID)&userid=\(currentuser)&username=User1&userprofilepic=http://demos.dignitasdigital.com/flocally/default_profile_pic.png&dishid=\(dish.id)&point=\(starRating)&comment=\(txfComments.text)"
         
         
        RequestManager.request(.POST, baseURL: .addChefDishReview, parameterString: param) { (data) -> () in
@@ -74,6 +74,7 @@ class RateChefViewController: UIViewController,RatingViewDelegate,UITextViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         print(dish.postedByID)
+        
         
             if self.dish.dishImage != nil{
             self.imgDish.image = self.dish.dishImage
@@ -138,6 +139,7 @@ class RateChefViewController: UIViewController,RatingViewDelegate,UITextViewDele
     //MARK:- Textview delegate
     func textViewDidBeginEditing(textView: UITextView) {
         textView.text = ""
+        textView.layer.borderWidth = 0
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -147,6 +149,10 @@ class RateChefViewController: UIViewController,RatingViewDelegate,UITextViewDele
     }
     
     
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+         self.view.endEditing(true)
+    }
     
     /*
     // MARK: - Navigation

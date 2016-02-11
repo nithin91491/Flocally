@@ -8,26 +8,23 @@
 
 import UIKit
 
-class SearchResultsController: UITableViewController,CustomSearchControllerDelegate {
+class SearchResultsController: UITableViewController,CustomSearchControllerDelegate,UISearchResultsUpdating {
 
     var customSearchController:CustomSearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        customSearchController.searchResultsUpdater = self
+        
         
     }
     
-    init(){
+    init(searchBarFrame:CGRect){
        super.init(nibName: nil, bundle: nil)
         
         let barTintColor = UIColor.redColor()
-        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 8.0, 275.0, 30.0), searchBarFont: UIFont(name: "Futura", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: barTintColor)
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: searchBarFrame, searchBarFont: UIFont(name: "Roboto-Regular", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: barTintColor)
         
         customSearchController.customDelegate = self
         
@@ -43,6 +40,15 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
+    
+    //MARK:- Search results updating
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

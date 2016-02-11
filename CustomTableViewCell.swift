@@ -48,10 +48,10 @@ class CustomTableViewCell: UITableViewCell {
             shouldAdd = false
         }
         
-        
-        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("QuantityChanged", object: self, userInfo: ["totalAmount":price,"shouldAdd":shouldAdd])
+//        
+//        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
+//        
+//        NSNotificationCenter.defaultCenter().postNotificationName("QuantityChanged", object: self, userInfo: ["totalAmount":price,"shouldAdd":shouldAdd])
     }
     
     
@@ -61,8 +61,8 @@ class CustomTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         self.imgFoodImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
-        let gradientlayer = self.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
-        gradientlayer!.hidden = true
+//        let gradientlayer = self.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+//        gradientlayer!.hidden = true
         
     }
 

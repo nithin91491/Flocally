@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RateCustomerViewController: UIViewController {
+class RateCustomerViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var btnSubmit: UIButton!
     
@@ -23,10 +23,12 @@ class RateCustomerViewController: UIViewController {
     @IBAction func submit(sender:UIButton){
         
         
-        guard self.txfComments.text != "" && self.txfComments.text != "Leave Comments"  else {return}
+        guard self.txfComments.text != "" && self.txfComments.text != "Leave Comments"  else {
         
         self.txfComments.layer.borderColor = UIColor.redColor().CGColor
-        self.txfComments.layer.borderWidth = 0.5
+        self.txfComments.layer.borderWidth = 1
+        return
+        }
 //        let param = "chefid=\(dish.postedByID)&userid=1234567&username=testuser2&userprofilepic=sample&dishid=\(dish.id)&point=\(starRating)&comment=\(txfComments.text)"
         
         
@@ -43,7 +45,8 @@ class RateCustomerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.txfComments.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -88,10 +91,22 @@ class RateCustomerViewController: UIViewController {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
+        self.view.endEditing(true)
         
     }
 
+    //MARK:- Textview delegate
+    func textViewDidBeginEditing(textView: UITextView) {
+        textView.text = ""
+        textView.layer.borderWidth = 0
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == ""{
+            textView.attributedText = NSAttributedString(string: "Leave Comments", attributes: [NSForegroundColorAttributeName:UIColor.lightGrayColor()])
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

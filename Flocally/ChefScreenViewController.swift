@@ -26,6 +26,10 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     var chefsDishes:[Dish] = [Dish]()
     
    
+    @IBAction func toogleFollow(sender: UIButton) {
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,45 +90,23 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     func setupNavigationController(){
         
-        //Title view
-        //        let attribute1 = [NSFontAttributeName:UIFont.systemFontOfSize(16),NSForegroundColorAttributeName : UIColor.whiteColor()]
-        //        let title1:NSMutableAttributedString = NSMutableAttributedString(string: "Today's Special",attributes: attribute1)
-        //
-        //        let attribute2 = [NSFontAttributeName:UIFont.systemFontOfSize(12),NSForegroundColorAttributeName : UIColor.whiteColor()]
-        //        let title2:NSAttributedString = NSAttributedString(string: " Mayur vihar phase II",attributes: attribute2)
-        //
-        //        title1.appendAttributedString(title2)
-        //
-        //        label.attributedText = title1
-        //        label.sizeToFit()
-        //        navigationItem.titleView = label
-        
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         
-        //SearchBar
-        searchBar.delegate = self
-        searchBar.barTintColor = UIColor.redColor()
-        searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
+//        //SearchBar
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
         
-        let txfSearchField:UITextField = searchBar.valueForKey("_searchField") as! UITextField
-        
-        txfSearchField.attributedPlaceholder = NSAttributedString(string:" Search your meal..", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        txfSearchField.textColor = UIColor.whiteColor()
-        self.navigationItem.titleView = self.searchBar
+        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
         
         
+        let titleViewCustom = UIView(frame:frame)
+        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+        titleViewCustom.backgroundColor = UIColor.clearColor()
+        self.navigationItem.titleView = titleViewCustom
+       
         
-        
-        
-        //Hamburger-Left Item
-        //        if self.revealViewController() != nil {
-        //
-        //            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self.revealViewController(), action: "revealToggle:")
-        //            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        //
-        //            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        //            
-        //        }
+        let n: Int! = self.navigationController?.viewControllers.count
+        let myUIViewController = self.navigationController?.viewControllers[n-2]
+        self.navigationItem.rightBarButtonItem = myUIViewController?.navigationItem.rightBarButtonItem
         
     }
 
@@ -158,7 +140,7 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
             gradientlayer!.hidden = false
         }
         else{
-            cell.imgFoodImage.image = nil
+            cell.imgFoodImage.image = UIImage(named: "dummy-image")
             downloader.download(dish.dishImageURL, completionHandler: { url in
                
                 guard url != nil else {return}

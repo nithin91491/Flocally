@@ -14,4 +14,7 @@ enum BaseURL : String {
     case getDish = "http://52.35.39.21:3000/api/getdish"
     case addChefDishReview = "http://52.35.39.21:3000/api/addchefdishreview"
     case getChefReview = "http://52.35.39.21:3000/api/getchefreview"
+    case followChef = "http://52.35.39.21:3000/api/followchef"
+    case unfollowChef = "http://52.35.39.21:3000/api/unfollowchef"
+    case getChefDetails = "http://52.35.39.21:3000/api/getchefdetails"
 }

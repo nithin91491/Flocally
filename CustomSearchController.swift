@@ -69,6 +69,8 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
         customSearchBar.showsCancelButton = false
         customSearchBar.customDelegate = self
         customSearchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
+        //customSearchBar.setPositionAdjustment(UIOffsetMake(255, 0), forSearchBarIcon: UISearchBarIcon.Search)
+        customSearchBar.setImage(UIImage(named: "SearchIcon")!, forSearchBarIcon: .Search, state: .Normal)
     }
     
     

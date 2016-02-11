@@ -60,9 +60,10 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     
     func setupNavigationController(){
         
-        let searchResultsController = SearchResultsController()
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
         
-        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.width)!, 35.0)
+        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-5, 8, frame.size.width-100, 30) )
+       
         
         let titleViewCustom = UIView(frame:frame)
         titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)

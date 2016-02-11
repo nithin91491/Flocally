@@ -22,6 +22,7 @@ extension UIImageView {
         gradientLayer.locations = [0.5,1]
         gradientLayer.name = "gradientLayer"
         
+        gradientLayer.hidden = true
         self.layer.addSublayer(gradientLayer)
        
     }

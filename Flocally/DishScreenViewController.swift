@@ -44,6 +44,8 @@ class DishScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationController()
 
         self.imgDishImage.image = dish.dishImage
         if self.imgDishImage.image != nil{
@@ -70,6 +72,27 @@ class DishScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupNavigationController(){
+        
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
+        
+        //SearchBar
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
+        
+        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
+        
+        
+        let titleViewCustom = UIView(frame:frame)
+        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+        titleViewCustom.backgroundColor = UIColor.clearColor()
+        self.navigationItem.titleView = titleViewCustom
+        
+        
+        let n: Int! = self.navigationController?.viewControllers.count
+        let myUIViewController = self.navigationController?.viewControllers[n-2]
+        self.navigationItem.rightBarButtonItem = myUIViewController?.navigationItem.rightBarButtonItem
+        
+    }
 
     
     // MARK: - Navigation

@@ -5,6 +5,7 @@
 //  Created by Nikhil Srivastava on 2/4/16.
 //  Copyright © 2016 Nikhil Srivastava. All rights reserved.
 //
+let currentuser = "56b30eb1f27e7d5a0d8e583e"
 
 import UIKit
 import Foundation
@@ -20,20 +21,64 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var lblFollow: UILabel!
+    
+    
     var chef:Chef!
     var ratings=[JSON]()
     var sum:Float = 0
+    var followers = [JSON]()
+    
+    var currentlyFollowing = false
+    
+    @IBAction func toggleFollow(sender: UIButton) {
+       
+        if !currentlyFollowing{
+            let param = "chefid=\(chef._id)&userid=\(currentuser)"
+            print(chef._id)
+            RequestManager.request(.POST, baseURL: .followChef, parameterString: param, block: { [unowned self] (data) -> () in
+                print(data)
+            })
+            
+            self.lblFollow.text = "UnFollow"
+            self.lblFollow.font = UIFont(name: "Roboto-Regular", size: 14)
+            self.lblFollow.sizeToFit()
+        }
+        else{
+            let param = "chefid=\(chef._id)&userid=\(currentuser)"
+            
+            RequestManager.request(.POST, baseURL: .unfollowChef, parameterString: param, block: { [unowned self] (data) -> () in
+                print(data)
+                })
+            self.lblFollow.text = "Follow"
+            self.lblFollow.sizeToFit()
+
+        }
+        
+        let param = "/\(chef._id)"
+        
+        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param, block: { [unowned self] (data) -> () in
+           self.followers = (data[0] as JSON)["followers"].arrayValue
+            
+            self.currentlyFollowing = self.followers.filter { (JSON) -> Bool in
+                JSON["user_id"].stringValue == currentuser
+                }.count > 0 ? true : false
+        })
+        
+    
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let param = "/\(chef._id)"
         
-        
-        
+        print(chef._id)
         RequestManager.request(.GET, baseURL: .getChefReview, parameterString: param) { [unowned self] (data) -> () in
           let ratings = (data[0] as JSON)["ratings"].arrayValue
             
+            guard ratings.count > 0 else {return}
             for rating in ratings{
                 self.ratings.append(rating)
                 self.sum += rating["point"].floatValue
@@ -44,6 +89,26 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
             self.starRating.rating = Float(round(Double(average)))
             
         }
+        
+        let param2 = "/\(chef._id)"
+        
+        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param2, block: { [unowned self] (data) -> () in
+            
+
+            self.followers = (data[0] as JSON)["followers"].arrayValue
+            
+            
+            self.currentlyFollowing = self.followers.filter { (JSON) -> Bool in
+                JSON["user_id"].stringValue == currentuser
+                }.count > 0 ? true : false
+            
+            
+            if self.currentlyFollowing {
+                self.lblFollow.text = "UnFollow"
+                self.lblFollow.sizeToFit()
+            }
+            
+            })
         
         
         

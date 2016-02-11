@@ -20,7 +20,7 @@ import UIKit
 /**
  Rating bar, fully customisable from Interface builder
 */
-@IBDesignable
+
 public class RatingView: UIView {
    
     /// Total number of stars
