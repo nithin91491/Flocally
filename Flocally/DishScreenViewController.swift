@@ -79,13 +79,13 @@ class DishScreenViewController: UIViewController {
         //SearchBar
         let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
         
-        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
+        //let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
         
-        
-        let titleViewCustom = UIView(frame:frame)
-        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
-        titleViewCustom.backgroundColor = UIColor.clearColor()
-        self.navigationItem.titleView = titleViewCustom
+//        
+//        let titleViewCustom = UIView(frame:frame)
+//        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+//        titleViewCustom.backgroundColor = UIColor.clearColor()
+//        self.navigationItem.titleView = titleViewCustom
         
         
         let n: Int! = self.navigationController?.viewControllers.count

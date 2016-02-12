@@ -8,25 +8,21 @@
 
 import UIKit
 
-class SearchResultsController: UITableViewController,CustomSearchControllerDelegate,UISearchResultsUpdating {
+class SearchResultsController: UITableViewController,CustomSearchControllerDelegate {
 
-    var customSearchController:CustomSearchController!
+   
     
+    var filteredArray = [Dish]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        customSearchController.searchResultsUpdater = self
-        
         
     }
     
-    init(searchBarFrame:CGRect){
+    init(){
+        
        super.init(nibName: nil, bundle: nil)
-        
-        let barTintColor = UIColor.redColor()
-        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: searchBarFrame, searchBarFont: UIFont(name: "Roboto-Regular", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: barTintColor)
-        
-        customSearchController.customDelegate = self
         
     }
 
@@ -45,31 +41,33 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
     
     //MARK:- Search results updating
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-    }
-    
+//    func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        
+//    }
+//    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return filteredArray.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as UITableViewCell!
+        if cell == nil {
+            cell = UITableViewCell(style:.Default, reuseIdentifier: "searchCell")
+        }
 
-        // Configure the cell...
+        let filteredDish = filteredArray[indexPath.row] 
+       cell.textLabel?.text = filteredDish.name
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -121,6 +119,8 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
     func didStartSearching() {
         //        shouldShowSearchResults = true
         //        tblSearchResults.reloadData()
+        
+      
     }
     
     
@@ -139,15 +139,15 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
     
     
     func didChangeSearchText(searchText: String) {
-        // Filter the data array and get only those countries that match the search text.
-        //        filteredArray = dataArray.filter({ (country) -> Bool in
-        //            let countryText: NSString = country
-        //
-        //            return (countryText.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-        //        })
-        //
-        //        // Reload the tableview.
-        //        tblSearchResults.reloadData()
+        
+                filteredArray = DataManager.sharedInstance.dishes.filter({ (dish) -> Bool in
+                    let dishName = dish.name
+        
+                    return (dishName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
+                })
+        
+                // Reload the tableview.
+                self.tableView.reloadData()
     }
 
 

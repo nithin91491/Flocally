@@ -33,6 +33,8 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
         
     }
 
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,7 +69,8 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
         customSearchBar.tintColor = textColor
         customSearchBar.showsBookmarkButton = false
         customSearchBar.showsCancelButton = false
-        customSearchBar.customDelegate = self
+//        customSearchBar.customDelegate = self
+        customSearchBar.delegate = self
         customSearchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
         //customSearchBar.setPositionAdjustment(UIOffsetMake(255, 0), forSearchBarIcon: UISearchBarIcon.Search)
         customSearchBar.setImage(UIImage(named: "SearchIcon")!, forSearchBarIcon: .Search, state: .Normal)
@@ -98,10 +101,10 @@ class CustomSearchController: UISearchController, UISearchBarDelegate {
         customDelegate.didChangeSearchText(searchText)
     }
     
-    func textDidClear(sender:UITextField)->Bool {
-        self.performSelector("searchBarCancelButtonClicked:", withObject: self.customSearchBar, afterDelay: 0.1)
-        return true
-    }
+//    func textDidClear(sender:UITextField)->Bool {
+//        self.performSelector("searchBarCancelButtonClicked:", withObject: self.customSearchBar, afterDelay: 0.1)
+//        return true
+//    }
 
     
 }

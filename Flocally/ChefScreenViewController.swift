@@ -21,13 +21,48 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var starRating: RatingView!
+    
+    @IBOutlet weak var btnFollow:UIButton!
+    
     var chef:Chef!
     
     var chefsDishes:[Dish] = [Dish]()
     
+    var followers = [JSON]()
+    
+    var currentlyFollowing = false
    
     @IBAction func toogleFollow(sender: UIButton) {
+       
+        if !currentlyFollowing{
+            let param = "chefid=\(chef._id)&userid=\(currentuser)"
+            print(chef._id)
+            RequestManager.request(.POST, baseURL: .followChef, parameterString: param, block: {  (data) -> () in
+                print(data)
+            })
+            
+            self.btnFollow.setBackgroundImage(UIImage(named: "UnFollow"), forState: .Normal)
+            
+        }
+        else{
+            let param = "chefid=\(chef._id)&userid=\(currentuser)"
+            
+            RequestManager.request(.POST, baseURL: .unfollowChef, parameterString: param, block: {  (data) -> () in
+                print(data)
+            })
+            self.btnFollow.setBackgroundImage(UIImage(named: "Follow"), forState: .Normal)
+            
+        }
         
+        let param = "/\(chef._id)"
+        
+        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param, block: { [unowned self] (data) -> () in
+            self.followers = (data[0] as JSON)["followers"].arrayValue
+            
+            self.currentlyFollowing = self.followers.filter { (JSON) -> Bool in
+                JSON["user_id"].stringValue == currentuser
+                }.count > 0 ? true : false
+            })
         
     }
     
@@ -81,6 +116,26 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
             
         }
         
+        //Check if user is currently following
+        
+        let param = "/\(chef._id)"
+        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param, block: { [unowned self] (data) -> () in
+            
+            
+            self.followers = (data[0] as JSON)["followers"].arrayValue
+            
+            
+            self.currentlyFollowing = self.followers.filter { (JSON) -> Bool in
+                JSON["user_id"].stringValue == currentuser
+                }.count > 0 ? true : false
+            
+            
+            if self.currentlyFollowing {
+                self.btnFollow.setBackgroundImage(UIImage(named: "UnFollow"), forState: .Normal)
+            }
+            
+            })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,13 +150,13 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
 //        //SearchBar
         let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
         
-        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
+        //let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
         
         
-        let titleViewCustom = UIView(frame:frame)
-        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
-        titleViewCustom.backgroundColor = UIColor.clearColor()
-        self.navigationItem.titleView = titleViewCustom
+//        let titleViewCustom = UIView(frame:frame)
+//        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+//        titleViewCustom.backgroundColor = UIColor.clearColor()
+//        self.navigationItem.titleView = titleViewCustom
        
         
         let n: Int! = self.navigationController?.viewControllers.count

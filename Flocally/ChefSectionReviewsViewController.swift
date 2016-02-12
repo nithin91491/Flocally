@@ -36,23 +36,22 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
         if !currentlyFollowing{
             let param = "chefid=\(chef._id)&userid=\(currentuser)"
             print(chef._id)
-            RequestManager.request(.POST, baseURL: .followChef, parameterString: param, block: { [unowned self] (data) -> () in
+            RequestManager.request(.POST, baseURL: .followChef, parameterString: param, block: {  (data) -> () in
                 print(data)
             })
             
             self.lblFollow.text = "UnFollow"
             self.lblFollow.font = UIFont(name: "Roboto-Regular", size: 14)
-            self.lblFollow.sizeToFit()
+            
         }
         else{
             let param = "chefid=\(chef._id)&userid=\(currentuser)"
             
-            RequestManager.request(.POST, baseURL: .unfollowChef, parameterString: param, block: { [unowned self] (data) -> () in
+            RequestManager.request(.POST, baseURL: .unfollowChef, parameterString: param, block: {  (data) -> () in
                 print(data)
                 })
             self.lblFollow.text = "Follow"
-            self.lblFollow.sizeToFit()
-
+            self.lblFollow.font = UIFont(name: "Roboto-Regular", size: 14)
         }
         
         let param = "/\(chef._id)"
@@ -72,9 +71,11 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.lblChefName.text = chef.name
+        
+        
         let param = "/\(chef._id)"
         
-        print(chef._id)
         RequestManager.request(.GET, baseURL: .getChefReview, parameterString: param) { [unowned self] (data) -> () in
           let ratings = (data[0] as JSON)["ratings"].arrayValue
             
@@ -90,9 +91,9 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
             
         }
         
-        let param2 = "/\(chef._id)"
         
-        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param2, block: { [unowned self] (data) -> () in
+        
+        RequestManager.request(.GET, baseURL: .getChefDetails, parameterString: param, block: { [unowned self] (data) -> () in
             
 
             self.followers = (data[0] as JSON)["followers"].arrayValue
@@ -105,7 +106,7 @@ class ChefSectionReviewsViewController: UIViewController,UITableViewDelegate,UIT
             
             if self.currentlyFollowing {
                 self.lblFollow.text = "UnFollow"
-                self.lblFollow.sizeToFit()
+                self.lblFollow.font = UIFont(name: "Roboto-Regular", size: 14)
             }
             
             })

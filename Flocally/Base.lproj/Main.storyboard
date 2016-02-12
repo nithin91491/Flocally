@@ -917,7 +917,7 @@
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
-                                        <real key="value" value="1.5"/>
+                                        <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.79607843137254897" green="0.80000000000000004" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
@@ -1132,6 +1132,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="btnFollow" destination="J1g-S3-0gA" id="nG5-4g-Yhf"/>
                         <outlet property="imgProfilePic" destination="LbN-Gs-FVr" id="SRP-Up-KE8"/>
                         <outlet property="lblName" destination="dfa-H7-6Kh" id="GFd-nb-nxu"/>
                         <outlet property="starRating" destination="mPc-v0-Ps2" id="ZJx-Tp-BEP"/>
@@ -1578,7 +1579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef4-Kz-yGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5174" y="-870"/>
+            <point key="canvasLocation" x="5514" y="-880"/>
         </scene>
         <!--Help Table View Controller-->
         <scene sceneID="nN8-N2-004">
@@ -1684,16 +1685,21 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="L29-lj-cfc">
                                         <rect key="frame" x="18" y="11" width="80" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="cce-5C-GAK"/>
-                                            <constraint firstAttribute="width" constant="80" id="l1Z-ii-Bvo"/>
+                                            <constraint firstAttribute="width" secondItem="L29-lj-cfc" secondAttribute="height" multiplier="1:1" id="cHf-z1-9Nt"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
                                                 <integer key="value" value="40"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.84313725490000002" green="0.84705882349999995" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUHANI GUPTA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgW-5p-rOj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUHANI GUPTA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BgW-5p-rOj">
                                         <rect key="frame" x="109" y="22" width="121" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="eZq-60-G2L"/>
@@ -1702,7 +1708,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-DU-Bsf" customClass="RatingView" customModule="Flocally" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-DU-Bsf" customClass="RatingView" customModule="Flocally" customModuleProvider="target">
                                         <rect key="frame" x="109" y="64" width="69" height="12"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1741,17 +1747,17 @@
                                         </constraints>
                                         <state key="normal" image="Menu-btn-circle"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HN9-y0-sPZ">
-                                        <rect key="frame" x="484" y="61" width="42" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HN9-y0-sPZ">
+                                        <rect key="frame" x="476" y="61" width="58" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="0oB-AB-NLd"/>
-                                            <constraint firstAttribute="width" constant="42" id="ZPM-9E-mhR"/>
+                                            <constraint firstAttribute="width" constant="58" id="ZPM-9E-mhR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-6P-znD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-6P-znD">
                                         <rect key="frame" x="541" y="61" width="36" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="Gfw-MA-a4g"/>
@@ -1761,7 +1767,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="236 Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mbg-wQ-m4w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="236 Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="mbg-wQ-m4w">
                                         <rect key="frame" x="183" y="62" width="68" height="15"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1774,6 +1780,7 @@
                                     <constraint firstItem="mbg-wQ-m4w" firstAttribute="centerY" secondItem="OBJ-DU-Bsf" secondAttribute="centerY" id="4Xo-dM-9Pg"/>
                                     <constraint firstItem="L29-lj-cfc" firstAttribute="centerY" secondItem="CLt-0Z-H51" secondAttribute="centerY" id="6ea-Q4-h7M"/>
                                     <constraint firstItem="HN9-y0-sPZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mbg-wQ-m4w" secondAttribute="trailing" constant="8" id="8T1-ni-i0G"/>
+                                    <constraint firstItem="QLj-yp-huC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BgW-5p-rOj" secondAttribute="trailing" constant="5" id="8yU-ne-EwQ"/>
                                     <constraint firstItem="HN9-y0-sPZ" firstAttribute="centerX" secondItem="QLj-yp-huC" secondAttribute="centerX" id="Ck2-rb-wwk"/>
                                     <constraint firstItem="HN9-y0-sPZ" firstAttribute="centerY" secondItem="mbg-wQ-m4w" secondAttribute="centerY" id="KEI-xP-sRj"/>
                                     <constraint firstAttribute="height" constant="102" id="KOn-Vj-EAy"/>
@@ -1830,7 +1837,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 Jan 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQd-mP-DPT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 Jan 2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQd-mP-DPT">
                                                     <rect key="frame" x="497" y="10" width="95" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="Spd-bY-QBP"/>
@@ -1930,7 +1937,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvJ-B6-jWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6320" y="54"/>
+            <point key="canvasLocation" x="6272" y="42"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Umd-UO-3KW">
@@ -2854,7 +2861,7 @@
     <resources>
         <image name="BG-img" width="636" height="240"/>
         <image name="Deals99" width="50" height="50"/>
-        <image name="Follow" width="146" height="55"/>
+        <image name="Follow" width="145" height="55"/>
         <image name="Menu-btn-circle" width="40" height="40"/>
         <image name="Resend" width="88" height="33"/>
         <image name="StarBig" width="40" height="40"/>
@@ -2881,8 +2888,8 @@
         <image name="veg" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="heD-Ue-ito"/>
-        <segue reference="43P-dP-7Vu"/>
+        <segue reference="HP5-g5-xii"/>
         <segue reference="UIv-OK-z2c"/>
+        <segue reference="ulZ-sV-uxM"/>
     </inferredMetricsTieBreakers>
 </document>

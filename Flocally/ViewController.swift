@@ -9,13 +9,13 @@
 import UIKit
 //import PagingMenuController
 
-class ViewController: UIViewController,PagingMenuControllerDelegate{
+class ViewController: UIViewController,PagingMenuControllerDelegate,CustomSearchControllerDelegate{
 
     var leftSearchBarButtonItem: UIBarButtonItem?
     var rightSearchBarButtonItem: UIBarButtonItem?
     let label = UILabel()
-    
-   
+    var customSearchController:CustomSearchController!
+    var src:SearchResultsController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     func setupPagingViewControllers(){
         
         let breakFast = self.storyboard?.instantiateViewControllerWithIdentifier("BreakFast") as! BreakFastTableViewController
-        breakFast.title = "BREAKFAST"
+        breakFast.title = "  BREAKFAST"
     
         
         let lunch = self.storyboard?.instantiateViewControllerWithIdentifier("Lunch") as! LunchTableViewController
@@ -60,30 +60,69 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     
     func setupNavigationController(){
         
-        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
+        let searchResultsController = SearchResultsController()
         
-        let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-5, 8, frame.size.width-100, 30) )
-       
+        src = searchResultsController
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
+        let searchBarFrame = CGRectMake(-8, 8, frame.size.width-100, 30)
+        let barTintColor = UIColor.redColor()
+        
+        customSearchController = CustomSearchController(searchResultsController: searchResultsController, searchBarFrame: searchBarFrame, searchBarFont: UIFont(name: "Roboto-Regular", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: barTintColor)
+        
+        customSearchController.customDelegate = self
+        
+        
         
         let titleViewCustom = UIView(frame:frame)
-        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
+        titleViewCustom.addSubview(customSearchController.customSearchBar)
         titleViewCustom.backgroundColor = UIColor.clearColor()
         self.navigationItem.titleView = titleViewCustom
         
-        
-        //Hamburger-Left Item
-//        if self.revealViewController() != nil {
-//            
-//            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"), style: .Plain, target: self.revealViewController(), action: "revealToggle:")
-//            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-//            
-//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-//            
-//        }
+       // self.searcher = searchResultsController.customSearchController
+        self.definesPresentationContext = true
 
     }
     
     
+    func didStartSearching() {
+        //        shouldShowSearchResults = true
+        //        tblSearchResults.reloadData()
+        
+        if (((self.presentedViewController?.isEqual(src)) ) != nil) {
+            src.dismissViewControllerAnimated(true, completion: nil)
+        }
+        else{
+        self.presentViewController(src, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
+    func didTapOnSearchButton() {
+        //        if !shouldShowSearchResults {
+        //            shouldShowSearchResults = true
+        //            tblSearchResults.reloadData()
+        //        }
+    }
+    
+    
+    func didTapOnCancelButton() {
+        //        shouldShowSearchResults = false
+        //        tblSearchResults.reloadData()
+    }
+    
+    
+    func didChangeSearchText(searchText: String) {
+        
+//        filteredArray = DataManager.sharedInstance.dishes.filter({ (dish) -> Bool in
+//            let dishName = dish.name
+//            
+//            return (dishName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
+//        })
+//        
+//        // Reload the tableview.
+//        self.tableView.reloadData()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
