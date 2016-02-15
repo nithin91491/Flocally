@@ -32,6 +32,7 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ratingView: RatingView!
     
+    var dishID:String!
     
     var initialQuantity = 0
     var userSelectedQuantity:Int?
@@ -48,10 +49,12 @@ class CustomTableViewCell: UITableViewCell {
             shouldAdd = false
         }
         
-//        
-//        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
-//        
-//        NSNotificationCenter.defaultCenter().postNotificationName("QuantityChanged", object: self, userInfo: ["totalAmount":price,"shouldAdd":shouldAdd])
+        
+        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
+        let dishName = self.lblFoodName.text!
+        
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("cartItemChanged", object: self, userInfo: ["price":price,"dishName":dishName,"quantity":initialQuantity,"dishID":dishID])
     }
     
     

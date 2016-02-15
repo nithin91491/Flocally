@@ -83,6 +83,7 @@ class BreakFastTableViewController: UITableViewController {
 
         let breakfast = self.breakfast[indexPath.row] as Dish
         
+        cell.dishID = breakfast.id
         cell.lblPrice.text = "₹"+String(breakfast.price)
         cell.lblFoodName.text = breakfast.name
         cell.lblDescription.text = breakfast.description

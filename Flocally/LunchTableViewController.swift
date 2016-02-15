@@ -58,6 +58,7 @@ class LunchTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("LunchCell", forIndexPath: indexPath) as! CustomTableViewCell
         let lunch = self.lunch[indexPath.row] as Dish
         
+        cell.dishID = lunch.id
         cell.lblPrice.text = "₹"+String(lunch.price)
         cell.lblFoodName.text = lunch.name
         cell.lblDescription.text = lunch.description

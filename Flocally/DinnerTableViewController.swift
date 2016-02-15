@@ -45,6 +45,7 @@ class DinnerTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("DinnerCell", forIndexPath: indexPath) as! CustomTableViewCell
         let dinner = self.dinner[indexPath.row] as Dish
         
+        cell.dishID = dinner.id
         cell.lblPrice.text = "₹"+String(dinner.price)
         cell.lblFoodName.text = dinner.name
         cell.lblDescription.text = dinner.description

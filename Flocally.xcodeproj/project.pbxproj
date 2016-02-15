@@ -53,6 +53,8 @@
 		5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */; };
 		5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */; };
 		5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62781C59FF2F002918B9 /* DataManager.swift */; };
+		5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A5991C71E76100C727A3 /* CartViewController.swift */; };
+		5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewCell.swift; sourceTree = "<group>"; };
 		5FDF62781C59FF2F002918B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		5FF3A5991C71E76100C727A3 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,7 @@
 				5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */,
 				5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */,
 				5FB48D0D1C63841900A2203F /* ChefSectionReviewsViewController.swift */,
+				5FF3A5991C71E76100C727A3 /* CartViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */,
 				5FB48D0F1C6385B200A2203F /* ChefSectionReviewCell.swift */,
 				5F8754931C64B36D00A275C0 /* HitTestView.swift */,
+				5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */,
 			);
 			name = "Classes and Extensions";
 			path = ..;
@@ -385,9 +391,11 @@
 				5F8602121C62193A001A8769 /* CustomSearchBar.swift in Sources */,
 				5F8602131C62193A001A8769 /* CustomSearchController.swift in Sources */,
 				5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */,
+				5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
 				5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */,
+				5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */,
 				5FC9E7181C3A89C0008B5877 /* PagingMenuController.swift in Sources */,
 				5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */,
 				5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */,

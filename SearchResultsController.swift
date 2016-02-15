@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsController: UITableViewController,CustomSearchControllerDelegate {
+class SearchResultsController: UITableViewController,UISearchResultsUpdating {
 
    
     
@@ -41,10 +41,18 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
     
     //MARK:- Search results updating
     
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        
-//    }
-//    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        filteredArray = DataManager.sharedInstance.dishes.filter({ (dish) -> Bool in
+            let dishName = dish.name
+            
+            return (dishName.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
+        })
+        
+        // Reload the tableview.
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -64,7 +72,16 @@ class SearchResultsController: UITableViewController,CustomSearchControllerDeleg
 
         let filteredDish = filteredArray[indexPath.row] 
        cell.textLabel?.text = filteredDish.name
-
+        if filteredDish.dishImage != nil{
+        cell.imageView?.image = filteredDish.dishImage
+        }
+        else{
+           cell.imageView?.image = UIImage(named: "dummy-image")
+        }
+        
+        cell.imageView?.clipsToBounds = true
+        cell.imageView?.contentMode = .ScaleAspectFill
+        cell.imageView?.frame = CGRectMake(0, 0, 80, 50)
         return cell
     }
     

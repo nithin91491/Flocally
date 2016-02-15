@@ -9,24 +9,58 @@
 import UIKit
 //import PagingMenuController
 
-class ViewController: UIViewController,PagingMenuControllerDelegate,CustomSearchControllerDelegate{
+class ViewController: UIViewController,PagingMenuControllerDelegate{
 
     var leftSearchBarButtonItem: UIBarButtonItem?
     var rightSearchBarButtonItem: UIBarButtonItem?
-    let label = UILabel()
-    var customSearchController:CustomSearchController!
+    var searcher:UISearchController!
     var src:SearchResultsController!
+    var cartItems = [[String:AnyObject]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
        setupPagingViewControllers()
        setupNavigationController()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil)
+        
         
     }
     
-
-    override func viewWillAppear(animated: Bool) {
+    
+    func cartItemChanged(notification:NSNotification){
+        
+        let userInfo = notification.userInfo as! [String:AnyObject]
+        let dishID = userInfo["dishID"] as! String
+        let dishName = userInfo["dishName"] as! String
+        let quantity = userInfo["quantity"] as! Int
+        let price = userInfo["price"] as! Double
+        
+        
+            
+        if  (cartItems.filter{ $0["dishID"] as! String == dishID }.count) > 0 { //Already exists
+           
+            if quantity > 0 {//Update the quantity
+                let index = cartItems.indexOf({$0["dishID"] as! String == dishID})
+                cartItems.removeAtIndex(index!)
+                cartItems.append(userInfo)
+            }
+            else{//Remove the item
+                let index = cartItems.indexOf({$0["dishID"] as! String == dishID})
+                cartItems.removeAtIndex(index!)
+            }
+                
+        }
+        else{//Add New Item
+            cartItems.append(userInfo)
+        }
+            
+                
+            
+            
+            
+            
+        
         
         
     }
@@ -63,70 +97,66 @@ class ViewController: UIViewController,PagingMenuControllerDelegate,CustomSearch
         let searchResultsController = SearchResultsController()
         
         src = searchResultsController
-        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
-        let searchBarFrame = CGRectMake(-8, 8, frame.size.width-100, 30)
-        let barTintColor = UIColor.redColor()
-        
-        customSearchController = CustomSearchController(searchResultsController: searchResultsController, searchBarFrame: searchBarFrame, searchBarFont: UIFont(name: "Roboto-Regular", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: barTintColor)
-        
-        customSearchController.customDelegate = self
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 30.0)
         
         
+
+        self.searcher = UISearchController(searchResultsController: src)
+        searcher.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
+        searcher.searchBar.searchBarStyle = .Minimal
         
+        searcher.hidesNavigationBarDuringPresentation = false
+        searcher.searchBar.showsCancelButton = false
+        searcher.searchResultsUpdater = src
+        searcher.searchBar.tintColor = UIColor.whiteColor()
+        searcher.searchBar.setImage(UIImage(named: "SearchIcon")!, forSearchBarIcon: .Search, state: .Normal)
+    
+        let placeholder = NSAttributedString(string:" Search your meal..", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        if #available(iOS 9.0, *) {
+            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).attributedPlaceholder = placeholder
+            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor()
+        } else {
+           
+            for subview in searcher.searchBar.subviews[0].subviews {
+                if subview.isKindOfClass(UITextField) {
+                    let textfield = subview as! UITextField
+                    textfield.attributedPlaceholder = placeholder
+                    textfield.textColor = UIColor.whiteColor()
+                }
+            }
+            
+        }
+        
+    
         let titleViewCustom = UIView(frame:frame)
-        titleViewCustom.addSubview(customSearchController.customSearchBar)
+        titleViewCustom.addSubview(searcher.searchBar)
+
         titleViewCustom.backgroundColor = UIColor.clearColor()
-        self.navigationItem.titleView = titleViewCustom
         
-       // self.searcher = searchResultsController.customSearchController
+        //searcher.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 8)
+        self.navigationItem.titleView = titleViewCustom
+        searcher.searchBar.sizeToFit()
+        
+        let newFrame = searcher.searchBar.frame
+        searcher.searchBar.frame = CGRectMake(newFrame.origin.x,newFrame.origin.y,newFrame.size.width-100,newFrame.size.height)
+    
         self.definesPresentationContext = true
 
     }
     
     
-    func didStartSearching() {
-        //        shouldShowSearchResults = true
-        //        tblSearchResults.reloadData()
-        
-        if (((self.presentedViewController?.isEqual(src)) ) != nil) {
-            src.dismissViewControllerAnimated(true, completion: nil)
-        }
-        else{
-        self.presentViewController(src, animated: true, completion: nil)
-        }
-        
-    }
-    
-    
-    func didTapOnSearchButton() {
-        //        if !shouldShowSearchResults {
-        //            shouldShowSearchResults = true
-        //            tblSearchResults.reloadData()
-        //        }
-    }
-    
-    
-    func didTapOnCancelButton() {
-        //        shouldShowSearchResults = false
-        //        tblSearchResults.reloadData()
-    }
-    
-    
-    func didChangeSearchText(searchText: String) {
-        
-//        filteredArray = DataManager.sharedInstance.dishes.filter({ (dish) -> Bool in
-//            let dishName = dish.name
-//            
-//            return (dishName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
-//        })
-//        
-//        // Reload the tableview.
-//        self.tableView.reloadData()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK:- Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "cartSegue"{
+            
+        }
     }
 
 

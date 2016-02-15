@@ -46,6 +46,7 @@ class SnacksTableViewController: UITableViewController {
 
         let snacks = self.snacks[indexPath.row] as Dish
         
+        cell.dishID = snacks.id
         cell.lblPrice.text = "₹"+String(snacks.price)
         cell.lblFoodName.text = snacks.name
         cell.lblDescription.text = snacks.description
