@@ -12,12 +12,15 @@ class SnacksTableViewController: UITableViewController {
 
     //MARK :- Properties and Outlets
     var snacks = [Dish]()
-    
+    var quantityArray = [Int]()
     
     //MARK :- View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snaks"}
+        for _ in 1...self.snacks.count{
+            self.quantityArray.append(0)
+        }
     }
 
     
@@ -51,6 +54,10 @@ class SnacksTableViewController: UITableViewController {
         cell.lblFoodName.text = snacks.name
         cell.lblDescription.text = snacks.description
         cell.lblChefName.text = snacks.postedByName
+        
+        cell.btnPlus.tag = indexPath.row
+        cell.snacksVC = self
+        cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
         let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")

@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultsController: UITableViewController,UISearchResultsUpdating {
 
-   
+    var navigation:UINavigationController!
     
     var filteredArray = [Dish]()
 
@@ -49,7 +49,6 @@ class SearchResultsController: UITableViewController,UISearchResultsUpdating {
             return (dishName.rangeOfString(searchController.searchBar.text!, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
         })
         
-        // Reload the tableview.
         self.tableView.reloadData()
     }
     
@@ -86,86 +85,18 @@ class SearchResultsController: UITableViewController,UISearchResultsUpdating {
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    //Custom search controller delegate methods
-    func didStartSearching() {
-        //        shouldShowSearchResults = true
-        //        tblSearchResults.reloadData()
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedDish = filteredArray[indexPath.row]
         
-      
-    }
-    
-    
-    func didTapOnSearchButton() {
-        //        if !shouldShowSearchResults {
-        //            shouldShowSearchResults = true
-        //            tblSearchResults.reloadData()
-        //        }
-    }
-    
-    
-    func didTapOnCancelButton() {
-        //        shouldShowSearchResults = false
-        //        tblSearchResults.reloadData()
-    }
-    
-    
-    func didChangeSearchText(searchText: String) {
+       let dishVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("dishVC") as! DishScreenViewController
+       dishVC.dish = selectedDish
         
-                filteredArray = DataManager.sharedInstance.dishes.filter({ (dish) -> Bool in
-                    let dishName = dish.name
+        self.navigation.pushViewController(dishVC, animated: true)
+        (self.presentingViewController as? ViewController)?.searcher.active = false
         
-                    return (dishName.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil)
-                })
+        print(self.presentingViewController)
         
-                // Reload the tableview.
-                self.tableView.reloadData()
     }
-
-
+   
 }
+

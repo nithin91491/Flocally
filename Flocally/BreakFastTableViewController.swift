@@ -15,7 +15,7 @@ class BreakFastTableViewController: UITableViewController {
     //MARK:- Properties and Outlets
      var breakfast=[Dish]()
      var chefs=[Chef]()
-    
+    var quantityArray = [Int]()
     
     var rateChefVC:RateChefViewController!
     
@@ -28,8 +28,12 @@ class BreakFastTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.downloadDishes{
+        DataManager.sharedInstance.downloadDishes{ [unowned self] in
             self.breakfast = DataManager.sharedInstance.dishes.filter{$0.type == "Breakfast"}
+            
+            for _ in 1...self.breakfast.count{
+                self.quantityArray.append(0)
+            }
             self.tableView.reloadData()
         }
         
@@ -38,14 +42,9 @@ class BreakFastTableViewController: UITableViewController {
         }
         
          rateChefVC = self.storyboard?.instantiateViewControllerWithIdentifier("RateChef") as! RateChefViewController
-        
-        
     
     }
 
-    
-    
-    
 
     
     //MARK:- Functions
@@ -88,6 +87,10 @@ class BreakFastTableViewController: UITableViewController {
         cell.lblFoodName.text = breakfast.name
         cell.lblDescription.text = breakfast.description
         cell.lblChefName.text = breakfast.postedByName
+        
+        cell.btnPlus.tag = indexPath.row
+        cell.breakfastVC = self
+        cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
         let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")
@@ -160,6 +163,8 @@ class BreakFastTableViewController: UITableViewController {
         return cell
     }
     
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
@@ -225,6 +230,7 @@ class BreakFastTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+                
         if segue.identifier == "ChefSegue"{
     
     

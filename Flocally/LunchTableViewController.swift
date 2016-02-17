@@ -12,7 +12,7 @@ class LunchTableViewController: UITableViewController {
 
     //MARK:- Properties and Outlets
     var lunch = [Dish]()
-    
+    var quantityArray = [Int]()
     
     
     
@@ -22,6 +22,9 @@ class LunchTableViewController: UITableViewController {
         
         DataManager.sharedInstance.ifDishAvailable{
         self.lunch = DataManager.sharedInstance.dishes.filter{$0.type == "Lunch"}
+            for _ in 1...self.lunch.count{
+                self.quantityArray.append(0)
+            }
         self.tableView.reloadData()
         }
     
@@ -63,6 +66,11 @@ class LunchTableViewController: UITableViewController {
         cell.lblFoodName.text = lunch.name
         cell.lblDescription.text = lunch.description
         cell.lblChefName.text = lunch.postedByName
+        
+        
+        cell.btnPlus.tag = indexPath.row
+        cell.lunchVC = self
+        cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
         let tap1 = UITapGestureRecognizer(target: self, action: "profileTapped:")
         let tap2 = UITapGestureRecognizer(target: self, action: "profileTapped:")

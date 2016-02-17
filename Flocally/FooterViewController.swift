@@ -11,6 +11,7 @@ import UIKit
 class FooterViewController: UIViewController {
 
     
+    @IBOutlet weak var containerView: UIView!
     
     
     //MARK :- View life cycle

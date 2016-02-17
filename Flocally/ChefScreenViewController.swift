@@ -32,6 +32,9 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
     
     var currentlyFollowing = false
    
+    var searcher:UISearchController!
+    var src:SearchResultsController!
+    
     @IBAction func toogleFollow(sender: UIButton) {
        
         if !currentlyFollowing{
@@ -147,18 +150,57 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
         
-//        //SearchBar
-        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 35.0)
+        //SearchBar
+        let searchResultsController = SearchResultsController()
+        searchResultsController.navigation = self.navigationController
+        src = searchResultsController
+        let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 30.0)
         
-        //let searchResultsController = SearchResultsController(searchBarFrame: CGRectMake(-8, 8, frame.size.width-100, 30) )
         
         
-//        let titleViewCustom = UIView(frame:frame)
-//        titleViewCustom.addSubview(searchResultsController.customSearchController.customSearchBar)
-//        titleViewCustom.backgroundColor = UIColor.clearColor()
-//        self.navigationItem.titleView = titleViewCustom
+        self.searcher = UISearchController(searchResultsController: src)
+        searcher.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
+        searcher.searchBar.searchBarStyle = .Minimal
+        
+        searcher.hidesNavigationBarDuringPresentation = false
+        searcher.searchBar.showsCancelButton = false
+        searcher.searchResultsUpdater = src
+        searcher.searchBar.tintColor = UIColor.whiteColor()
+        searcher.searchBar.setImage(UIImage(named: "SearchIcon")!, forSearchBarIcon: .Search, state: .Normal)
+        
+        let placeholder = NSAttributedString(string:" Search your meal..", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        if #available(iOS 9.0, *) {
+            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).attributedPlaceholder = placeholder
+            UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor()
+        } else {
+            
+            for subview in searcher.searchBar.subviews[0].subviews {
+                if subview.isKindOfClass(UITextField) {
+                    let textfield = subview as! UITextField
+                    textfield.attributedPlaceholder = placeholder
+                    textfield.textColor = UIColor.whiteColor()
+                }
+            }
+            
+        }
+        
+        
+        let titleViewCustom = UIView(frame:frame)
+        titleViewCustom.addSubview(searcher.searchBar)
+        
+        titleViewCustom.backgroundColor = UIColor.clearColor()
+        
+        //searcher.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 8)
+        self.navigationItem.titleView = titleViewCustom
+        searcher.searchBar.sizeToFit()
+        
+        let newFrame = searcher.searchBar.frame
+        searcher.searchBar.frame = CGRectMake(newFrame.origin.x,newFrame.origin.y,newFrame.size.width-100,newFrame.size.height)
+        
+        self.definesPresentationContext = true
+        
        
-        
         let n: Int! = self.navigationController?.viewControllers.count
         let myUIViewController = self.navigationController?.viewControllers[n-2]
         self.navigationItem.rightBarButtonItem = myUIViewController?.navigationItem.rightBarButtonItem

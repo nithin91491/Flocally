@@ -15,6 +15,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     var rightSearchBarButtonItem: UIBarButtonItem?
     var searcher:UISearchController!
     var src:SearchResultsController!
+    
     var cartItems = [[String:AnyObject]]()
     
     override func viewDidLoad() {
@@ -22,28 +23,31 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         
        setupPagingViewControllers()
        setupNavigationController()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil) //Posted by-Custom tableview cell
         
         
     }
     
+//    override func viewWillDisappear(animated: Bool) {
+//        searcher.dismissViewControllerAnimated(true, completion: nil)
+//        searcher = nil
+//        src = nil
+//    }
     
     func cartItemChanged(notification:NSNotification){
         
         let userInfo = notification.userInfo as! [String:AnyObject]
+        
         let dishID = userInfo["dishID"] as! String
-        let dishName = userInfo["dishName"] as! String
         let quantity = userInfo["quantity"] as! Int
-        let price = userInfo["price"] as! Double
         
-        
-            
         if  (cartItems.filter{ $0["dishID"] as! String == dishID }.count) > 0 { //Already exists
            
             if quantity > 0 {//Update the quantity
                 let index = cartItems.indexOf({$0["dishID"] as! String == dishID})
                 cartItems.removeAtIndex(index!)
-                cartItems.append(userInfo)
+                cartItems.insert(userInfo, atIndex: index!)
             }
             else{//Remove the item
                 let index = cartItems.indexOf({$0["dishID"] as! String == dishID})
@@ -54,14 +58,6 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         else{//Add New Item
             cartItems.append(userInfo)
         }
-            
-                
-            
-            
-            
-            
-        
-        
         
     }
     
@@ -95,13 +91,13 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     func setupNavigationController(){
         
         let searchResultsController = SearchResultsController()
-        
+        searchResultsController.navigation = self.navigationController
         src = searchResultsController
         let frame = CGRectMake(0, 0, (self.navigationController?.navigationBar.frame.size.width)!, 30.0)
         
+        self.searcher = UISearchController(searchResultsController: src)
         
 
-        self.searcher = UISearchController(searchResultsController: src)
         searcher.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
         searcher.searchBar.searchBarStyle = .Minimal
         
@@ -136,6 +132,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         
         //searcher.searchBar.searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, 8)
         self.navigationItem.titleView = titleViewCustom
+        //self.navigationController?.navigationBar.addSubview(titleViewCustom)
         searcher.searchBar.sizeToFit()
         
         let newFrame = searcher.searchBar.frame
@@ -155,7 +152,8 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "cartSegue"{
-            
+            let destinationVC = segue.destinationViewController as! CartViewController
+            destinationVC.items = self.cartItems
         }
     }
 

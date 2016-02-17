@@ -23,17 +23,19 @@ class CartTableViewCell: UITableViewCell {
     
     
     var initialQuantity = 0
+    var Amount = 0.0
     
     @IBAction func changeQuantity(sender: UIButton) {
         
+        let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
         if sender.tag == 1{ //Increment
             self.lblQuantity.text = String(++initialQuantity)
-            
+           NSNotificationCenter.defaultCenter().postNotificationName("quantityChanged", object: self, userInfo: ["amount":price]) //Observer - Cart View Controller
         }
         else{ //Decrement
             guard initialQuantity > 0 else {return}
             self.lblQuantity.text = String(--initialQuantity)
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("quantityChanged", object: self, userInfo: ["amount":-price]) //Observer - Cart View Controller
         }
         
     }

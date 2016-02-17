@@ -10,6 +10,7 @@ import UIKit
 
 class UINavigationBarTaller: UINavigationBar {
     
+   
         ///The height you want your navigation bar to be of
         static let navigationBarHeight: CGFloat = 53
         
@@ -32,6 +33,7 @@ class UINavigationBarTaller: UINavigationBar {
             ///Transform all view to shift upward for [shift] point
             self.transform =
                 CGAffineTransformMakeTranslation(0, -shift)
+            
         }
         
         override func layoutSubviews() {
