@@ -28,6 +28,7 @@ class DishScreenViewController: UIViewController {
     var gradientAdded = false
     
     var searcher:UISearchController!
+    
 //    var src:SearchResultsController!
     let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -49,6 +50,13 @@ class DishScreenViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationController()
+        
+//        let button = UIButton(type: .System)
+//        button.frame = CGRectMake(0, 0, 100, 50)
+//        button.backgroundColor = UIColor.redColor()
+//        button.setTitle("Search Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+//        self.navigationItem.titleView = button
 
         self.imgDishImage.image = dish.dishImage
         if self.imgDishImage.image != nil{
@@ -68,7 +76,10 @@ class DishScreenViewController: UIViewController {
         
     }
     
-    
+    func buttonAction(sender:UIButton){
+        let src = SearchResultsController()
+        self.presentViewController(src, animated: true, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

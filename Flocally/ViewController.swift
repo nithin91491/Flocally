@@ -24,10 +24,22 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
        setupPagingViewControllers()
        setupNavigationController()
         
+//        let button = UIButton(type: .System)
+//        button.frame = CGRectMake(0, 0, 100, 50)
+//        button.backgroundColor = UIColor.redColor()
+//        button.setTitle("Search Button", forState: UIControlState.Normal)
+//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+//        self.navigationItem.titleView = button
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil) //Posted by-Custom tableview cell
         
         
     }
+    
+//    func buttonAction(sender:UIButton){
+//       let src = SearchResultsController()
+//        self.presentViewController(src, animated: true, completion: nil)
+//    }
     
 //    override func viewWillDisappear(animated: Bool) {
 //        searcher.dismissViewControllerAnimated(true, completion: nil)
@@ -97,7 +109,6 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         
         self.searcher = UISearchController(searchResultsController: src)
         
-
         searcher.searchBar.setSearchFieldBackgroundImage(UIImage(named: "searchBG"), forState: .Normal)
         searcher.searchBar.searchBarStyle = .Minimal
         

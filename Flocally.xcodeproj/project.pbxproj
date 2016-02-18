@@ -10,7 +10,6 @@
 		5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */; };
 		5F0A76631C52312F00C8B46C /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76621C52312F00C8B46C /* Dish.swift */; };
 		5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76641C523F6800C8B46C /* Downloader.swift */; };
-		5F21EBB01C745BD2001B7E6E /* CustomNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F21EBAF1C745BD2001B7E6E /* CustomNavController.swift */; };
 		5F27C0231C608CD5000ABA7E /* RateChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */; };
 		5F27C0251C60AE0B000ABA7E /* RateCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */; };
 		5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3781581C3BA8B6002CC562 /* LunchTableViewController.swift */; };
@@ -19,6 +18,7 @@
 		5F3781611C3BF893002CC562 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3781601C3BF893002CC562 /* SWRevealViewController.m */; };
 		5F3781671C3C00ED002CC562 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3781651C3C00ED002CC562 /* Fabric.framework */; };
 		5F3781681C3C00ED002CC562 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3781661C3C00ED002CC562 /* Crashlytics.framework */; };
+		5F6FA1C91C75FE4D002A66F8 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */; };
 		5F8602121C62193A001A8769 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602101C62193A001A8769 /* CustomSearchBar.swift */; };
 		5F8602131C62193A001A8769 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602111C62193A001A8769 /* CustomSearchController.swift */; };
 		5F8602151C621973001A8769 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8602141C621973001A8769 /* SearchResultsController.swift */; };
@@ -62,7 +62,6 @@
 		5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		5F0A76621C52312F00C8B46C /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		5F0A76641C523F6800C8B46C /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
-		5F21EBAF1C745BD2001B7E6E /* CustomNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavController.swift; sourceTree = "<group>"; };
 		5F27C0221C608CD5000ABA7E /* RateChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateChefViewController.swift; sourceTree = "<group>"; };
 		5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateCustomerViewController.swift; sourceTree = "<group>"; };
 		5F3781581C3BA8B6002CC562 /* LunchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LunchTableViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		5F3781601C3BF893002CC562 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		5F3781651C3C00ED002CC562 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5F3781661C3C00ED002CC562 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		5F8602101C62193A001A8769 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		5F8602111C62193A001A8769 /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		5F8602141C621973001A8769 /* SearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
@@ -248,6 +248,7 @@
 				5F27C0241C60AE0B000ABA7E /* RateCustomerViewController.swift */,
 				5FB48D0D1C63841900A2203F /* ChefSectionReviewsViewController.swift */,
 				5FF3A5991C71E76100C727A3 /* CartViewController.swift */,
+				5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,7 +278,6 @@
 				5FB48D0F1C6385B200A2203F /* ChefSectionReviewCell.swift */,
 				5F8754931C64B36D00A275C0 /* HitTestView.swift */,
 				5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */,
-				5F21EBAF1C745BD2001B7E6E /* CustomNavController.swift */,
 			);
 			name = "Classes and Extensions";
 			path = ..;
@@ -408,7 +408,7 @@
 				5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */,
 				5FC9E7171C3A89C0008B5877 /* MenuView.swift in Sources */,
 				5FC9E7161C3A89C0008B5877 /* MenuItemView.swift in Sources */,
-				5F21EBB01C745BD2001B7E6E /* CustomNavController.swift in Sources */,
+				5F6FA1C91C75FE4D002A66F8 /* OTPViewController.swift in Sources */,
 				5F3781611C3BF893002CC562 /* SWRevealViewController.m in Sources */,
 				5FC9E7011C3A8847008B5877 /* AppDelegate.swift in Sources */,
 				5FB48D101C6385B200A2203F /* ChefSectionReviewCell.swift in Sources */,
@@ -530,6 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flocally",
@@ -537,8 +538,9 @@
 				INFOPLIST_FILE = Flocally/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsriv.Flocally;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dignitasdigital.Flocally;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Flocally/Flocally-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -550,6 +552,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flocally",
@@ -557,8 +560,9 @@
 				INFOPLIST_FILE = Flocally/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsriv.Flocally;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dignitasdigital.Flocally;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Flocally/Flocally-Bridging-Header.h";
 			};
 			name = Release;

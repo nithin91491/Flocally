@@ -17,4 +17,5 @@ enum BaseURL : String {
     case followChef = "http://52.35.39.21:3000/api/followchef"
     case unfollowChef = "http://52.35.39.21:3000/api/unfollowchef"
     case getChefDetails = "http://52.35.39.21:3000/api/getchefdetails"
+    case postSMS = "http://flocally.com/api/sms.php"
 }

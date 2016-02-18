@@ -17,6 +17,12 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     
     @IBOutlet weak var tableView:UITableView!
     //MARK:- View Life cycle
+    
+    @IBAction func orderMore(sender:UIButton){
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +37,10 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "quantityChanged:", name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
     }
 
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     //MARK:- Functions
     func quantityChanged(notification:NSNotification){
@@ -88,13 +98,6 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
             
         }
         return cell
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        let cell = cell as! CartTableViewCell
-//        if indexPath.row < items.count &&  cell.lblQuantity.hidden{
-//           self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-//        }
     }
     
     

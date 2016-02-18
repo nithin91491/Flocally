@@ -71,7 +71,9 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     
-   
+    override func prepareForReuse() {
+        self.lblQuantity.text = "0"
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
