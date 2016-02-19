@@ -54,6 +54,7 @@ class DinnerTableViewController: UITableViewController {
         cell.lblChefName.text = dinner.postedByName
         
         cell.btnPlus.tag = indexPath.row
+        //cell.btnMinus.tag = -(indexPath.row)
         cell.dinnerVC = self
         cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
@@ -103,7 +104,29 @@ class DinnerTableViewController: UITableViewController {
         else{
             
             cell.imgFoodImage.image = UIImage(named: "dummy-image")
-            downloader.download(dinner.dishImageURL, completionHandler: { url in
+            
+            if dinner.dishImageURL == "" && dinner.dishImageURLArray.count > 0 {
+                
+                let imageURL = dinner.dishImageURLArray[0]["image_url"].stringValue
+                downloader.download(imageURL, completionHandler: { url in
+                    
+                    guard url != nil else {return}
+                    
+                    let data = NSData(contentsOfURL: url)!
+                    let image = UIImage(data:data)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        dinner.dishImage = image
+                        self.tableView.reloadRowsAtIndexPaths(
+                            [indexPath], withRowAnimation: .None)
+                    }
+                    
+                })
+                
+                
+            }
+            else{
+              downloader.download(dinner.dishImageURL, completionHandler: { url in
                 
                 guard url != nil else {return}
                 
@@ -117,6 +140,7 @@ class DinnerTableViewController: UITableViewController {
                 }
                 
             })
+            }
         }
 
         cell.selectionStyle = .None

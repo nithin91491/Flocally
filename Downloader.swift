@@ -30,7 +30,8 @@ class Downloader: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate {
     }
     func download(s:String, completionHandler ch : MyDownloaderCompletion)
         -> NSURLSessionTask {
-        let url = NSURL(string:s)!
+            let urlString = s.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let url = NSURL(string:urlString)!
         let req = NSMutableURLRequest(URL:url)
         NSURLProtocol.setProperty(Wrapper(ch), forKey:"ch", inRequest:req)
         let task = self.session.downloadTaskWithRequest(req)

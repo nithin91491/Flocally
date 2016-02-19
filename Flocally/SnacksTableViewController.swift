@@ -56,6 +56,7 @@ class SnacksTableViewController: UITableViewController {
         cell.lblChefName.text = snacks.postedByName
         
         cell.btnPlus.tag = indexPath.row
+        //cell.btnMinus.tag = -(indexPath.row)
         cell.snacksVC = self
         cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
@@ -105,7 +106,28 @@ class SnacksTableViewController: UITableViewController {
         else{
             
             cell.imgFoodImage.image = UIImage(named: "dummy-image")
-            downloader.download(snacks.dishImageURL, completionHandler: { url in
+            
+            if snacks.dishImageURL == "" && snacks.dishImageURLArray.count > 0 {
+                
+                let imageURL = snacks.dishImageURLArray[0]["image_url"].stringValue
+                downloader.download(imageURL, completionHandler: { url in
+                    
+                    guard url != nil else {return}
+                    
+                    let data = NSData(contentsOfURL: url)!
+                    let image = UIImage(data:data)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        snacks.dishImage = image
+                        self.tableView.reloadRowsAtIndexPaths(
+                            [indexPath], withRowAnimation: .None)
+                    }
+                    
+                })
+                
+            }
+            else{
+              downloader.download(snacks.dishImageURL, completionHandler: { url in
                 
                 guard url != nil else {return}
                 
@@ -119,6 +141,7 @@ class SnacksTableViewController: UITableViewController {
                 }
                 
             })
+            }
         }
 
         cell.selectionStyle = .None

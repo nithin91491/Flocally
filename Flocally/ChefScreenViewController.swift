@@ -90,8 +90,10 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
                 let category:String = dishJSON["category"].stringValue
                 let price:Double = dishJSON["price"].doubleValue
                 let type:String = dishJSON["type"].stringValue
+                let dishImageURLArray = dishJSON["image_urls"].arrayValue
                 
-                let dish = Dish(id: id, name: name, type: type, category: category, description: description, price: price, postedByName: "", postedByImageURL: "", postedByID: "", dishImageURL: dishImageURL)
+                
+                let dish = Dish(id: id, name: name, type: type, category: category, description: description, price: price, postedByName: "", postedByImageURL: "", postedByID: "", dishImageURL: dishImageURL,dishImageURLArray: dishImageURLArray)
                 self.chefsDishes.append(dish)
                 
             }
@@ -238,7 +240,28 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
         }
         else{
             cell.imgFoodImage.image = UIImage(named: "dummy-image")
-            downloader.download(dish.dishImageURL, completionHandler: { url in
+            
+            if dish.dishImageURL == "" && dish.dishImageURLArray.count > 0 {
+                
+                let imageURL = dish.dishImageURLArray[0]["image_url"].stringValue
+                downloader.download(imageURL, completionHandler: { url in
+                    
+                    guard url != nil else {return}
+                    
+                    let data = NSData(contentsOfURL: url)!
+                    let image = UIImage(data:data)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        dish.dishImage = image
+                        self.tableView.reloadRowsAtIndexPaths(
+                            [indexPath], withRowAnimation: .None)
+                    }
+                    
+                })
+                
+            }
+            else{
+              downloader.download(dish.dishImageURL, completionHandler: { url in
                
                 guard url != nil else {return}
                 
@@ -251,6 +274,7 @@ class ChefScreenViewController: UIViewController,UITableViewDataSource,UITableVi
                 })
                 
             })
+            }
         }
         
         

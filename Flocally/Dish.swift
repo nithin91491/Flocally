@@ -20,10 +20,11 @@ class Dish {
     var postedByImageURL:String
     var postedByID:String
     var dishImageURL:String
+    var dishImageURLArray:[JSON]
     var postedByImage:UIImage!
     var dishImage:UIImage!
     
-    init(id:String,name:String,type:String,category:String,description:String,price:Double,postedByName:String,postedByImageURL:String,postedByID:String,dishImageURL:String){
+    init(id:String,name:String,type:String,category:String,description:String,price:Double,postedByName:String,postedByImageURL:String,postedByID:String,dishImageURL:String,dishImageURLArray:[JSON]){
         
         self.id = id
         self.name = name
@@ -35,7 +36,7 @@ class Dish {
         self.postedByImageURL = postedByImageURL
         self.postedByID = postedByID
         self.dishImageURL = dishImageURL
-    
+        self.dishImageURLArray = dishImageURLArray
     }
     
     

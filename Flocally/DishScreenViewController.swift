@@ -23,6 +23,12 @@ class DishScreenViewController: UIViewController {
     
     @IBOutlet weak var lblQuantity: UILabel!
     
+    @IBOutlet weak var imgDish1: UIImageView!
+    
+    @IBOutlet weak var imgDish2: UIImageView!
+    
+    @IBOutlet weak var imgDish3: UIImageView!
+    
     var dish:Dish!
     var initialQuantity:Int = 0
     var gradientAdded = false
@@ -40,7 +46,6 @@ class DishScreenViewController: UIViewController {
             guard initialQuantity > 0 else {return}
             self.lblQuantity.text = String(--initialQuantity)
         }
-        
         
     }
     
@@ -60,7 +65,9 @@ class DishScreenViewController: UIViewController {
 
         self.imgDishImage.image = dish.dishImage
         if self.imgDishImage.image != nil{
-        self.imgDishImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
+            self.imgDishImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
+            let gradientlayer = self.imgDishImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+            gradientlayer?.hidden = false
         }
         self.lblDishName.text = dish.name
         self.lblPrice.text =  "₹"+String(dish.price)
@@ -71,6 +78,34 @@ class DishScreenViewController: UIViewController {
             imgVegIndicator.image = UIImage(named: "nonveg")
         }else{
             imgVegIndicator.image = UIImage(named: "veg")
+        }
+        
+        if dish.dishImageURLArray.count == 0 {
+            self.imgDish1.image = dish.dishImage
+            self.imgDish2.image = dish.dishImage
+            self.imgDish3.image = dish.dishImage
+        }
+        
+        for i in 0..<dish.dishImageURLArray.count {
+        
+        let imageURL = dish.dishImageURLArray[i]["image_url"].stringValue
+        
+        downloader.download(imageURL, completionHandler: { url in
+            
+            guard url != nil else {return}
+            
+            let data = NSData(contentsOfURL: url)!
+            let image = UIImage(data:data)
+            
+            switch(i){
+            case 0 : self.imgDish1.image = image
+            case 1 : self.imgDish2.image = image
+            case 2:  self.imgDish3.image = image
+            default: break
+            }
+            
+        })
+        
         }
         
         

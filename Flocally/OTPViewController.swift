@@ -27,12 +27,13 @@ class OTPViewController: UIViewController {
         
         phoneNumber = self.txfPhoneNumber.text
         
-        let parameter = "mobile:\(phoneNumber)&msg:\(OTP)"
+        //let parameter = "mobile:\(phoneNumber)&msg:\(OTP)"
         
-        RequestManager.request(.POST, baseURL: .postSMS, parameterString: parameter) { (data) -> () in
-            print(data)
-        }
+//        RequestManager.request(.POST, baseURL: .postSMS, parameterString: parameter) { (data) -> () in
+//            print(data)
+//        }
         
+        post(["mobile":phoneNumber,"msg": String(OTP) ], url: "http://flocally.com/api/sms.php")
         
         UIView.animateWithDuration(1, animations: {
             
@@ -75,6 +76,56 @@ class OTPViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func post(params : Dictionary<String, String>, url : String) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        
+        let session = NSURLSession.sharedSession()
+        
+        request.HTTPMethod = "POST"
+        
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+        
+        do{
+            
+            
+            
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.init(rawValue: 0))
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            
+        }
+            
+        catch{
+            
+            print("Error writing JSON: ")
+            
+        }
+        
+        let task =  session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            
+            if error == nil{
+                
+                let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                
+                print(strData)
+                
+            }
+                
+            else {
+                
+                
+            }
+            
+        })
+        
+        
+        
+        task.resume()
+        
+    }
 
     /*
     // MARK: - Navigation

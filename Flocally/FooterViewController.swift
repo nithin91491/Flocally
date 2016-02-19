@@ -12,21 +12,53 @@ class FooterViewController: UIViewController {
 
     
     @IBOutlet weak var containerView: UIView!
+    var navController:UINavigationController!
+     @IBOutlet weak var menuButton : UIButton!
+    
+    
+    @IBAction func homeAction(sender: UIButton) {
+      
+        self.navController?.popToRootViewControllerAnimated(true)
+    }
+    
     
     
     //MARK :- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "totalAmountChanged:", name: "QuantityChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil)
         
-        
+        if self.revealViewController() != nil {
+            menuButton.addTarget(self.revealViewController(), action: "rightRevealToggle:", forControlEvents: .TouchUpInside)
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
        
         
     }
 
-//    deinit{
-//       NSNotificationCenter.defaultCenter().removeObserver(self)
-//    }
+    deinit{
+       NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func menuSelected(notification:NSNotification){
+        
+        let userInfo = notification.userInfo as! [String:AnyObject]
+        let selectedMenu = userInfo["menuItem"] as! String
+        
+        var VC:UIViewController!
+        
+        switch(selectedMenu){
+            case "Help":  VC =  self.storyboard?.instantiateViewControllerWithIdentifier("Help") as! HelpTableViewController
+        case "AboutUs" :  VC =  self.storyboard?.instantiateViewControllerWithIdentifier("AboutUs")
+        default:break
+        }
+        
+        
+        self.navController.pushViewController(VC, animated: false)
+        self.menuButton.sendActionsForControlEvents(.TouchUpInside)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,14 +76,16 @@ class FooterViewController: UIViewController {
 //    }
     
 
-    /*
+   
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       if segue.identifier == "NavEmbedd"{
+      let destin =  segue.destinationViewController as! UINavigationController
+        navController = destin
+        }
     }
-    */
+    
 
 }

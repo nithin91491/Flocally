@@ -50,6 +50,7 @@
 		5FC9E7181C3A89C0008B5877 /* PagingMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7141C3A89C0008B5877 /* PagingMenuController.swift */; };
 		5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7151C3A89C0008B5877 /* PagingMenuOptions.swift */; };
 		5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E71B1C3AA4F4008B5877 /* BreakFastTableViewController.swift */; };
+		5FCA67531C7722BE00514AA8 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */; };
 		5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */; };
 		5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */; };
 		5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */; };
@@ -106,6 +107,7 @@
 		5FC9E7141C3A89C0008B5877 /* PagingMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingMenuController.swift; sourceTree = "<group>"; };
 		5FC9E7151C3A89C0008B5877 /* PagingMenuOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingMenuOptions.swift; sourceTree = "<group>"; };
 		5FC9E71B1C3AA4F4008B5877 /* BreakFastTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakFastTableViewController.swift; sourceTree = "<group>"; };
+		5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewCell.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				5FB48D0D1C63841900A2203F /* ChefSectionReviewsViewController.swift */,
 				5FF3A5991C71E76100C727A3 /* CartViewController.swift */,
 				5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */,
+				5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			files = (
 				5F27C0231C608CD5000ABA7E /* RateChefViewController.swift in Sources */,
 				5FA4D3751C56219D00F5FB1C /* HelpTableViewController.swift in Sources */,
+				5FCA67531C7722BE00514AA8 /* MenuTableViewController.swift in Sources */,
 				5FB48D0E1C63841900A2203F /* ChefSectionReviewsViewController.swift in Sources */,
 				5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */,
 				5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */,

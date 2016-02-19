@@ -38,11 +38,12 @@ class DataManager {
                     let description:String = JSON["desc"].stringValue
                     let price:Double = JSON["price"].doubleValue
                     let imageURL:String = JSON["image_url"].stringValue
+                    let imageURLArray = JSON["image_urls"].arrayValue
                     let postedByName:String = dishJSON["name"].stringValue
                     let postedByImageURL:String = dishJSON["profilepicture"].stringValue
                     let postedByID:String = dishJSON["_id"].stringValue
                     
-                    let dish = Dish(id:id,name: name,type: type,category: category,description: description,price: price,postedByName: postedByName,postedByImageURL: postedByImageURL,postedByID: postedByID,dishImageURL:imageURL)
+                    let dish = Dish(id:id,name: name,type: type,category: category,description: description,price: price,postedByName: postedByName,postedByImageURL: postedByImageURL,postedByID: postedByID,dishImageURL:imageURL,dishImageURLArray: imageURLArray)
                     
                     self.dishes.append(dish)
                 })

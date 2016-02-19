@@ -29,6 +29,7 @@ class HelpTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
     }
 

@@ -34,6 +34,8 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnPlus:UIButton!
     
+    @IBOutlet weak var btnMinus:UIButton!
+    
     var dishID:String!
     var breakfastVC:BreakFastTableViewController?
     var lunchVC:LunchTableViewController?
@@ -41,14 +43,29 @@ class CustomTableViewCell: UITableViewCell {
     var dinnerVC:DinnerTableViewController?
     
     var initialQuantity = 0
-    var userSelectedQuantity:Int?
-    var shouldAdd = true
+    //var userSelectedQuantity:Int?
+   // var shouldAdd = true
     @IBAction func changeQuantity(sender: UIButton) {
         
+//        
+//        if let breakfast = breakfastVC{
+//            initialQuantity = breakfast.quantityArray[sender.tag] 
+//        }
+//        if let lunch = lunchVC{
+//            initialQuantity = lunch.quantityArray[sender.tag]
+//        }
+//        if let snacks = snacksVC{
+//            initialQuantity = snacks.quantityArray[sender.tag]
+//        }
+//        if let dinner = dinnerVC{
+//            initialQuantity = dinner.quantityArray[sender.tag]
+//        }
+        
+        
         if sender.tag >= 0{ //Increment
-            self.lblQuantity.text = String(++initialQuantity)
-            shouldAdd = true
             
+            self.lblQuantity.text = String(++initialQuantity)
+            //shouldAdd = true
             breakfastVC?.quantityArray[sender.tag] = initialQuantity
             lunchVC?.quantityArray[sender.tag] = initialQuantity
             snacksVC?.quantityArray[sender.tag] = initialQuantity
@@ -57,10 +74,10 @@ class CustomTableViewCell: UITableViewCell {
         else{ //Decrement
             guard initialQuantity > 0 else {return}
             self.lblQuantity.text = String(--initialQuantity)
-            shouldAdd = false
+            //shouldAdd = false
         }
         
-        
+       
         
         
         let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!
@@ -72,11 +89,12 @@ class CustomTableViewCell: UITableViewCell {
     
     
     override func prepareForReuse() {
-        self.lblQuantity.text = "0"
+        //self.lblQuantity.text = "0"
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         
         
         self.imgFoodImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
