@@ -17,7 +17,7 @@ class BreakFastTableViewController: UITableViewController {
      var chefs=[Chef]()
     var quantityArray = [Int]()
     
-    var rateChefVC:RateChefViewController!
+    //var rateChefVC:RateChefViewController!
     
     
     //MARK:- IBActions
@@ -28,24 +28,73 @@ class BreakFastTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.downloadDishes{ [unowned self] in
+        DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
             self.breakfast = DataManager.sharedInstance.dishes.filter{$0.type == "Breakfast"}
             
             for _ in 1...self.breakfast.count{
                 self.quantityArray.append(0)
             }
+           
             self.tableView.reloadData()
+            
+            //For early loading of dish images
+            for (index,breakfast) in self.breakfast.enumerate(){
+                
+                if breakfast.dishImageURL == "" && breakfast.dishImageURLArray.count > 0 {
+                    let imageURL = breakfast.dishImageURLArray[0]["image_url"].stringValue
+                    
+                    print(" If download started for \(breakfast.postedByName)")
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            breakfast.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                    
+                    
+                }
+                else{
+                    
+                    
+                    downloader.download(breakfast.dishImageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            breakfast.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                }
+            }
+            
+            
         }
         
         DataManager.sharedInstance.downloadChefs{
             self.chefs = DataManager.sharedInstance.chefs
         }
         
-         rateChefVC = self.storyboard?.instantiateViewControllerWithIdentifier("RateChef") as! RateChefViewController
+         //rateChefVC = self.storyboard?.instantiateViewControllerWithIdentifier("RateChef") as! RateChefViewController
+        
+        
+        
+
+        
+        }
+        
     
-    }
-
-
     
     //MARK:- Functions
     func profileTapped(sender:UITapGestureRecognizer){
@@ -88,8 +137,8 @@ class BreakFastTableViewController: UITableViewController {
         cell.lblDescription.text = breakfast.description
         cell.lblChefName.text = breakfast.postedByName
         
-        cell.btnPlus.tag = indexPath.row
-        //cell.btnMinus.tag = -(indexPath.row)
+        cell.btnPlus.tag = indexPath.row + 1 
+        cell.btnMinus.tag = -(indexPath.row+1)
         cell.breakfastVC = self
         cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         
@@ -143,6 +192,7 @@ class BreakFastTableViewController: UITableViewController {
         }
         else{
             
+            
             cell.imgFoodImage.image = UIImage(named: "dummy-image")
             
             if breakfast.dishImageURL == "" && breakfast.dishImageURLArray.count > 0 {
@@ -154,7 +204,7 @@ class BreakFastTableViewController: UITableViewController {
                     
                     let data = NSData(contentsOfURL: url)!
                     let image = UIImage(data:data)
-                    
+                    print("Reloaded")
                     dispatch_async(dispatch_get_main_queue()) {
                         breakfast.dishImage = image
                         self.tableView.reloadRowsAtIndexPaths(
@@ -166,6 +216,7 @@ class BreakFastTableViewController: UITableViewController {
                 
             }
             else{
+                
                     downloader.download(breakfast.dishImageURL, completionHandler: { url in
                     
                     guard url != nil else {return}
@@ -175,19 +226,20 @@ class BreakFastTableViewController: UITableViewController {
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         breakfast.dishImage = image
+                        print("Reloaded")
                         self.tableView.reloadRowsAtIndexPaths(
                         [indexPath], withRowAnimation: .None)
                     }
                     
                     })
                 }
-        }
         
+        
+    }
         cell.selectionStyle = .None
         return cell
+    
     }
-    
-    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

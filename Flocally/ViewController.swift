@@ -21,31 +21,16 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       setupPagingViewControllers()
-       setupNavigationController()
+        DataManager.sharedInstance.downloadDishes{ }
         
-//        let button = UIButton(type: .System)
-//        button.frame = CGRectMake(0, 0, 100, 50)
-//        button.backgroundColor = UIColor.redColor()
-//        button.setTitle("Search Button", forState: UIControlState.Normal)
-//        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-//        self.navigationItem.titleView = button
-        
+        setupPagingViewControllers()
+        setupNavigationController()
+    
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil) //Posted by-Custom tableview cell
         
         
     }
     
-//    func buttonAction(sender:UIButton){
-//       let src = SearchResultsController()
-//        self.presentViewController(src, animated: true, completion: nil)
-//    }
-    
-//    override func viewWillDisappear(animated: Bool) {
-//        searcher.dismissViewControllerAnimated(true, completion: nil)
-//        searcher = nil
-//        src = nil
-//    }
     
     func cartItemChanged(notification:NSNotification){
         
@@ -98,6 +83,23 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         let pagingMenuController = self.childViewControllers.first as! PagingMenuController
         pagingMenuController.delegate = self
         pagingMenuController.setup(viewControllers: viewControllers, options: options)
+        
+        
+        //set tab based on current time.
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([ .Hour, .Minute, .Second], fromDate: date)
+        let hour = components.hour
+        
+        switch (hour){
+        case 0..<11 : pagingMenuController.moveToMenuPage(0, animated: true) //Breakfast
+        case 11..<15: pagingMenuController.moveToMenuPage(1, animated: true) //Lunch
+        case 15..<19: pagingMenuController.moveToMenuPage(2, animated: true) //Snacks
+        case 19..<24: pagingMenuController.moveToMenuPage(3, animated: true) //Dinner
+        default :pagingMenuController.moveToMenuPage(0, animated: true) //Breakfast
+        }
+        
+        
     }
     
     func setupNavigationController(){

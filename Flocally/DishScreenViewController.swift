@@ -31,12 +31,10 @@ class DishScreenViewController: UIViewController {
     
     var dish:Dish!
     var initialQuantity:Int = 0
-    var gradientAdded = false
     
     var searcher:UISearchController!
     
 //    var src:SearchResultsController!
-    let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBAction func changeQuantity(sender: UIButton) {
         if sender.tag == 1{ //Increment
@@ -89,22 +87,64 @@ class DishScreenViewController: UIViewController {
         for i in 0..<dish.dishImageURLArray.count {
         
         let imageURL = dish.dishImageURLArray[i]["image_url"].stringValue
-        
-        downloader.download(imageURL, completionHandler: { url in
-            
-            guard url != nil else {return}
-            
-            let data = NSData(contentsOfURL: url)!
-            let image = UIImage(data:data)
             
             switch(i){
-            case 0 : self.imgDish1.image = image
-            case 1 : self.imgDish2.image = image
-            case 2:  self.imgDish3.image = image
+                
+            case 0 :
+                
+                if dish.dishImage1 != nil {
+                   self.imgDish1.image = dish.dishImage1
+                }else{
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        dispatch_async(dispatch_get_main_queue()) {
+                        self.imgDish1.image = image
+                        self.dish.dishImage1 = image
+                        }
+                    })
+                }
+            case 1 :
+                
+                if dish.dishImage2 != nil {
+                    self.imgDish2.image = dish.dishImage2
+                } else{
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        dispatch_async(dispatch_get_main_queue()) {
+                        self.imgDish2.image = image
+                        self.dish.dishImage2 = image
+                        }
+                    })
+                }
+            case 2:
+                
+                if dish.dishImage3 != nil{
+                    self.imgDish3.image = dish.dishImage3
+                }else{
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        dispatch_async(dispatch_get_main_queue()) {
+                        self.imgDish3.image = image
+                        self.dish.dishImage3 = image
+                        }
+                    })
+                }
             default: break
             }
-            
-        })
+        
+        
         
         }
         

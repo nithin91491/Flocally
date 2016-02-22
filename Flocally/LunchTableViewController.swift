@@ -20,12 +20,55 @@ class LunchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.ifDishAvailable{
+        DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
         self.lunch = DataManager.sharedInstance.dishes.filter{$0.type == "Lunch"}
             for _ in 1...self.lunch.count{
                 self.quantityArray.append(0)
             }
         self.tableView.reloadData()
+            
+            //For early loading of dish images
+            for (index,lunch) in self.lunch.enumerate(){
+                
+                if lunch.dishImageURL == "" && lunch.dishImageURLArray.count > 0 {
+                    let imageURL = lunch.dishImageURLArray[0]["image_url"].stringValue
+                    
+                    print(" If download started for \(lunch.postedByName)")
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            lunch.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                    
+                    
+                }
+                else{
+                    
+                    
+                    downloader.download(lunch.dishImageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            lunch.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                }
+            }
+            
         }
     
     }
@@ -68,8 +111,8 @@ class LunchTableViewController: UITableViewController {
         cell.lblChefName.text = lunch.postedByName
         
         
-        cell.btnPlus.tag = indexPath.row
-        //cell.btnMinus.tag = -(indexPath.row)
+        cell.btnPlus.tag = indexPath.row + 1
+        cell.btnMinus.tag = -(indexPath.row+1)
         cell.lunchVC = self
         cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         

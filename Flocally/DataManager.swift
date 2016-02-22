@@ -13,7 +13,7 @@ class DataManager {
     
      var dishes = [Dish]()
      var chefs = [Chef]()
-     private var requestCompletionHandler : (()->())?
+    private var requestCompletionHandler : [()->()] = []
      private var isDishDownloaded = false
     
     private init(){
@@ -67,10 +67,12 @@ class DataManager {
             completion()
             self.isDishDownloaded = true
             
-            if let CH = self.requestCompletionHandler{
-                CH()
+            if self.requestCompletionHandler.count > 0{
+                for ch in self.requestCompletionHandler{
+                   ch()
+                }
             }
-            self.requestCompletionHandler = nil
+            //self.requestCompletionHandler = nil
         }
     }
     
@@ -121,7 +123,7 @@ class DataManager {
         if isDishDownloaded{
             completion()
         }else{
-        requestCompletionHandler = completion
+        requestCompletionHandler.append(completion)
         }
     }
     

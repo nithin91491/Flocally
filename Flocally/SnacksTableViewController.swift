@@ -17,9 +17,54 @@ class SnacksTableViewController: UITableViewController {
     //MARK :- View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+         DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
         self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snaks"}
         for _ in 1...self.snacks.count{
             self.quantityArray.append(0)
+        }
+            self.tableView.reloadData()
+            
+            //For early loading of dish images
+            for (index,snacks) in self.snacks.enumerate(){
+                
+                if snacks.dishImageURL == "" && snacks.dishImageURLArray.count > 0 {
+                    let imageURL = snacks.dishImageURLArray[0]["image_url"].stringValue
+                    
+                    downloader.download(imageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            snacks.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                    
+                    
+                }
+                else{
+                    
+                    
+                    downloader.download(snacks.dishImageURL, completionHandler: { url in
+                        
+                        guard url != nil else {return}
+                        
+                        let data = NSData(contentsOfURL: url)!
+                        let image = UIImage(data:data)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            snacks.dishImage = image
+                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .None)
+                        }
+                        
+                    })
+                }
+            }
+            
         }
     }
 
@@ -55,8 +100,8 @@ class SnacksTableViewController: UITableViewController {
         cell.lblDescription.text = snacks.description
         cell.lblChefName.text = snacks.postedByName
         
-        cell.btnPlus.tag = indexPath.row
-        //cell.btnMinus.tag = -(indexPath.row)
+        cell.btnPlus.tag = indexPath.row + 1
+        cell.btnMinus.tag = -(indexPath.row+1)
         cell.snacksVC = self
         cell.lblQuantity.text = "\(quantityArray[indexPath.row])"
         

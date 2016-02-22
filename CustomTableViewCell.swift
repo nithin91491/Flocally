@@ -48,28 +48,25 @@ class CustomTableViewCell: UITableViewCell {
     @IBAction func changeQuantity(sender: UIButton) {
         
 //        
-//        if let breakfast = breakfastVC{
-//            initialQuantity = breakfast.quantityArray[sender.tag] 
-//        }
-//        if let lunch = lunchVC{
-//            initialQuantity = lunch.quantityArray[sender.tag]
-//        }
-//        if let snacks = snacksVC{
-//            initialQuantity = snacks.quantityArray[sender.tag]
-//        }
-//        if let dinner = dinnerVC{
-//            initialQuantity = dinner.quantityArray[sender.tag]
-//        }
+        if let breakfast = breakfastVC{
+            initialQuantity = breakfast.quantityArray[abs(sender.tag)-1]
+        }
+        if let lunch = lunchVC{
+            initialQuantity = lunch.quantityArray[abs(sender.tag)-1]
+        }
+        if let snacks = snacksVC{
+            initialQuantity = snacks.quantityArray[abs(sender.tag)-1]
+        }
+        if let dinner = dinnerVC{
+            initialQuantity = dinner.quantityArray[abs(sender.tag)-1]
+        }
         
         
-        if sender.tag >= 0{ //Increment
+        if sender.tag > 0{ //Increment
             
             self.lblQuantity.text = String(++initialQuantity)
             //shouldAdd = true
-            breakfastVC?.quantityArray[sender.tag] = initialQuantity
-            lunchVC?.quantityArray[sender.tag] = initialQuantity
-            snacksVC?.quantityArray[sender.tag] = initialQuantity
-            dinnerVC?.quantityArray[sender.tag] = initialQuantity
+            
         }
         else{ //Decrement
             guard initialQuantity > 0 else {return}
@@ -77,7 +74,10 @@ class CustomTableViewCell: UITableViewCell {
             //shouldAdd = false
         }
         
-       
+        breakfastVC?.quantityArray[abs(sender.tag)-1] = initialQuantity
+        lunchVC?.quantityArray[abs(sender.tag)-1] = initialQuantity
+        snacksVC?.quantityArray[abs(sender.tag)-1] = initialQuantity
+        dinnerVC?.quantityArray[abs(sender.tag)-1] = initialQuantity
         
         
         let price = Double((self.lblPrice.text!.stringByReplacingOccurrencesOfString("₹", withString: "")))!

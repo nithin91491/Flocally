@@ -23,6 +23,9 @@ class Dish {
     var dishImageURLArray:[JSON]
     var postedByImage:UIImage!
     var dishImage:UIImage!
+    var dishImage1:UIImage!
+    var dishImage2:UIImage!
+    var dishImage3:UIImage!
     
     init(id:String,name:String,type:String,category:String,description:String,price:Double,postedByName:String,postedByImageURL:String,postedByID:String,dishImageURL:String,dishImageURLArray:[JSON]){
         
