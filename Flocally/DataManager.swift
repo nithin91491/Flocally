@@ -127,4 +127,13 @@ class DataManager {
         }
     }
     
+    func clearImageCache(){
+        
+        for dish in self.dishes{
+            dish.dishImage1 = nil
+            dish.dishImage2 = nil
+            dish.dishImage3 = nil
+        }
+    }
+    
 }

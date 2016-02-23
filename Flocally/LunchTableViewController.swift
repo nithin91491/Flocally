@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LunchTableViewController: UITableViewController {
+class LunchTableViewController: UITableViewController,updateUserSelectedQuantity {
 
     //MARK:- Properties and Outlets
     var lunch = [Dish]()
@@ -73,8 +73,10 @@ class LunchTableViewController: UITableViewController {
     
     }
 
-    override func viewWillAppear(animated: Bool) {
-        
+    //Update quantity delegate method
+    func updateQuantityForRow(row: Int,quantity:Int) {
+        self.quantityArray[row] = quantity
+        self.tableView.reloadData()
     }
     
     
@@ -284,7 +286,9 @@ class LunchTableViewController: UITableViewController {
             let selectedDish = lunch[selectedRow.row]
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
-            destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
+            destinationVC.initialQuantity = self.quantityArray[selectedRow.row]
+            destinationVC.indexPathRow = selectedRow.row
+            destinationVC.delegate = self
         }
         
         if segue.identifier == "RateChef" {

@@ -22,6 +22,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         super.viewDidLoad()
         
         DataManager.sharedInstance.downloadDishes{ }
+        DataManager.sharedInstance.downloadChefs{ }
         
         setupPagingViewControllers()
         setupNavigationController()
@@ -55,6 +56,9 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         else{//Add New Item
             cartItems.append(userInfo)
         }
+        
+       let cartButton = self.navigationItem.rightBarButtonItem as! BBBadgeBarButtonItem
+        cartButton.badgeValue = "\(self.cartItems.count)"
         
     }
     
@@ -153,6 +157,26 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     
         self.definesPresentationContext = true
 
+        let button = UIButton(frame: CGRectMake(0,20,20,20) )
+        button.setImage(UIImage(named: "btn-cart"), forState: .Normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
+        button.addTarget(self, action: "pushCartScreen", forControlEvents: .TouchUpInside)
+        
+        let CartButton = BBBadgeBarButtonItem(customUIButton: button)
+        CartButton.badgeValue = "0"
+        CartButton.badgeOriginX = 13
+        CartButton.badgeOriginY = -9
+        CartButton.shouldHideBadgeAtZero = true
+        CartButton.badgeBGColor = UIColor.whiteColor()
+        CartButton.badgeTextColor = UIColor.redColor()
+        //CartButton.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+        
+        self.navigationItem.rightBarButtonItem = CartButton
+        
+    }
+    
+    func pushCartScreen(){
+        self.performSegueWithIdentifier("cartSegue", sender: self)
     }
     
     

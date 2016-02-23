@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SnacksTableViewController: UITableViewController {
+class SnacksTableViewController: UITableViewController ,updateUserSelectedQuantity{
 
     //MARK :- Properties and Outlets
     var snacks = [Dish]()
@@ -68,7 +68,11 @@ class SnacksTableViewController: UITableViewController {
         }
     }
 
-    
+    //Update quantity delegate method
+    func updateQuantityForRow(row: Int,quantity:Int) {
+        self.quantityArray[row] = quantity
+        self.tableView.reloadData()
+    }
     
     //Mark :- Functions
     func profileTapped(sender:UITapGestureRecognizer){
@@ -269,7 +273,9 @@ class SnacksTableViewController: UITableViewController {
             let selectedDish = snacks[selectedRow.row]
             let destinationVC = segue.destinationViewController as! DishScreenViewController
             destinationVC.dish = selectedDish
-            destinationVC.initialQuantity = (self.tableView.cellForRowAtIndexPath(selectedRow) as! CustomTableViewCell).initialQuantity
+            destinationVC.initialQuantity = self.quantityArray[selectedRow.row]
+            destinationVC.indexPathRow = selectedRow.row
+            destinationVC.delegate = self
         }
 
     }

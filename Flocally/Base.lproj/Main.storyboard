@@ -509,14 +509,10 @@
                             <inset key="imageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="btn-cart" style="plain" id="357-d4-TDc">
-                            <inset key="imageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="9Nj-m4-D1K" kind="show" identifier="cartSegue" id="60l-LZ-ZUu"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="9Nj-m4-D1K" kind="show" identifier="cartSegue" id="WNp-Mm-ojM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8D9-Yb-fQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3170,7 +3166,6 @@
         <image name="StarSmallFill" width="12" height="12"/>
         <image name="arrow" width="40" height="40"/>
         <image name="btn-additem" width="27" height="27"/>
-        <image name="btn-cart" width="22" height="22"/>
         <image name="btn-filter" width="22" height="22"/>
         <image name="btn-home" width="50" height="50"/>
         <image name="btn-minusitem" width="27" height="27"/>

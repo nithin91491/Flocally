@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol updateUserSelectedQuantity{
+    func updateQuantityForRow(row:Int,quantity:Int)
+}
+
 class DishScreenViewController: UIViewController {
 
     
@@ -30,7 +34,10 @@ class DishScreenViewController: UIViewController {
     @IBOutlet weak var imgDish3: UIImageView!
     
     var dish:Dish!
+    var indexPathRow:Int!
     var initialQuantity:Int = 0
+    
+    var delegate:updateUserSelectedQuantity?
     
     var searcher:UISearchController!
     
@@ -45,6 +52,13 @@ class DishScreenViewController: UIViewController {
             self.lblQuantity.text = String(--initialQuantity)
         }
         
+        self.delegate?.updateQuantityForRow(indexPathRow, quantity: initialQuantity)
+        
+        let price = dish.price
+        let dishName = self.dish.name
+        let dishID = self.dish.id
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("cartItemChanged", object: self, userInfo: ["price":price,"dishName":dishName,"quantity":initialQuantity,"dishID":dishID]) //Observer-ViewController
     }
     
    

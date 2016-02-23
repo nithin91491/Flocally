@@ -53,6 +53,7 @@
 		5FCA67531C7722BE00514AA8 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */; };
 		5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */; };
 		5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */; };
+		5FD2DAD71C7C67570045CFB3 /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2DAD61C7C67570045CFB3 /* BBBadgeBarButtonItem.m */; };
 		5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */; };
 		5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62781C59FF2F002918B9 /* DataManager.swift */; };
 		5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A5991C71E76100C727A3 /* CartViewController.swift */; };
@@ -110,6 +111,8 @@
 		5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		5FCD06E41C3CF0D40038A4C0 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		5FCD06EC1C3D33F80038A4C0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		5FD2DAD51C7C67570045CFB3 /* BBBadgeBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeBarButtonItem.h; sourceTree = "<group>"; };
+		5FD2DAD61C7C67570045CFB3 /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
 		5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewCell.swift; sourceTree = "<group>"; };
 		5FDF62781C59FF2F002918B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5FF3A5991C71E76100C727A3 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +202,7 @@
 		5FCD06E31C3CF0C50038A4C0 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				5FD2DAD81C7C67610045CFB3 /* CartBadge */,
 				5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */,
 				5F37815E1C3BF891002CC562 /* Flocally-Bridging-Header.h */,
 				5FCD06E71C3D32A80038A4C0 /* HamburgerMenu */,
@@ -284,6 +288,15 @@
 			);
 			name = "Classes and Extensions";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		5FD2DAD81C7C67610045CFB3 /* CartBadge */ = {
+			isa = PBXGroup;
+			children = (
+				5FD2DAD51C7C67570045CFB3 /* BBBadgeBarButtonItem.h */,
+				5FD2DAD61C7C67570045CFB3 /* BBBadgeBarButtonItem.m */,
+			);
+			name = CartBadge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,6 +426,7 @@
 				5FC9E7171C3A89C0008B5877 /* MenuView.swift in Sources */,
 				5FC9E7161C3A89C0008B5877 /* MenuItemView.swift in Sources */,
 				5F6FA1C91C75FE4D002A66F8 /* OTPViewController.swift in Sources */,
+				5FD2DAD71C7C67570045CFB3 /* BBBadgeBarButtonItem.m in Sources */,
 				5F3781611C3BF893002CC562 /* SWRevealViewController.m in Sources */,
 				5FC9E7011C3A8847008B5877 /* AppDelegate.swift in Sources */,
 				5FB48D101C6385B200A2203F /* ChefSectionReviewCell.swift in Sources */,
