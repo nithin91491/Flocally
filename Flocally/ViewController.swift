@@ -92,7 +92,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         //set tab based on current time.
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([ .Hour, .Minute, .Second], fromDate: date)
+        let components = calendar.components([ .Hour], fromDate: date)
         let hour = components.hour
         
         switch (hour){

@@ -33,7 +33,7 @@ class LunchTableViewController: UITableViewController,updateUserSelectedQuantity
                 if lunch.dishImageURL == "" && lunch.dishImageURLArray.count > 0 {
                     let imageURL = lunch.dishImageURLArray[0]["image_url"].stringValue
                     
-                    print(" If download started for \(lunch.postedByName)")
+                    
                     downloader.download(imageURL, completionHandler: { url in
                         
                         guard url != nil else {return}

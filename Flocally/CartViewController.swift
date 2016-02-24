@@ -75,6 +75,11 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         cell.lblQuantity.text = String(items[indexPath.row]["quantity"] as! Int)
         cell.lblPrice.text = "₹"+String(items[indexPath.row]["price"] as! Double)
         cell.initialQuantity = items[indexPath.row]["quantity"] as! Int
+            cell.lblQuantity.hidden = false
+            cell.btnMinus.hidden = false
+            cell.btnPlus.hidden = false
+            cell.lblDishName.textColor = UIColor.blackColor()
+            cell.lblPrice.textColor = UIColor.blackColor()
         }
         else{
             cell.lblQuantity.hidden = true

@@ -15,8 +15,8 @@ public class PagingMenuOptions {
     public var selectedBackgroundColor = UIColor.redColor()
     public var textColor = UIColor(red: 254, green: 154, blue: 166, alpha: 0.8)
     public var selectedTextColor = UIColor.whiteColor()
-    public var font = UIFont.systemFontOfSize(12)
-    public var selectedFont = UIFont.systemFontOfSize(12)
+    public var font = UIFont(name: "Roboto-Medium", size: 13)
+    public var selectedFont = UIFont(name: "Roboto-Medium", size: 13)
     public var menuPosition: MenuPosition = .Top
     public var menuHeight: CGFloat = 60
     public var menuItemMargin: CGFloat = 20

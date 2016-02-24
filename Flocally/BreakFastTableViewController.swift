@@ -28,7 +28,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
+        DataManager.sharedInstance.ifDishAvailable { [unowned self] in
             self.breakfast = DataManager.sharedInstance.dishes.filter{$0.type == "Breakfast"}
             
             for _ in 1...self.breakfast.count{
@@ -43,7 +43,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
                 if breakfast.dishImageURL == "" && breakfast.dishImageURLArray.count > 0 {
                     let imageURL = breakfast.dishImageURLArray[0]["image_url"].stringValue
                     
-                    print(" If download started for \(breakfast.postedByName)")
+                    
                     downloader.download(imageURL, completionHandler: { url in
                         
                         guard url != nil else {return}
@@ -82,13 +82,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
             
         }
         
-         //rateChefVC = self.storyboard?.instantiateViewControllerWithIdentifier("RateChef") as! RateChefViewController
-        
-        
-        
-
-        
-        }
+    }
         
     //Update quantity delegate method
     func updateQuantityForRow(row: Int,quantity:Int) {
@@ -204,7 +198,6 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
                     
                     let data = NSData(contentsOfURL: url)!
                     let image = UIImage(data:data)
-                    print("Reloaded")
                     dispatch_async(dispatch_get_main_queue()) {
                         breakfast.dishImage = image
                         self.tableView.reloadRowsAtIndexPaths(
@@ -226,7 +219,6 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         breakfast.dishImage = image
-                        print("Reloaded")
                         self.tableView.reloadRowsAtIndexPaths(
                         [indexPath], withRowAnimation: .None)
                     }
@@ -253,17 +245,17 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
         return 282.0
     }
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = cell as! CustomTableViewCell
-        let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
-        
-        if cell.imgFoodImage.image == nil {
-           gradientlayer!.hidden = true
-        }
-        else{
-            gradientlayer!.hidden = false
-        }
-    }
+//    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        let cell = cell as! CustomTableViewCell
+//        let gradientlayer = cell.imgFoodImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
+//        
+//        if cell.imgFoodImage.image == nil {
+//           gradientlayer!.hidden = true
+//        }
+//        else{
+//            gradientlayer!.hidden = false
+//        }
+//    }
     
     /*
     // Override to support conditional editing of the table view.
