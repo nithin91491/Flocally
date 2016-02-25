@@ -58,6 +58,8 @@
 		5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62781C59FF2F002918B9 /* DataManager.swift */; };
 		5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A5991C71E76100C727A3 /* CartViewController.swift */; };
 		5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */; };
+		5FF8A3691C7F00A9002FAB1D /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */; };
+		5FF8A36B1C7F1229002FAB1D /* OrderSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		5FDF62781C59FF2F002918B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5FF3A5991C71E76100C727A3 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
+		5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +260,7 @@
 				5FF3A5991C71E76100C727A3 /* CartViewController.swift */,
 				5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */,
 				5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */,
+				5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				5FB48D0F1C6385B200A2203F /* ChefSectionReviewCell.swift */,
 				5F8754931C64B36D00A275C0 /* HitTestView.swift */,
 				5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */,
+				5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */,
 			);
 			name = "Classes and Extensions";
 			path = ..;
@@ -415,6 +421,7 @@
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
 				5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */,
+				5FF8A3691C7F00A9002FAB1D /* OrderSummaryViewController.swift in Sources */,
 				5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */,
 				5FC9E7181C3A89C0008B5877 /* PagingMenuController.swift in Sources */,
 				5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */,
@@ -432,6 +439,7 @@
 				5FB48D101C6385B200A2203F /* ChefSectionReviewCell.swift in Sources */,
 				5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */,
 				5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */,
+				5FF8A36B1C7F1229002FAB1D /* OrderSummaryCell.swift in Sources */,
 				5FAE04C91C520B0C00F8E6A3 /* Chef.swift in Sources */,
 				5F37815B1C3BA8C9002CC562 /* DinnerTableViewController.swift in Sources */,
 			);

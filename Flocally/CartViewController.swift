@@ -35,6 +35,8 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         total += convenienceFee + taxes
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "quantityChanged:", name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OrderSummary", style: UIBarButtonItemStyle.Plain, target: self, action: "orderSummarySegue")
     }
 
     
@@ -48,6 +50,10 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         let amount = userInfo["amount"] as! Double
         total += amount
         self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: items.count + 2, inSection: 0)], withRowAnimation: .None)
+    }
+    
+    func orderSummarySegue(){
+        self.performSegueWithIdentifier("orderSummarySegue", sender: self)
     }
     
     
@@ -106,14 +112,18 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     }
     
     
-    /*
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "orderSummarySegue"{
+            let destinationVC = segue.destinationViewController as! OrderSummaryViewController
+            destinationVC.items = self.items
+            destinationVC.orderedAmount = self.total - convenienceFee - taxes
+            
+        }
     }
-    */
+   
 
 }
