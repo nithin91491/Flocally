@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0645F41C8053080013849A /* ChoosePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0645F31C8053080013849A /* ChoosePaymentViewController.swift */; };
+		5F0645F61C805E550013849A /* ChoosePaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0645F51C805E550013849A /* ChoosePaymentCell.swift */; };
 		5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */; };
 		5F0A76631C52312F00C8B46C /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76621C52312F00C8B46C /* Dish.swift */; };
 		5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A76641C523F6800C8B46C /* Downloader.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F0645F31C8053080013849A /* ChoosePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePaymentViewController.swift; sourceTree = "<group>"; };
+		5F0645F51C805E550013849A /* ChoosePaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosePaymentCell.swift; sourceTree = "<group>"; };
 		5F0A76601C52267A00C8B46C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		5F0A76621C52312F00C8B46C /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		5F0A76641C523F6800C8B46C /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				5F6FA1C81C75FE4D002A66F8 /* OTPViewController.swift */,
 				5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */,
 				5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */,
+				5F0645F31C8053080013849A /* ChoosePaymentViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				5F8754931C64B36D00A275C0 /* HitTestView.swift */,
 				5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */,
 				5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */,
+				5F0645F51C805E550013849A /* ChoosePaymentCell.swift */,
 			);
 			name = "Classes and Extensions";
 			path = ..;
@@ -405,6 +411,7 @@
 				5FCA67531C7722BE00514AA8 /* MenuTableViewController.swift in Sources */,
 				5FB48D0E1C63841900A2203F /* ChefSectionReviewsViewController.swift in Sources */,
 				5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */,
+				5F0645F61C805E550013849A /* ChoosePaymentCell.swift in Sources */,
 				5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */,
 				5F8602151C621973001A8769 /* SearchResultsController.swift in Sources */,
 				5F37815D1C3BA8D7002CC562 /* SnacksTableViewController.swift in Sources */,
@@ -431,6 +438,7 @@
 				5F0A76631C52312F00C8B46C /* Dish.swift in Sources */,
 				5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */,
 				5FC9E7171C3A89C0008B5877 /* MenuView.swift in Sources */,
+				5F0645F41C8053080013849A /* ChoosePaymentViewController.swift in Sources */,
 				5FC9E7161C3A89C0008B5877 /* MenuItemView.swift in Sources */,
 				5F6FA1C91C75FE4D002A66F8 /* OTPViewController.swift in Sources */,
 				5FD2DAD71C7C67570045CFB3 /* BBBadgeBarButtonItem.m in Sources */,

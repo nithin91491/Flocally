@@ -57,8 +57,10 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="roboto.regular.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -462,7 +464,7 @@
                                             <rect key="frame" x="15" y="12" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CVp-2W-iTH">
@@ -1378,6 +1380,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESB-we-WMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6315" y="1056"/>
+        </scene>
+        <!--Choose Payment View Controller-->
+        <scene sceneID="usk-Dz-Gf7">
+            <objects>
+                <viewController id="UL0-jU-0rA" customClass="ChoosePaymentViewController" customModule="Flocally" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PXt-FL-aET"/>
+                        <viewControllerLayoutGuide type="bottom" id="l3U-XA-pZi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sxj-2n-rA9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a payment option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97e-m3-05z">
+                                <rect key="frame" x="20" y="20" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="tOA-9S-ZE3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="21"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.26274509800000001" blue="0.2666666667" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyJ-ma-Lo9">
+                                <rect key="frame" x="78" y="516" width="145" height="55"/>
+                                <state key="normal" backgroundImage="back-btn"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRR-pA-Xy8">
+                                <rect key="frame" x="378" y="516" width="145" height="55"/>
+                                <state key="normal" backgroundImage="continue"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3a7-D3-SF1">
+                                <rect key="frame" x="0.0" y="49" width="600" height="440"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="choosePaymentCell" rowHeight="70" id="olx-TS-P5h" customClass="ChoosePaymentCell" customModule="Flocally" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="olx-TS-P5h" id="31O-ea-z5Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUz-4p-QQ7">
+                                                    <rect key="frame" x="87" y="24" width="235" height="28"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WUz-4p-QQ7" firstAttribute="top" secondItem="31O-ea-z5Y" secondAttribute="topMargin" constant="16" id="2Et-ff-njd"/>
+                                                <constraint firstItem="WUz-4p-QQ7" firstAttribute="leading" secondItem="31O-ea-z5Y" secondAttribute="leadingMargin" constant="79" id="Ewu-1w-hcy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="WUz-4p-QQ7" secondAttribute="bottom" constant="9" id="o8W-cC-v1Y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblPaymentMethod" destination="WUz-4p-QQ7" id="cag-Gp-gTz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="UL0-jU-0rA" id="0Qi-xa-aAU"/>
+                                    <outlet property="delegate" destination="UL0-jU-0rA" id="1Ot-aw-cp0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="97e-m3-05z" firstAttribute="top" secondItem="PXt-FL-aET" secondAttribute="bottom" id="3mZ-9b-6Ch"/>
+                            <constraint firstItem="HyJ-ma-Lo9" firstAttribute="centerX" secondItem="sxj-2n-rA9" secondAttribute="centerX" multiplier="0.5" id="4MS-rd-UvT"/>
+                            <constraint firstItem="3a7-D3-SF1" firstAttribute="top" secondItem="97e-m3-05z" secondAttribute="bottom" constant="8" id="67K-Up-Iww"/>
+                            <constraint firstItem="fRR-pA-Xy8" firstAttribute="centerY" secondItem="HyJ-ma-Lo9" secondAttribute="centerY" id="75T-lR-sDc"/>
+                            <constraint firstItem="97e-m3-05z" firstAttribute="trailing" secondItem="sxj-2n-rA9" secondAttribute="trailingMargin" id="HgX-2j-4KX"/>
+                            <constraint firstItem="3a7-D3-SF1" firstAttribute="leading" secondItem="sxj-2n-rA9" secondAttribute="leadingMargin" constant="-20" id="Spt-iX-oQq"/>
+                            <constraint firstItem="97e-m3-05z" firstAttribute="leading" secondItem="sxj-2n-rA9" secondAttribute="leadingMargin" id="WOr-qC-om8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3a7-D3-SF1" secondAttribute="trailing" constant="-20" id="aBy-oy-w9z"/>
+                            <constraint firstItem="HyJ-ma-Lo9" firstAttribute="top" secondItem="3a7-D3-SF1" secondAttribute="bottom" constant="27" id="deZ-XS-3Y2"/>
+                            <constraint firstItem="l3U-XA-pZi" firstAttribute="top" secondItem="HyJ-ma-Lo9" secondAttribute="bottom" constant="29" id="s6Y-tf-wFt"/>
+                            <constraint firstItem="fRR-pA-Xy8" firstAttribute="centerX" secondItem="sxj-2n-rA9" secondAttribute="centerX" multiplier="1.5" id="wKz-Sv-9R6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GLf-xk-ckk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7115" y="565"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="PoA-yU-Xbo">
@@ -3103,7 +3189,7 @@
                                     <constraint firstAttribute="width" constant="92" id="QkW-qO-nbf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Convenience Fees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSK-MM-sGT">
@@ -3113,7 +3199,7 @@
                                     <constraint firstAttribute="height" constant="18" id="agQ-v3-DO4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jy-Kx-5y0">
@@ -3123,7 +3209,7 @@
                                     <constraint firstAttribute="height" constant="18" id="7LY-Yk-vNn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z96-Em-qqv">
@@ -3133,31 +3219,31 @@
                                     <constraint firstAttribute="width" constant="41" id="acu-wa-VcJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="250" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9e-Bb-i2x">
                                 <rect key="frame" x="488" y="366" width="92" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="45" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g0-Yh-BwX">
                                 <rect key="frame" x="488" y="392" width="92" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="55" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBI-gy-D1g">
                                 <rect key="frame" x="488" y="418" width="92" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Italic" family="Roboto" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="567" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNO-g0-mVH">
                                 <rect key="frame" x="488" y="560" width="92" height="18"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eJG-LS-kKu">
@@ -3177,7 +3263,7 @@
                                                         <constraint firstAttribute="height" constant="40" id="IsP-qz-La5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-9l-3Sn">
@@ -3212,6 +3298,11 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="BUI-2n-L3q" id="fH7-pi-ax6"/>
                                     <outlet property="delegate" destination="BUI-2n-L3q" id="KGx-0T-bfR"/>
@@ -3357,12 +3448,14 @@
         <image name="StarSmall" width="12" height="12"/>
         <image name="StarSmallFill" width="12" height="12"/>
         <image name="arrow" width="40" height="40"/>
+        <image name="back-btn" width="145" height="55"/>
         <image name="btn-additem" width="27" height="27"/>
         <image name="btn-filter" width="22" height="22"/>
         <image name="btn-home" width="50" height="50"/>
         <image name="btn-minusitem" width="27" height="27"/>
         <image name="btn-specials" width="50" height="50"/>
         <image name="cartFooter" width="50" height="50"/>
+        <image name="continue" width="145" height="55"/>
         <image name="facebook-icon-flat 2" width="133" height="133"/>
         <image name="follow-btn-circle" width="40" height="40"/>
         <image name="ic-delivery1" width="21" height="15"/>
@@ -3377,8 +3470,8 @@
         <image name="veg" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="43P-dP-7Vu"/>
         <segue reference="heD-Ue-ito"/>
         <segue reference="41J-x7-kmF"/>
+        <segue reference="29b-nf-rQT"/>
     </inferredMetricsTieBreakers>
 </document>

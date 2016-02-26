@@ -75,12 +75,16 @@ class DishScreenViewController: UIViewController {
 //        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
 //        self.navigationItem.titleView = button
 
+        if dish.dishImage != nil{
         self.imgDishImage.image = dish.dishImage
-        if self.imgDishImage.image != nil{
             self.imgDishImage.addBottomGradient(UIColor.blackColor().CGColor as CGColorRef)
             let gradientlayer = self.imgDishImage.layer.sublayers?.filter{$0.name == "gradientLayer"}.first!
             gradientlayer?.hidden = false
         }
+        else{
+            self.imgDishImage.image = UIImage(named: "dummy-image")
+        }
+        
         self.lblDishName.text = dish.name
         self.lblPrice.text =  "₹"+String(dish.price)
         self.txvDescription.text = dish.description
@@ -243,5 +247,5 @@ class DishScreenViewController: UIViewController {
 //        
 //    }
     
-
+   
 }
