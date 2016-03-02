@@ -131,12 +131,12 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
             UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor()
         } else {
            
-            for subview in searcher.searchBar.subviews[0].subviews {
-                if subview.isKindOfClass(UITextField) {
+            for subview in searcher.searchBar.subviews[0].subviews where subview.isKindOfClass(UITextField) {
+                
                     let textfield = subview as! UITextField
                     textfield.attributedPlaceholder = placeholder
                     textfield.textColor = UIColor.whiteColor()
-                }
+                
             }
             
         }

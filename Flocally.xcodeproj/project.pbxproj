@@ -58,10 +58,13 @@
 		5FD2DAD71C7C67570045CFB3 /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD2DAD61C7C67570045CFB3 /* BBBadgeBarButtonItem.m */; };
 		5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */; };
 		5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDF62781C59FF2F002918B9 /* DataManager.swift */; };
+		5FE8FCF41C8599BA00DC6EBC /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE8FCF31C8599BA00DC6EBC /* SelectAddressViewController.swift */; };
 		5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A5991C71E76100C727A3 /* CartViewController.swift */; };
 		5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */; };
 		5FF8A3691C7F00A9002FAB1D /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */; };
 		5FF8A36B1C7F1229002FAB1D /* OrderSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */; };
+		5FFA35A81C8459B900D98658 /* AddressCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FFA35A71C8459B900D98658 /* AddressCard.xib */; };
+		5FFA35AA1C845BD900D98658 /* AddressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFA35A91C845BD900D98658 /* AddressCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,10 +124,13 @@
 		5FD2DAD61C7C67570045CFB3 /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
 		5FDF62761C59ECE4002918B9 /* HelpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewCell.swift; sourceTree = "<group>"; };
 		5FDF62781C59FF2F002918B9 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		5FE8FCF31C8599BA00DC6EBC /* SelectAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		5FF3A5991C71E76100C727A3 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		5FF3A59B1C71EAB500C727A3 /* CartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
 		5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryCell.swift; sourceTree = "<group>"; };
+		5FFA35A71C8459B900D98658 /* AddressCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCard.xib; sourceTree = "<group>"; };
+		5FFA35A91C845BD900D98658 /* AddressCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +272,7 @@
 				5FCA67521C7722BD00514AA8 /* MenuTableViewController.swift */,
 				5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */,
 				5F0645F31C8053080013849A /* ChoosePaymentViewController.swift */,
+				5FE8FCF31C8599BA00DC6EBC /* SelectAddressViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -275,6 +282,8 @@
 			children = (
 				5FC9E7041C3A8847008B5877 /* Main.storyboard */,
 				5FC9E7091C3A8847008B5877 /* LaunchScreen.storyboard */,
+				5FFA35A71C8459B900D98658 /* AddressCard.xib */,
+				5FFA35A91C845BD900D98658 /* AddressCard.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFA35A81C8459B900D98658 /* AddressCard.xib in Resources */,
 				5FC9E70B1C3A8847008B5877 /* LaunchScreen.storyboard in Resources */,
 				5F8EFDC81C6C8D77003E7354 /* roboto.light-italic.ttf in Resources */,
 				5FC9E7081C3A8847008B5877 /* Assets.xcassets in Resources */,
@@ -427,12 +437,14 @@
 				5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
+				5FE8FCF41C8599BA00DC6EBC /* SelectAddressViewController.swift in Sources */,
 				5F3781591C3BA8B6002CC562 /* LunchTableViewController.swift in Sources */,
 				5FF8A3691C7F00A9002FAB1D /* OrderSummaryViewController.swift in Sources */,
 				5FF3A59C1C71EAB500C727A3 /* CartTableViewCell.swift in Sources */,
 				5FC9E7181C3A89C0008B5877 /* PagingMenuController.swift in Sources */,
 				5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */,
 				5FC9E71C1C3AA4F4008B5877 /* BreakFastTableViewController.swift in Sources */,
+				5FFA35AA1C845BD900D98658 /* AddressCard.swift in Sources */,
 				5F0A76651C523F6800C8B46C /* Downloader.swift in Sources */,
 				5FA5196C1C61E4F100501FCF /* UINavigationBarTaller.swift in Sources */,
 				5F0A76631C52312F00C8B46C /* Dish.swift in Sources */,
