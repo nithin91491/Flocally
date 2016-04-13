@@ -66,6 +66,11 @@ class HelpTableViewController: UITableViewController {
                 question.textColor = UIColor.redColor()
                 
             }
+            else{//To aviod cell reuse issue
+                answer.text = ""
+                cell.backgroundColor = UIColor.redColor()
+                question.textColor = UIColor.whiteColor()
+            }
         }
         
         if let _ = previousSelectedIndexPath{
@@ -114,6 +119,7 @@ class HelpTableViewController: UITableViewController {
                 //Unexpand previous selected cell if expanded previously
                 shouldExpand = false
                 self.tableView.reloadRowsAtIndexPaths([prev], withRowAnimation: .Automatic)
+                shouldExpand = true // to avoid cell reuse issue
                 }
             }
             

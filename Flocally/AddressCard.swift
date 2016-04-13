@@ -21,11 +21,13 @@ import Foundation
     
     @IBOutlet weak var lblPIN: UILabel!
     
+    @IBOutlet weak var btnDelete: UIButton!
     
     @IBOutlet weak var lblMobileNumber: UILabel!
     
     var view:UIView!
     
+   
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +44,8 @@ import Foundation
         view.frame = bounds
         view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
         addSubview(view)
+        
+        self.btnDelete.addTarget(nil, action: "delAction:", forControlEvents: .TouchUpInside)
     }
     
     func loadViewFromNib() -> UIView {

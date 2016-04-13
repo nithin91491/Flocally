@@ -18,8 +18,8 @@ class SnacksTableViewController: UITableViewController ,updateUserSelectedQuanti
     override func viewDidLoad() {
         super.viewDidLoad()
          DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
-        self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snaks"}
-        for _ in 1...self.snacks.count{
+        self.snacks = DataManager.sharedInstance.dishes.filter{$0.type == "Snacks"}
+        for _ in 0..<self.snacks.count{
             self.quantityArray.append(0)
         }
             self.tableView.reloadData()

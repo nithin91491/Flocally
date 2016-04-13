@@ -34,7 +34,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
         DataManager.sharedInstance.ifDishAvailable { [unowned self] in
             self.breakfast = DataManager.sharedInstance.dishes.filter{$0.type == "Breakfast"}
             
-            for _ in 1...self.breakfast.count{
+            for _ in 0..<self.breakfast.count{
                 self.quantityArray.append(0)
             }
            
@@ -237,7 +237,9 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
         
     }
     
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+    }
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

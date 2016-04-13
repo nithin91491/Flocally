@@ -22,7 +22,7 @@ class LunchTableViewController: UITableViewController,updateUserSelectedQuantity
         
         DataManager.sharedInstance.ifDishAvailable{ [unowned self] in
         self.lunch = DataManager.sharedInstance.dishes.filter{$0.type == "Lunch"}
-            for _ in 1...self.lunch.count{
+            for _ in 0..<self.lunch.count{
                 self.quantityArray.append(0)
             }
         self.tableView.reloadData()

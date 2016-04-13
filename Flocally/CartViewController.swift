@@ -14,6 +14,7 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     var total:Double = 0.0
     let convenienceFee = 20.0
     let taxes = 15.0
+    var isSavedAddressAvailable = false
     
     @IBOutlet weak var tableView:UITableView!
     //MARK:- View Life cycle
@@ -23,6 +24,16 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     }
     
     
+    @IBAction func takeMyMoney(sender: UIButton) {
+        
+        if !isSavedAddressAvailable{
+            self.performSegueWithIdentifier("newAddress", sender: self)
+        }
+        else{
+            self.performSegueWithIdentifier("savedAddress", sender: self)
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +48,15 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "quantityChanged:", name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OrderSummary", style: UIBarButtonItemStyle.Plain, target: self, action: "orderSummarySegue")
+        
+        
+        //Check for any saved address
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if userDefaults.objectForKey("address1") != nil || userDefaults.objectForKey("address2") != nil{
+            isSavedAddressAvailable = true
+        }
+        
+        
     }
 
     

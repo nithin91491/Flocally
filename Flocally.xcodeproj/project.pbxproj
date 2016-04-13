@@ -31,6 +31,8 @@
 		5F8EFDC41C6C742B003E7354 /* roboto.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F8EFDC01C6C742B003E7354 /* roboto.regular.ttf */; };
 		5F8EFDC81C6C8D77003E7354 /* roboto.light-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F8EFDC71C6C8D77003E7354 /* roboto.light-italic.ttf */; };
 		5F8EFDCA1C6C8E04003E7354 /* roboto.italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F8EFDC91C6C8E04003E7354 /* roboto.italic.ttf */; };
+		5F942E5F1CBD0EEC0040D06A /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F942E5E1CBD0EEC0040D06A /* AddNewAddressViewController.swift */; };
+		5F942E611CBD107C0040D06A /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F942E601CBD107C0040D06A /* Address.swift */; };
 		5FA4D3731C560DE200F5FB1C /* ChefScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4D3721C560DE200F5FB1C /* ChefScreenViewController.swift */; };
 		5FA4D3751C56219D00F5FB1C /* HelpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4D3741C56219D00F5FB1C /* HelpTableViewController.swift */; };
 		5FA5196C1C61E4F100501FCF /* UINavigationBarTaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */; };
@@ -42,6 +44,7 @@
 		5FB6248A1C5F386D0016F1DB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB624891C5F386D0016F1DB /* Extensions.swift */; };
 		5FB6248C1C5F588E0016F1DB /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB6248B1C5F588E0016F1DB /* FooterViewController.swift */; };
 		5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBCD2561C58E1D0001AAB85 /* DishScreenViewController.swift */; };
+		5FC0A8971C89A84A00907276 /* scrollViewTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0A8961C89A84A00907276 /* scrollViewTesting.swift */; };
 		5FC9E7011C3A8847008B5877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7001C3A8847008B5877 /* AppDelegate.swift */; };
 		5FC9E7031C3A8847008B5877 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9E7021C3A8847008B5877 /* ViewController.swift */; };
 		5FC9E7061C3A8847008B5877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9E7041C3A8847008B5877 /* Main.storyboard */; };
@@ -94,6 +97,8 @@
 		5F8EFDC01C6C742B003E7354 /* roboto.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto.regular.ttf; sourceTree = "<group>"; };
 		5F8EFDC71C6C8D77003E7354 /* roboto.light-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto.light-italic.ttf"; sourceTree = "<group>"; };
 		5F8EFDC91C6C8E04003E7354 /* roboto.italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto.italic.ttf; sourceTree = "<group>"; };
+		5F942E5E1CBD0EEC0040D06A /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
+		5F942E601CBD107C0040D06A /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		5FA4D3721C560DE200F5FB1C /* ChefScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefScreenViewController.swift; sourceTree = "<group>"; };
 		5FA4D3741C56219D00F5FB1C /* HelpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTableViewController.swift; sourceTree = "<group>"; };
 		5FA5196B1C61E4F100501FCF /* UINavigationBarTaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarTaller.swift; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		5FB624891C5F386D0016F1DB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5FB6248B1C5F588E0016F1DB /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		5FBCD2561C58E1D0001AAB85 /* DishScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishScreenViewController.swift; sourceTree = "<group>"; };
+		5FC0A8961C89A84A00907276 /* scrollViewTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scrollViewTesting.swift; sourceTree = "<group>"; };
 		5FC9E6FD1C3A8847008B5877 /* Flocally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flocally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC9E7001C3A8847008B5877 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FC9E7021C3A8847008B5877 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				5FAE04C81C520B0C00F8E6A3 /* Chef.swift */,
 				5F0A76621C52312F00C8B46C /* Dish.swift */,
 				5FDF62781C59FF2F002918B9 /* DataManager.swift */,
+				5F942E601CBD107C0040D06A /* Address.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,6 +280,8 @@
 				5FF8A3681C7F00A9002FAB1D /* OrderSummaryViewController.swift */,
 				5F0645F31C8053080013849A /* ChoosePaymentViewController.swift */,
 				5FE8FCF31C8599BA00DC6EBC /* SelectAddressViewController.swift */,
+				5FC0A8961C89A84A00907276 /* scrollViewTesting.swift */,
+				5F942E5E1CBD0EEC0040D06A /* AddNewAddressViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				5F8602121C62193A001A8769 /* CustomSearchBar.swift in Sources */,
 				5F8602131C62193A001A8769 /* CustomSearchController.swift in Sources */,
 				5FAE04CD1C5210C500F8E6A3 /* WebServiceURLs.swift in Sources */,
+				5FC0A8971C89A84A00907276 /* scrollViewTesting.swift in Sources */,
 				5FF3A59A1C71E76100C727A3 /* CartViewController.swift in Sources */,
 				5FBCD2571C58E1D0001AAB85 /* DishScreenViewController.swift in Sources */,
 				5FC9E7191C3A89C0008B5877 /* PagingMenuOptions.swift in Sources */,
@@ -449,6 +459,7 @@
 				5FA5196C1C61E4F100501FCF /* UINavigationBarTaller.swift in Sources */,
 				5F0A76631C52312F00C8B46C /* Dish.swift in Sources */,
 				5FCD06E51C3CF0D40038A4C0 /* RatingView.swift in Sources */,
+				5F942E611CBD107C0040D06A /* Address.swift in Sources */,
 				5FC9E7171C3A89C0008B5877 /* MenuView.swift in Sources */,
 				5F0645F41C8053080013849A /* ChoosePaymentViewController.swift in Sources */,
 				5FC9E7161C3A89C0008B5877 /* MenuItemView.swift in Sources */,
@@ -459,6 +470,7 @@
 				5FB48D101C6385B200A2203F /* ChefSectionReviewCell.swift in Sources */,
 				5FDF62791C59FF2F002918B9 /* DataManager.swift in Sources */,
 				5F0A76611C52267A00C8B46C /* SwiftyJSON.swift in Sources */,
+				5F942E5F1CBD0EEC0040D06A /* AddNewAddressViewController.swift in Sources */,
 				5FF8A36B1C7F1229002FAB1D /* OrderSummaryCell.swift in Sources */,
 				5FAE04C91C520B0C00F8E6A3 /* Chef.swift in Sources */,
 				5F37815B1C3BA8C9002CC562 /* DinnerTableViewController.swift in Sources */,

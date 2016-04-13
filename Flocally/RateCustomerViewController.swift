@@ -67,7 +67,7 @@ class RateCustomerViewController: UIViewController,UITextViewDelegate {
     
     func keyBoardWillAppear(notification:NSNotification){
         
-        let userInfo = notification.userInfo as! NSDictionary
+        let userInfo = notification.userInfo! as NSDictionary
         
         let keyboardSize = userInfo.objectForKey("UIKeyboardFrameBeginUserInfoKey")!.CGRectValue.size
         

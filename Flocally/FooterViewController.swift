@@ -22,11 +22,14 @@ class FooterViewController: UIViewController {
     }
     
     
+    @IBAction func cartAction(sender: UIButton) {
+       NSNotificationCenter.defaultCenter().postNotificationName("pushCartScreen", object: nil)
+    }
     
     //MARK :- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil) //Notification posted after selecting a particular menu item
         
         if self.revealViewController() != nil {
             menuButton.addTarget(self.revealViewController(), action: "rightRevealToggle:", forControlEvents: .TouchUpInside)
@@ -56,7 +59,7 @@ class FooterViewController: UIViewController {
         
         
         self.navController.pushViewController(VC, animated: false)
-        self.menuButton.sendActionsForControlEvents(.TouchUpInside)
+        self.menuButton.sendActionsForControlEvents(.TouchUpInside)//To close the Menu
     }
     
     

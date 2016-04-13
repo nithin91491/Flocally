@@ -17,33 +17,36 @@ class SelectAddressViewController:UIViewController{
     
     @IBOutlet weak var addressView2CenterXConstraint: NSLayoutConstraint!
     
-    
-    @IBAction func delAction(sender: UIButton) {
+    func delAction(sender:UIButton){ //Event forwarded from Address card
         
-        UIView.animateWithDuration(0.2){
-            self.addressView1.alpha = 0
+        if sender.superview?.superview?.tag == 1 {
+        
+            UIView.animateWithDuration(0.2){
+                self.addressView1.alpha = 0
+            }
+        
+            self.addressView2.removeConstraint(self.addressView2CenterXConstraint)
+            
+            let xCenterConstraint = NSLayoutConstraint(item: self.addressView2, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 0.5, constant: 0)
+            self.view.addConstraint(xCenterConstraint)
+
+            UIView.animateWithDuration(0.5){
+                self.view.layoutIfNeeded()
+            }
         }
         
-        self.addressView2.removeConstraint(self.addressView2CenterXConstraint)
-        
-        let xCenterConstraint = NSLayoutConstraint(item: self.addressView2, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 0.5, constant: 0)
-         self.view.addConstraint(xCenterConstraint)
-        
-        UIView.animateWithDuration(0.5){
-          self.view.layoutIfNeeded()
+        else {
+            
+                UIView.animateWithDuration(0.2){
+                    self.addressView2.alpha = 0
+                }
         }
-        
     }
+   
     
     override func viewDidLoad() {
         
         
-//        addressView1.layer.borderWidth = 1
-//        addressView1.layer.borderColor = UIColor.grayColor().CGColor
-//        
-//        addressView2.layer.borderWidth = 1
-//        addressView2.layer.borderColor = UIColor.grayColor().CGColor
-//        
         let layer1 = addressView1.layer
         
         layer1.shadowColor = UIColor.blackColor().CGColor
@@ -64,6 +67,8 @@ class SelectAddressViewController:UIViewController{
         layer2.shadowOpacity = 0.5
         layer2.shadowRadius = 8
 
+        
+        
         
         
 //        let card = AddressCard(frame:CGRectMake(0, 0, 250 , 200) )

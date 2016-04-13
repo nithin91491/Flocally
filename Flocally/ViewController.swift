@@ -29,7 +29,7 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil) //Posted by-Custom tableview cell
         
-        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushCartScreen:", name: "pushCartScreen", object: nil) // Posted by cart button in footer
     }
     
     
@@ -179,6 +179,9 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         self.performSegueWithIdentifier("cartSegue", sender: self)
     }
     
+    func pushCartScreen(notification:NSNotification){
+        self.performSegueWithIdentifier("cartSegue", sender: self)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressCard" customModule="Flocally" customModuleProvider="target">
             <connections>
+                <outlet property="btnDelete" destination="WHg-GO-G3q" id="rBn-iK-THF"/>
                 <outlet property="lblAddressLine1" destination="ySC-p9-Txe" id="Bd4-xr-jDf"/>
                 <outlet property="lblAddressLine2" destination="QWA-9h-6N3" id="la0-k0-G4I"/>
                 <outlet property="lblCityState" destination="bKY-r2-HWN" id="uR4-hg-1Ic"/>

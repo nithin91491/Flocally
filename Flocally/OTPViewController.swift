@@ -27,13 +27,13 @@ class OTPViewController: UIViewController {
         
         phoneNumber = self.txfPhoneNumber.text
         
-        //let parameter = "mobile:\(phoneNumber)&msg:\(OTP)"
+        let parameter = "/\(phoneNumber)"
         
-//        RequestManager.request(.POST, baseURL: .postSMS, parameterString: parameter) { (data) -> () in
-//            print(data)
-//        }
+        RequestManager.request(.GET, baseURL: .generateOTP, parameterString: parameter) { (data) -> () in
+            print(data)
+        }
         
-        post(["mobile":phoneNumber,"msg": String(OTP) ], url: "http://flocally.com/api/sms.php")
+       // post(["mobile":phoneNumber], url: "http://flocally.com/api/sms.php")
         
         UIView.animateWithDuration(1, animations: {
             
@@ -52,11 +52,27 @@ class OTPViewController: UIViewController {
         
         })
         
-        
+        self.view.endEditing(true)
     }
     @IBAction func submitOTP(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        guard self.txfOTP.text != "" && self.txfOTP.text?.characters.count == 6 else {return}
+        
+
+        RequestManager.postRequest(.validateOTP, params: ["token":"\(self.txfOTP.text!)"]){ (data) -> () in
+            if data["message"].stringValue == "Verified."{
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            else{
+                let alertController = UIAlertController(title: "Failure", message: data["message"].stringValue, preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+        
     }
+    
+    
     @IBAction func resendOTP(sender: UIButton) {
     }
     override func viewDidLoad() {

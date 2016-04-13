@@ -82,4 +82,50 @@ class RequestManager{
         
     }
     
+    
+    static func postRequest(baseURL:BaseURL,params:Dictionary<String, String>,block:(data:JSON)->()){
+        
+        let url:NSURL = NSURL(string: baseURL.rawValue)!
+        let session = NSURLSession.sharedSession()
+        
+        let request = NSMutableURLRequest(URL: url)
+        
+        
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
+        request.HTTPMethod = "POST"
+        
+        do{
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.init(rawValue: 0))
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            
+        }
+        catch{
+            print("Error writing JSON: ")
+        }
+
+        
+        let task = session.dataTaskWithRequest(request) {
+            (
+            let data, let response, let error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                print("error  No data")
+                return
+            }
+            
+            let json = JSON(data: data!)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                block(data: json)
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
+
 }
