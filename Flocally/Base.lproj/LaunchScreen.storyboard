@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2TZ-Os-Zgc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="kV7-uA-5Eb">
+                                        <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="3e9-S4-T9I"/>
+                                            <constraint firstAttribute="height" constant="200" id="pGp-2T-Fuk"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="kV7-uA-5Eb" firstAttribute="centerX" secondItem="2TZ-Os-Zgc" secondAttribute="centerX" id="oz4-jz-0cQ"/>
+                                    <constraint firstItem="kV7-uA-5Eb" firstAttribute="centerY" secondItem="2TZ-Os-Zgc" secondAttribute="centerY" id="xMR-ZJ-Z0n"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2TZ-Os-Zgc" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="3aV-II-CJT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2TZ-Os-Zgc" secondAttribute="trailing" constant="-20" id="a6a-Wp-FoH"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="2TZ-Os-Zgc" secondAttribute="bottom" id="wj1-rB-wE3"/>
+                            <constraint firstItem="2TZ-Os-Zgc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="yhN-IK-K4N"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +50,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash" width="200" height="200"/>
+    </resources>
 </document>

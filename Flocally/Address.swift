@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Address{
+class Address:NSObject,NSCoding{
     
     var addressLine1:String
     var addressLine2:String
@@ -27,16 +27,23 @@ class Address{
         //super.init()
     }
     
-//    required init(coder aDecoder: NSCoder) {
-//        
-//        self.addressLine1 = aDecoder.decodeObjectForKey("addressLine1") as! String
-//        self.addressLine2 = aDecoder.decodeObjectForKey("addressLine2") as! String
-//        
-//    }
+    required init(coder aDecoder: NSCoder) {
+        
+       addressLine1 = aDecoder.decodeObjectForKey("addressLine1") as! String
+        addressLine2 = aDecoder.decodeObjectForKey("addressLine2") as! String
+        state = aDecoder.decodeObjectForKey("state") as! String
+        city = aDecoder.decodeObjectForKey("city") as! String
+        pinCode = aDecoder.decodeObjectForKey("pincode") as! String
+        key = aDecoder.decodeObjectForKey("key") as! String
+    }
     
-//    func encodeWithCoder(aCoder: NSCoder) {
-//        aCoder.encodeObject(addressLine1, forKey: "addressLine1")
-//        aCoder.encodeObject(addressLine2, forKey: "addressLine2")
-//    }
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(addressLine1, forKey: "addressLine1")
+        aCoder.encodeObject(addressLine2, forKey: "addressLine2")
+        aCoder.encodeObject(state, forKey: "state")
+        aCoder.encodeObject(city, forKey: "city")
+        aCoder.encodeObject(pinCode, forKey: "pincode")
+        aCoder.encodeObject(key, forKey: "key")
+    }
     
 }

@@ -20,4 +20,6 @@ enum BaseURL : String {
     case postSMS = "http://flocally.com/api/sms.php"
     case generateOTP = "http://52.35.39.21:3000/api/generateotp"
     case validateOTP = "http://52.35.39.21:3000/api/validateotp"
+    case updateServings = "http://52.35.39.21:3000/api/updateservings"
+    case addUserAddress = "http://52.35.39.21:3000/api/adduseraddress"
 }

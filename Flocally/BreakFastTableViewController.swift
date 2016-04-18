@@ -21,10 +21,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
     
     
     //MARK:- IBActions
-    
-    @IBAction func unwindSegueBreakFast(segue:UIStoryboardSegue){
-    
-    }
+
        
 
     //MARK:- View life cycle methods
@@ -125,6 +122,7 @@ class BreakFastTableViewController: UITableViewController,updateUserSelectedQuan
         let breakfast = self.breakfast[indexPath.row] as Dish
         
         cell.dishID = breakfast.id
+        cell.postedByChefID = breakfast.postedByID
         cell.lblPrice.text = "₹"+String(breakfast.price)
         cell.lblFoodName.text = breakfast.name
         cell.lblDescription.text = breakfast.description

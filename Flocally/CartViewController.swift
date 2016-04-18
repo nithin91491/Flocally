@@ -8,12 +8,12 @@
 
 import UIKit
 
+
+
 class CartViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
 
     var items:[[String:AnyObject]]!
-    var total:Double = 0.0
-    let convenienceFee = 20.0
-    let taxes = 15.0
+    
     var isSavedAddressAvailable = false
     
     @IBOutlet weak var tableView:UITableView!
@@ -47,21 +47,26 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "quantityChanged:", name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OrderSummary", style: UIBarButtonItemStyle.Plain, target: self, action: "orderSummarySegue")
-        
-        
-        //Check for any saved address
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if userDefaults.objectForKey("address1") != nil || userDefaults.objectForKey("address2") != nil{
-            isSavedAddressAvailable = true
-        }
-        
-        
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OrderSummary", style: UIBarButtonItemStyle.Plain, target: self, action: "orderSummarySegue")
+
     }
 
     
     deinit{
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //Check for any saved address
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if userDefaults.objectForKey("address1") != nil || userDefaults.objectForKey("address2") != nil{
+            isSavedAddressAvailable = true
+        }
+        else{
+            isSavedAddressAvailable = false
+        }
     }
     
     //MARK:- Functions
@@ -113,7 +118,7 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
             cell.btnPlus.hidden = true
             
             switch (indexPath.row){
-            case items.count  :  cell.lblDishName.text = "Convenience Fees"
+            case items.count    :   cell.lblDishName.text = "Convenience Fees"
                                     cell.lblPrice.text = "₹\(convenienceFee)"
                 
             case items.count + 1:   cell.lblDishName.text = "Taxes"
@@ -137,10 +142,13 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        itemsToCheckout = items
+        
         if segue.identifier == "orderSummarySegue"{
             let destinationVC = segue.destinationViewController as! OrderSummaryViewController
             destinationVC.items = self.items
-            destinationVC.orderedAmount = self.total - convenienceFee - taxes
+            destinationVC.orderedAmount = total - convenienceFee - taxes
             
         }
     }

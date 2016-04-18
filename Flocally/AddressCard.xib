@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressCard" customModule="Flocally" customModuleProvider="target">
             <connections>
                 <outlet property="btnDelete" destination="WHg-GO-G3q" id="rBn-iK-THF"/>
+                <outlet property="btnEdit" destination="xab-BZ-jOh" id="IUJ-ke-JT5"/>
                 <outlet property="lblAddressLine1" destination="ySC-p9-Txe" id="Bd4-xr-jDf"/>
                 <outlet property="lblAddressLine2" destination="QWA-9h-6N3" id="la0-k0-G4I"/>
                 <outlet property="lblCityState" destination="bKY-r2-HWN" id="uR4-hg-1Ic"/>
@@ -17,7 +18,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="170" height="134"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -57,7 +58,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xab-BZ-jOh">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xab-BZ-jOh" userLabel="Edit">
                     <rect key="frame" x="140" y="4" width="30" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="ca5-Go-6V3"/>

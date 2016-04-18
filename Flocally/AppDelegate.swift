@@ -12,7 +12,13 @@ import Crashlytics
 
 
 let downloader = Downloader(configuration: NSURLSession.sharedSession().configuration)
-
+var itemsToCheckout:[[String:AnyObject]]!
+var total:Double = 0.0
+let convenienceFee = 20.0
+let taxes = 15.0
+let userID = "56b30eb1f27e7d5a0d8e583e"
+var latitude:String!
+var longitude:String!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

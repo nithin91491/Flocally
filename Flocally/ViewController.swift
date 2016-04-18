@@ -8,8 +8,9 @@
 
 import UIKit
 //import PagingMenuController
+import CoreLocation
 
-class ViewController: UIViewController,PagingMenuControllerDelegate{
+class ViewController: UIViewController,PagingMenuControllerDelegate,CLLocationManagerDelegate{
 
     var leftSearchBarButtonItem: UIBarButtonItem?
     var rightSearchBarButtonItem: UIBarButtonItem?
@@ -17,6 +18,13 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     var src:SearchResultsController!
     
     var cartItems = [[String:AnyObject]]()
+    
+    var locationManager: CLLocationManager = CLLocationManager()
+    var startLocation: CLLocation!
+    
+    @IBAction func unwindSegueHome(segue:UIStoryboardSegue){
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +38,44 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cartItemChanged:", name: "cartItemChanged", object: nil) //Posted by-Custom tableview cell
         
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushCartScreen:", name: "pushCartScreen", object: nil) // Posted by cart button in footer
+        
+        //Get Users location
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        startLocation = nil
+        
+        
+//        let filter = FilterControl(frame: CGRectMake(50, 50, 150, 50), numberOfSections: 2)
+//        filter.strokeColor = UIColor.blackColor().CGColor
+//        filter.addTarget(self, action: "selectedIndexChanged:", forControlEvents: .TouchDragExit)
+//        self.view.addSubview(filter)
+        
     }
     
+    
+    func selectedIndexChanged(sender:FilterControl){
+        print(sender.selectedIndex)
+    }
+    
+    
+    //CLLocation delegate
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        
+        var latestLocation: AnyObject = locations[locations.count - 1]
+        
+                latitude = String(format: "%.4f",
+                    latestLocation.coordinate.latitude)
+                longitude = String(format: "%.4f",
+                    latestLocation.coordinate.longitude)
+        
+        
+        self.locationManager.stopUpdatingLocation()
+//                if startLocation == nil {
+//                    startLocation = latestLocation as! CLLocation
+//                }
+    }
     
     func cartItemChanged(notification:NSNotification){
         
@@ -180,7 +224,11 @@ class ViewController: UIViewController,PagingMenuControllerDelegate{
     }
     
     func pushCartScreen(notification:NSNotification){
-        self.performSegueWithIdentifier("cartSegue", sender: self)
+        
+        if !((self.navigationController!.viewControllers.last!.isKindOfClass(CartViewController))){//To prevent pushing cart screen multiple times
+            self.performSegueWithIdentifier("cartSegue", sender: self)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

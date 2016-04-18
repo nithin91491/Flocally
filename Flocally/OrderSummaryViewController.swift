@@ -32,6 +32,32 @@ class OrderSummaryViewController: UIViewController,UITableViewDataSource,UITable
         self.lblConvenienceFees.text = "₹\(convenienceFees)"
         self.lblTaxes.text = "₹\(taxes)"
         self.lblTotalAmount.text = "₹\(convenienceFees+orderedAmount+taxes)"
+        
+        
+        //Checkout:
+        
+        var chefIDs = ""
+        var dishIDs = ""
+        var servings = ""
+        
+        //Bulding a comma seperated string of ordered items to supply to API
+        itemsToCheckout.forEach { item in
+            
+            chefIDs += "\(item["postedByID"]!),"
+            dishIDs += "\(item["dishID"]!),"
+            servings += "\(item["quantity"]!),"
+            
+        }
+        
+        chefIDs = String(chefIDs.characters.dropLast())   //Remove trailing comma
+        dishIDs = String(dishIDs.characters.dropLast())
+        servings = String(servings.characters.dropLast())
+        
+        
+        RequestManager.postRequest(.updateServings, params: ["chefid":"\(chefIDs)","dishid":"\(dishIDs)","serving":"\(servings)"]) { (data) -> () in
+            print(data)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -27,6 +27,7 @@ import Foundation
     
     var view:UIView!
     
+    @IBOutlet weak var btnEdit: UIButton!
    
 
     override init(frame: CGRect) {
@@ -45,7 +46,9 @@ import Foundation
         view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
         addSubview(view)
         
+        //Forwarding events to parent VC
         self.btnDelete.addTarget(nil, action: "delAction:", forControlEvents: .TouchUpInside)
+        self.btnEdit.addTarget(nil, action: "editAction:", forControlEvents: .TouchUpInside)
     }
     
     func loadViewFromNib() -> UIView {

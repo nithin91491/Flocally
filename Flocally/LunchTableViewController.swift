@@ -107,6 +107,7 @@ class LunchTableViewController: UITableViewController,updateUserSelectedQuantity
         let lunch = self.lunch[indexPath.row] as Dish
         
         cell.dishID = lunch.id
+        cell.postedByChefID = lunch.postedByID
         cell.lblPrice.text = "₹"+String(lunch.price)
         cell.lblFoodName.text = lunch.name
         cell.lblDescription.text = lunch.description

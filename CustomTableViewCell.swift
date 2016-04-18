@@ -37,6 +37,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var btnMinus:UIButton!
     
     var dishID:String!
+    var postedByChefID:String!
     var breakfastVC:BreakFastTableViewController?
     var lunchVC:LunchTableViewController?
     var snacksVC:SnacksTableViewController?
@@ -84,7 +85,7 @@ class CustomTableViewCell: UITableViewCell {
         let dishName = self.lblFoodName.text!
         
         
-        NSNotificationCenter.defaultCenter().postNotificationName("cartItemChanged", object: self, userInfo: ["price":price,"dishName":dishName,"quantity":initialQuantity,"dishID":dishID]) //Observer-ViewController
+        NSNotificationCenter.defaultCenter().postNotificationName("cartItemChanged", object: self, userInfo: ["price":price,"dishName":dishName,"quantity":initialQuantity,"dishID":dishID,"postedByID":postedByChefID]) //Observer-ViewController
     }
     
     

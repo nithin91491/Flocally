@@ -83,7 +83,7 @@ class RequestManager{
     }
     
     
-    static func postRequest(baseURL:BaseURL,params:Dictionary<String, String>,block:(data:JSON)->()){
+    static func postRequest(baseURL:BaseURL,params:Dictionary<String, AnyObject>,block:(data:JSON)->()){
         
         let url:NSURL = NSURL(string: baseURL.rawValue)!
         let session = NSURLSession.sharedSession()

@@ -43,14 +43,20 @@ class ChoosePaymentViewController: UIViewController,UITableViewDelegate,UITableV
        return 1
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "orderSummary"{
+            let destinationVC = segue.destinationViewController as! OrderSummaryViewController
+            destinationVC.items = itemsToCheckout
+            destinationVC.orderedAmount = total-convenienceFee-taxes
+        }
+        
+        
     }
-    */
+   
 
 }
