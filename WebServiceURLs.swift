@@ -22,4 +22,7 @@ enum BaseURL : String {
     case validateOTP = "http://52.35.39.21:3000/api/validateotp"
     case updateServings = "http://52.35.39.21:3000/api/updateservings"
     case addUserAddress = "http://52.35.39.21:3000/api/adduseraddress"
+    case addUser = "http://52.35.39.21:3000/api/adduser"
+    case getUserDetails = "http://52.35.39.21:3000/api/getuserdetails"
+    case removeUserAddress = "http://52.35.39.21:3000/api/removeuseraddress"
 }

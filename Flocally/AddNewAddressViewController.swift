@@ -43,26 +43,18 @@ class AddNewAddressViewController: UIViewController {
         
         
         if isEditMode { // update existing address
-            let address = Address(addressLine1: address1, addressLine2: address2, state: state, city: city, pinCode: pinCode, key: self.address!.key)
-            let addressData = NSKeyedArchiver.archivedDataWithRootObject(address)
-            NSUserDefaults.standardUserDefaults().setObject(addressData, forKey:self.address!.key )
+//            let address = Address(addressLine1: address1, addressLine2: address2, state: state, city: city, pinCode: pinCode, key: self.address!.key)
+//            let addressData = NSKeyedArchiver.archivedDataWithRootObject(address)
+//            NSUserDefaults.standardUserDefaults().setObject(addressData, forKey:self.address!.key )
             self.navigationController?.popViewControllerAnimated(true)
         }
         else{ // save new address
-//            let address = Address(addressLine1: address1, addressLine2: address2, state: state, city: city, pinCode: pinCode, key: addressKey1)
-//            let addressData = NSKeyedArchiver.archivedDataWithRootObject(address)
-//            NSUserDefaults.standardUserDefaults().setObject(addressData, forKey:addressKey1)
-            
-            
+
            let address = "\(address1),\(address2),\(city),\(pinCode),\(state),India"
             
             RequestManager.postRequest(.addUserAddress, params: ["id":userID,"type":"Home","address":address,"latitude":latitude,"longitude":longitude], block: { (data) -> () in
                 print(data)
             })
-            
-            
-            
-            
             
             self.performSegueWithIdentifier("payment", sender: self)
         }

@@ -61,7 +61,28 @@ class OTPViewController: UIViewController {
 
         RequestManager.postRequest(.validateOTP, params: ["token":"\(self.txfOTP.text!)"]){ (data) -> () in
             if data["message"].stringValue == "Verified."{
-                self.dismissViewControllerAnimated(true, completion: nil)
+                
+                //add new user
+                
+                RequestManager.postRequest(.addUser, params: ["phone":self.phoneNumber,"deviceid":deviceID,"devicetype":"iPhone"], block: { (data) -> () in
+                    print(data)
+                    
+                    userID = (data["data"] as JSON)["_id"].stringValue
+                    
+                    NSUserDefaults.standardUserDefaults().setValue(userID, forKey: "userid")
+                    
+                    let alertController = UIAlertController(title: "Success", message: "You have registered successfully", preferredStyle: .Alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }))
+                    self.presentViewController(alertController, animated: true,completion: nil)
+                    
+                    
+                })
+                
+                
+                
             }
             else{
                 let alertController = UIAlertController(title: "Failure", message: data["message"].stringValue, preferredStyle: .Alert)

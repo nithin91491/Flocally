@@ -16,6 +16,8 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     
     var isSavedAddressAvailable = false
     
+    var savedUserAddress = [JSON]()
+    
     @IBOutlet weak var tableView:UITableView!
     //MARK:- View Life cycle
     
@@ -26,12 +28,21 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     
     @IBAction func takeMyMoney(sender: UIButton) {
         
-        if !isSavedAddressAvailable{
-            self.performSegueWithIdentifier("newAddress", sender: self)
+        
+        if userID != ""{
+            
+                    if !isSavedAddressAvailable{
+                        self.performSegueWithIdentifier("newAddress", sender: self)
+                    }
+                    else{
+                        self.performSegueWithIdentifier("savedAddress", sender: self)
+                    }
+            
         }
         else{
-            self.performSegueWithIdentifier("savedAddress", sender: self)
+            self.performSegueWithIdentifier("signUpUser", sender: self)
         }
+        
         
     }
     override func viewDidLoad() {
@@ -39,13 +50,14 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
 
         // Do any additional setup after loading the view.
         
+        
         total = items.reduce(0.0, combine: { (T:Double, object) -> Double in
            T + ((object["price"] as! Double) * Double(object["quantity"] as! Int))
         })
         
         total += convenienceFee + taxes
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "quantityChanged:", name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CartViewController.quantityChanged(_:)), name: "quantityChanged", object: nil) //Posted by- Cart tableview cell
         
         //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OrderSummary", style: UIBarButtonItemStyle.Plain, target: self, action: "orderSummarySegue")
 
@@ -60,13 +72,25 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //Check for any saved address
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if userDefaults.objectForKey("address1") != nil || userDefaults.objectForKey("address2") != nil{
-            isSavedAddressAvailable = true
+        
+        if userID != ""{
+            
+            let param = "/\(userID)"
+            RequestManager.request(.GET, baseURL: .getUserDetails, parameterString: param, block: { (data) in
+                 self.savedUserAddress = data[0]["addresses"].arrayValue
+                
+                if self.savedUserAddress.count > 0 {
+                    self.isSavedAddressAvailable = true
+                }
+                else{
+                    self.isSavedAddressAvailable = false
+                }
+                
+            })
+            
         }
-        else{
-            isSavedAddressAvailable = false
-        }
+        
+        
     }
     
     //MARK:- Functions
@@ -151,6 +175,13 @@ class CartViewController: UIViewController, UITableViewDataSource,UITableViewDel
             destinationVC.orderedAmount = total - convenienceFee - taxes
             
         }
+        
+        if segue.identifier == "savedAddress"{
+            let destinationVC = segue.destinationViewController as! SelectAddressViewController
+            destinationVC.savedAddresses = self.savedUserAddress
+        
+        }
+        
     }
    
 

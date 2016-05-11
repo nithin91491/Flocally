@@ -16,9 +16,22 @@ var itemsToCheckout:[[String:AnyObject]]!
 var total:Double = 0.0
 let convenienceFee = 20.0
 let taxes = 15.0
-let userID = "56b30eb1f27e7d5a0d8e583e"
+var userName = ""
+var userID = ""  {      //"56b30eb1f27e7d5a0d8e583e"
+    willSet{
+        let param = "/\(newValue)"
+        RequestManager.request(.GET, baseURL: .getUserDetails, parameterString: param) { (data) in
+            userName = data[0]["name"].stringValue
+            userPhoneNumber = data[0]["phone"].stringValue
+        }
+    }
+    
+}
+
 var latitude:String!
 var longitude:String!
+var deviceID = "sampledeviceid"
+var userPhoneNumber = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
         
+        if   NSUserDefaults.standardUserDefaults().valueForKey("userid") as? String != nil {
+            userID = NSUserDefaults.standardUserDefaults().valueForKey("userid") as! String
+        }
+        
+//        if   NSUserDefaults.standardUserDefaults().valueForKey("username") as? String != nil {
+//            userName = NSUserDefaults.standardUserDefaults().valueForKey("username") as! String
+//        }
+        
+        let types:UIUserNotificationType = ([.Alert, .Sound, .Badge])
+        let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -55,7 +80,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        
+        let infos = toHexString(deviceToken)
+        deviceID = infos
+        print("Device Token:" + deviceID)
+        
+        
+    }
 
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        //deviceTok = "1234"
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        // let temp : NSDictionary = userInfo
+        
+//        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+//        {
+//            //            if let badge = info["badge"]  {
+//            //                application.applicationIconBadgeNumber = (badge as! NSString).integerValue
+//            //            }
+//            
+//        }
+    }
+    
+    func toHexString(HString: NSData) -> String {
+        
+        var hexString: String = ""
+        let dataBytes =  UnsafePointer<CUnsignedChar>(HString.bytes)
+        
+        for (var i: Int=0; i<HString.length; ++i) {
+            hexString +=  String(format: "%02X", dataBytes[i])
+        }
+        
+        return hexString
+    }
 
 }
 

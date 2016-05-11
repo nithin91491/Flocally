@@ -29,12 +29,12 @@ class FooterViewController: UIViewController {
     //MARK :- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil) //Notification posted after selecting a particular menu item
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FooterViewController.menuSelected(_:)), name: "menuSelected", object: nil) //Notification posted after selecting a particular menu item
         
         if self.revealViewController() != nil {
-            menuButton.addTarget(self.revealViewController(), action: "rightRevealToggle:", forControlEvents: .TouchUpInside)
+            menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.rightRevealToggle(_:)), forControlEvents: .TouchUpInside)
             
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            //self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
        
         

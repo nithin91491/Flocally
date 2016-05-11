@@ -69,6 +69,7 @@
 		5FF8A36B1C7F1229002FAB1D /* OrderSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */; };
 		5FFA35A81C8459B900D98658 /* AddressCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FFA35A71C8459B900D98658 /* AddressCard.xib */; };
 		5FFA35AA1C845BD900D98658 /* AddressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFA35A91C845BD900D98658 /* AddressCard.swift */; };
+		5FFF99601CC61B6A004A62B5 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFF995F1CC61B6A004A62B5 /* FilterTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		5FF8A36A1C7F1229002FAB1D /* OrderSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryCell.swift; sourceTree = "<group>"; };
 		5FFA35A71C8459B900D98658 /* AddressCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCard.xib; sourceTree = "<group>"; };
 		5FFA35A91C845BD900D98658 /* AddressCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCard.swift; sourceTree = "<group>"; };
+		5FFF995F1CC61B6A004A62B5 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 				5FE8FCF31C8599BA00DC6EBC /* SelectAddressViewController.swift */,
 				5FC0A8961C89A84A00907276 /* scrollViewTesting.swift */,
 				5F942E5E1CBD0EEC0040D06A /* AddNewAddressViewController.swift */,
+				5FFF995F1CC61B6A004A62B5 /* FilterTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +369,11 @@
 					5FC9E6FC1C3A8847008B5877 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = K37J4WCRKJ;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -441,6 +449,7 @@
 				5F8754941C64B36D00A275C0 /* HitTestView.swift in Sources */,
 				5FBD16E41CC4C31B0059D4A1 /* FilterControl.swift in Sources */,
 				5FAE04CB1C52108700F8E6A3 /* RequestManager.swift in Sources */,
+				5FFF99601CC61B6A004A62B5 /* FilterTableViewController.swift in Sources */,
 				5FDF62771C59ECE4002918B9 /* HelpTableViewCell.swift in Sources */,
 				5F27C0251C60AE0B000ABA7E /* RateCustomerViewController.swift in Sources */,
 				5FCD06ED1C3D33F80038A4C0 /* CustomTableViewCell.swift in Sources */,

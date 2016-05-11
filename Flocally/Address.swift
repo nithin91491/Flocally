@@ -8,42 +8,48 @@
 
 import Foundation
 
-class Address:NSObject,NSCoding{
+class Address{
     
     var addressLine1:String
     var addressLine2:String
     var state:String
     var city:String
     var pinCode:String
-    var key:String
+    var id:String
     
-     init(addressLine1:String,addressLine2:String,state:String,city:String,pinCode:String,key:String){
-        self.addressLine1 = addressLine1
-        self.addressLine2 = addressLine2
-        self.state = state
-        self.city = city
-        self.pinCode = pinCode
-        self.key = key
+    init(address:String,id:String){
+        
+        let addressItems = address.componentsSeparatedByString(",")
+        self.addressLine1 = addressItems[0]
+        self.addressLine2 = addressItems[1]
+        self.state = addressItems[2]
+        self.city = addressItems[3]
+        self.pinCode = addressItems[4]
+        self.id = id
         //super.init()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        
-       addressLine1 = aDecoder.decodeObjectForKey("addressLine1") as! String
-        addressLine2 = aDecoder.decodeObjectForKey("addressLine2") as! String
-        state = aDecoder.decodeObjectForKey("state") as! String
-        city = aDecoder.decodeObjectForKey("city") as! String
-        pinCode = aDecoder.decodeObjectForKey("pincode") as! String
-        key = aDecoder.decodeObjectForKey("key") as! String
+    convenience init(address:String){
+        self.init(address:address,id:"")
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(addressLine1, forKey: "addressLine1")
-        aCoder.encodeObject(addressLine2, forKey: "addressLine2")
-        aCoder.encodeObject(state, forKey: "state")
-        aCoder.encodeObject(city, forKey: "city")
-        aCoder.encodeObject(pinCode, forKey: "pincode")
-        aCoder.encodeObject(key, forKey: "key")
-    }
+//    required init(coder aDecoder: NSCoder) {
+//        
+//       addressLine1 = aDecoder.decodeObjectForKey("addressLine1") as! String
+//        addressLine2 = aDecoder.decodeObjectForKey("addressLine2") as! String
+//        state = aDecoder.decodeObjectForKey("state") as! String
+//        city = aDecoder.decodeObjectForKey("city") as! String
+//        pinCode = aDecoder.decodeObjectForKey("pincode") as! String
+//        //key = aDecoder.decodeObjectForKey("key") as! String
+//    }
+    
+//    func encodeWithCoder(aCoder: NSCoder) {
+//        aCoder.encodeObject(addressLine1, forKey: "addressLine1")
+//        aCoder.encodeObject(addressLine2, forKey: "addressLine2")
+//        aCoder.encodeObject(state, forKey: "state")
+//        aCoder.encodeObject(city, forKey: "city")
+//        aCoder.encodeObject(pinCode, forKey: "pincode")
+//        //aCoder.encodeObject(key, forKey: "key")
+//    }
     
 }

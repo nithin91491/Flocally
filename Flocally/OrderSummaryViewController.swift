@@ -58,7 +58,18 @@ class OrderSummaryViewController: UIViewController,UITableViewDataSource,UITable
             print(data)
         }
         
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(image: UIImage(named: "arrow-left")!, style: .Plain, target: self, action: #selector(OrderSummaryViewController.back(_:)))
+        self.navigationItem.leftBarButtonItem = newBackButton;
+        
     }
+    
+    func back(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

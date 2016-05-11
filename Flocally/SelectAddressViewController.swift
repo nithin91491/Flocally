@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectAddressViewController:UIViewController{
+class SelectAddressViewController:UIViewController,UITextFieldDelegate{
     
     @IBOutlet weak var addressView1: AddressCard!
     
@@ -31,8 +31,9 @@ class SelectAddressViewController:UIViewController{
     
     var address1:Address!
     var address2:Address!
-    let addressKey1 = "address1"
-    let addressKey2 = "address2"
+//    let addressKey1 = "address1"
+//    let addressKey2 = "address2"
+    var savedAddresses  = [JSON]()
     var addressToEdit:Address!
     let layerName = "TopBorder"
     var addressToDeliver:Address!
@@ -42,12 +43,9 @@ class SelectAddressViewController:UIViewController{
         
         if sender.superview?.superview?.tag == 1 {
         
-            if NSUserDefaults.standardUserDefaults().objectForKey(addressKey1) != nil{
-             NSUserDefaults.standardUserDefaults().removeObjectForKey(addressKey1)
-            }
-            else{
-               NSUserDefaults.standardUserDefaults().removeObjectForKey(addressKey2)
-            }
+            RequestManager.postRequest(.removeUserAddress, params: ["id":userID,"addressid":address1.id], block: { (data) in
+                print(data)
+            })
             
             UIView.animateWithDuration(0.2){
                 self.addressView1.alpha = 0
@@ -64,15 +62,18 @@ class SelectAddressViewController:UIViewController{
         }
         
         else {
-
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(addressKey2)
+            
+            RequestManager.postRequest(.removeUserAddress, params: ["id":userID,"addressid":address2.id], block: { (data) in
+                print(data)
+            })
+            
                 UIView.animateWithDuration(0.2){
                     self.addressView2.alpha = 0
                 }
         }
     }
-   
-    func editAction(sender:UIButton){
+    
+    func editAction(sender:UIButton){ //Event forwarded from Address card
         if sender.superview?.superview?.tag == 1{
             addressToEdit = address1
         }
@@ -84,15 +85,15 @@ class SelectAddressViewController:UIViewController{
     
     override func viewDidLoad() {
         
-        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: "selectionChanged:")
-        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: "selectionChanged:")
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(SelectAddressViewController.selectionChanged(_:)))
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(SelectAddressViewController.selectionChanged(_:)))
         
         self.addressView1.addGestureRecognizer(tapGestureRecognizer1)
         self.addressView2.addGestureRecognizer(tapGestureRecognizer2)
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        //let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if userDefaults.objectForKey(addressKey1) != nil && userDefaults.objectForKey(addressKey2) != nil {
+        if savedAddresses.count > 1 {
            
             
             let layer1 = addressView1.layer
@@ -116,40 +117,42 @@ class SelectAddressViewController:UIViewController{
             layer2.shadowRadius = 8
             
             
-            let savedAddressData = NSUserDefaults.standardUserDefaults().objectForKey(addressKey1) as! NSData
-            address1 = NSKeyedUnarchiver.unarchiveObjectWithData(savedAddressData) as! Address
+//            let savedAddressData = NSUserDefaults.standardUserDefaults().objectForKey(addressKey1) as! NSData
+//            address1 = NSKeyedUnarchiver.unarchiveObjectWithData(savedAddressData) as! Address
             
-            addressView1.lblName.text = "UserName"
+            address1 =  Address(address:savedAddresses[0]["address"].stringValue, id:savedAddresses[0]["_id"].stringValue)
+         
+            
+            
+            addressView1.lblName.text = userName
             addressView1.lblAddressLine1.text = address1.addressLine1
             addressView1.lblAddressLine2.text = address1.addressLine2
             addressView1.lblCityState.text = "\(address1.city),\(address1.state)"
             addressView1.lblPIN.text = address1.pinCode
-            addressView1.lblMobileNumber.text = "9176657947"
+            addressView1.lblMobileNumber.text = userPhoneNumber
             
             
-            let savedAddressData2 = NSUserDefaults.standardUserDefaults().objectForKey(addressKey2) as! NSData
-            address2 = NSKeyedUnarchiver.unarchiveObjectWithData(savedAddressData2) as! Address
+             address2 = Address(address:savedAddresses[1]["address"].stringValue,id:savedAddresses[1]["_id"].stringValue)
             
-            addressView2.lblName.text = "UserName"
+            addressView2.lblName.text = userName
             addressView2.lblAddressLine1.text = address2.addressLine1
             addressView2.lblAddressLine2.text = address2.addressLine2
             addressView2.lblCityState.text = "\(address2.city),\(address2.state)"
             addressView2.lblPIN.text = address2.pinCode
-            addressView2.lblMobileNumber.text = "9176657947"
+            addressView2.lblMobileNumber.text = userPhoneNumber
 
             selectedAddress = address1
         }
         else{
-        let  addressData = (userDefaults.objectForKey(addressKey1) != nil ? userDefaults.objectForKey(addressKey1) : userDefaults.objectForKey(addressKey2)) as! NSData
         
-          address1 = NSKeyedUnarchiver.unarchiveObjectWithData(addressData) as! Address
-        
+         address1 =  Address(address:savedAddresses[0]["address"].stringValue,id:savedAddresses[0]["_id"].stringValue)
+            
         addressView1.lblName.text = "UserName"
         addressView1.lblAddressLine1.text = address1.addressLine1
         addressView1.lblAddressLine2.text = address1.addressLine2
         addressView1.lblCityState.text = "\(address1.city),\(address1.state)"
         addressView1.lblPIN.text = address1.pinCode
-        addressView1.lblMobileNumber.text = "9176657947"
+        addressView1.lblMobileNumber.text = userPhoneNumber
             
             let layer1 = addressView1.layer
             
@@ -175,37 +178,6 @@ class SelectAddressViewController:UIViewController{
             addressView2.hidden = true
             selectedAddress = address1
         }
-        
-//        let card = AddressCard(frame:CGRectMake(0, 0, 250 , 200) )
-//        card.frame.size = addressView1.frame.size
-//        print(card.frame.size)
-//        print(addressView1.frame.size)
-//        card.lblAddressLine1.text = "Sample address1"
-//        card.lblAddressLine2.text = "sample 2"
-//        card.lblCityState.text = "Bangalore, karnataka"
-//        card.lblMobileNumber.text = "9176657947"
-//        self.addressView1.addSubview(card)
-//        //card.clipsToBounds = true
-//        card.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
-//        card.sizeToFit()
-//        card.layer.borderWidth = 1
-//        card.layer.borderColor = UIColor.grayColor().CGColor
-//        
-//        //self.addressView1.clipsToBounds = true
-//        
-//        let card2 = AddressCard(frame:CGRectMake(0, 0, 250 , 200) )
-//        card2.frame.size = addressView1.frame.size
-//        
-//        card2.lblAddressLine1.text = "Sample address2"
-//        card2.lblAddressLine2.text = "sample 2"
-//        card2.lblCityState.text = "Bangalore, karnataka"
-//        card2.lblMobileNumber.text = "9176657947"
-//        self.addressView2.addSubview(card2)
-//        //card.clipsToBounds = true
-//        card2.autoresizingMask = [.FlexibleWidth,.FlexibleHeight]
-//        card2.sizeToFit()
-//        card2.layer.borderWidth = 1
-//        card2.layer.borderColor = UIColor.grayColor().CGColor
         
     }
     
@@ -256,14 +228,24 @@ class SelectAddressViewController:UIViewController{
         
         guard address1 != "" && address2 != "" && city != "" && state != "" && pinCode != ""  else{return false}
         
-        let address = Address(addressLine1: address1, addressLine2: address2, state: state, city: city, pinCode: pinCode, key: addressKey2)
-        let addressData = NSKeyedArchiver.archivedDataWithRootObject(address)
-        NSUserDefaults.standardUserDefaults().setObject(addressData, forKey:addressKey2)
-        addressView2.hidden = false
+        let address = "\(address1),\(address2),\(city),\(pinCode),\(state),India"
         
-      return true
+        RequestManager.postRequest(.addUserAddress, params: ["id":userID,"type":"Home","address":address,"latitude":latitude,"longitude":longitude], block: { (data) -> () in
+            print(data)
+            
+        })
+        
+        addressToDeliver = Address(address: address)
+        addressView2.hidden = false
+        return true
+      
     }
     
+    //Textfield Delegate methods
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editAddress"{
@@ -272,13 +254,7 @@ class SelectAddressViewController:UIViewController{
         }
         if segue.identifier == "proceedToPayment"{
             
-            if saveNewAddress(){
-                
-                let savedAddressData2 = NSUserDefaults.standardUserDefaults().objectForKey(addressKey2) as! NSData
-                address2 = NSKeyedUnarchiver.unarchiveObjectWithData(savedAddressData2) as! Address
-                addressToDeliver = address2
-            }
-            else{
+            if !saveNewAddress(){
                 addressToDeliver = selectedAddress
             }
             

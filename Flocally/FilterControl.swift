@@ -18,12 +18,15 @@ class FilterControl: UIControl {
     var background = UIColor.redColor()
     let margin:CGFloat = 15
     var selectedIndex = 0
+    var selectedItem = ""
     private var knobPosition:CGFloat = 0
     private var midPointBetweenSections:CGFloat = 0
+    private let items:[String]
     
-   init(frame:CGRect,numberOfSections:Int){
+    init(frame:CGRect,numberOfSections:Int,items:[String]){
     
        self.numberOfSections = numberOfSections
+        self.items = items
        super.init(frame: frame)
         setup()
     
@@ -31,12 +34,15 @@ class FilterControl: UIControl {
 
    required init?(coder aDecoder: NSCoder) {
        self.numberOfSections = 2
+       self.items = [String]()
        super.init(coder: aDecoder)
         setup()
    }
     
     func setup(){
+        
         knobPosition = margin
+        selectedItem = items[0]
         let drawableWidth = frame.size.width-margin*2
     
         for i in 0..<numberOfSections{
@@ -44,11 +50,12 @@ class FilterControl: UIControl {
             let x = knobPosition + (drawableWidth/CGFloat(numberOfSections-1)) * CGFloat(i)
             xPositionArray.append(x)
             let label = UILabel()
-            label.text = "sample"
-            label.font.fontWithSize(8)
+            label.text = items[i]
+            label.font = label.font.fontWithSize(12)
             label.sizeToFit()
+            label.textColor = UIColor.whiteColor()
             label.frame.origin.x = x-label.frame.width/2
-            label.frame.origin.y = -20
+            label.frame.origin.y = -2
             
             self.addSubview(label)
             
@@ -65,7 +72,7 @@ class FilterControl: UIControl {
         super.drawRect(rect)
         
         let context = UIGraphicsGetCurrentContext()
-        let yCoordinate = frame.size.height/2
+        let yCoordinate = rect.size.height-10
         
         self.backgroundColor = background
         
@@ -94,6 +101,7 @@ class FilterControl: UIControl {
         
     }
     
+    
     func updateKnobPosition(){
         if knobPosition > xPositionArray[selectedIndex]{
             let index = selectedIndex+1 >= xPositionArray.count ? xPositionArray.count-1 : selectedIndex + 1
@@ -108,6 +116,7 @@ class FilterControl: UIControl {
         }
         setNeedsDisplay()
         
+        selectedItem = items[selectedIndex]
         self.sendActionsForControlEvents(UIControlEvents.TouchDragExit)
     }
     
